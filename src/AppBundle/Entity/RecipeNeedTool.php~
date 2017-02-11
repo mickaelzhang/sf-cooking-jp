@@ -1,0 +1,46 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RecipeNeedTool
+ *
+ * @ORM\Table(name="recipe_need_tool", indexes={@ORM\Index(name="recipe_need_tool_recipe_idx", columns={"recipe_id"}), @ORM\Index(name="recipe_need_tool_cooking_tool_idx", columns={"cooking_tool_id"})})
+ * @ORM\Entity
+ */
+class RecipeNeedTool
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="recipe_need_tool_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $recipeNeedToolId;
+
+    /**
+     * @var \AppBundle\Entity\Recipe
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="recipe_id")
+     * })
+     */
+    private $recipe;
+
+    /**
+     * @var \AppBundle\Entity\CookingTool
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CookingTool")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cooking_tool_id", referencedColumnName="cooking_tool_id")
+     * })
+     */
+    private $cookingTool;
+
+
+}
+
