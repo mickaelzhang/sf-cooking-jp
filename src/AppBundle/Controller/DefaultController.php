@@ -13,7 +13,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('frontend/pages/home.html.twig');
+        return $this->render('@frontend/home.html.twig');
     }
 }

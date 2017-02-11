@@ -38,6 +38,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    paths:
+        '%kernel.root_dir%/Resources/views/admin/pages': admin
+        '%kernel.root_dir%/Resources/views/frontend/pages': frontend
+
 
 # Doctrine Configuration
 doctrine:
