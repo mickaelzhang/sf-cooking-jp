@@ -9,6 +9,14 @@ Symfony project
 * Clément Vion
 * Mickaël Zhang
 
+
+## Commit - Tags
+- [X] [ADD] - Add new files / dependencies
+- [X] [REMOVE] - Remove files / dependencies
+- [X] [UPDATE] - Update important part of the project
+- [X] [FIX] - Fix bugs, codes and other stuff
+- [X] [MERGE] - Merge branches
+
 ## Project view structure
 The project view is located in `app/Resources/views`.
 
