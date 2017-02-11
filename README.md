@@ -65,3 +65,27 @@ pages/
 
 #### 'templates' folder
 The `templates` folder contained `twig` files for template. They should be reusable, if you find yourself, including a specific header twig file too much for example, it could be a good idea to place it here and extend the template file.
+
+### IMPORTANT
+
+Since you should only render pages twig template, use the appropriate namespace.
+Right now, the project possess 2 namespace for the view:
+- `admin` : For the admin interface
+- `frontend` : For the website
+
+```php
+<?php
+
+// BAD
+public function indexAction()
+{
+    return $this->render('frontend/pages/recipe/index.html.twig');
+}
+
+// GOOD
+public function indexAction()
+{
+    return $this->render('@frontend/recipe/index.html.twig');
+}
+
+```
