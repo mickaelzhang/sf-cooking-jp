@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -36,9 +38,15 @@ class User
     private $email;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=45, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
 
@@ -116,6 +124,16 @@ class User
         return $this->email;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
     /**
      * Set password
      *
@@ -187,4 +205,44 @@ class User
     {
         return $this->firstName;
     }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+       return serialize(array(
+           $this->userId,
+           $this->username,
+           $this->password,
+           // see section on salt below
+           // $this->salt,
+       ));
+   }
+
+   /** @see \Serializable::unserialize() */
+   public function unserialize($serialized)
+   {
+       list (
+           $this->userId,
+           $this->username,
+           $this->password,
+           // see section on salt below
+           // $this->salt
+       ) = unserialize($serialized);
+   }
 }
