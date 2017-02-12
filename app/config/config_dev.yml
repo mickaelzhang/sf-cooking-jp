@@ -32,3 +32,40 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+
+bazinga_faker:
+    orm: doctrine
+    entities:
+        AppBundle\Entity\Category:
+            number: 6
+            custom_formatters:
+                Slug: { method: slug }
+        AppBundle\Entity\User:
+            number: 10
+            custom_formatters:
+                Password: { method: password }
+        AppBundle\Entity\CategoryType:
+            number: 2
+            custom_formatters:
+                Slug: { method: slug }
+        AppBundle\Entity\CookingTool:
+            number: 9
+            custom_formatters:
+                Slug: { method: slug }
+        AppBundle\Entity\Ingredient:
+            number: 20
+            custom_formatters:
+                Slug: { method: slug }
+        AppBundle\Entity\Recipe:
+            number: 4
+            custom_formatters:
+                Slug: { method: slug }
+                Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
+        AppBundle\Entity\RecipeCategory:
+            number: 4
+        AppBundle\Entity\RecipeNeedIngredient:
+            number: 12
+        AppBundle\Entity\RecipeNeedTool:
+            number: 10
+
