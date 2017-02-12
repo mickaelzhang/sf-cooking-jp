@@ -1,7 +1,7 @@
 <header>
     <ul>
         <li><a href="{{ path('homepage') }}">Home</a></li>
-        <li><a href="{{ path('recipe_index') }}">Recipe list</a></li>
+        <li><a href="{{ path('recipe_list') }}">Recipe list</a></li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <li><a href="{{ path('logout') }}">Deconnexion</a></li>
         {% else %}
