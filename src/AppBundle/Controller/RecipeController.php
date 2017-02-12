@@ -58,11 +58,13 @@ class RecipeController extends Controller
     /**
      * Find and display a recipe entity
      *
-     * @Route("/{slug}", name="recipe_show")
+     * @Route("/{recipeId}", name="recipe_show")
      * @Method("GET")
      */
-    public function showAction()
+    public function showAction(Recipe $recipe)
     {
-        return $this->render('@frontend/recipe/show.html.twig');
+        return $this->render('@frontend/recipe/show.html.twig', array(
+            'recipe' => $recipe,
+        ));
     }
 }

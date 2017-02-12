@@ -2,5 +2,11 @@
     <ul>
         <li><a href="{{ path('homepage') }}">Home</a></li>
         <li><a href="{{ path('recipe_index') }}">Recipe list</a></li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="{{ path('logout') }}">Deconnexion</a></li>
+        {% else %}
+            <li><a href="{{ path('user_registration') }}">Inscription</a></li>
+            <li><a href="{{ path('login') }}">Connexion</a></li>
+        {% endif %}
     </ul>
 </header>
