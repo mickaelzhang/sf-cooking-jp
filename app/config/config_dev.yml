@@ -37,6 +37,11 @@ monolog:
 bazinga_faker:
     orm: doctrine
     entities:
+        AppBundle\Entity\CategoryType:
+            number: 2
+            custom_formatters:
+                Name: { method: word }
+                Slug: { method: slug }
         AppBundle\Entity\Category:
             number: 6
             custom_formatters:
@@ -46,11 +51,6 @@ bazinga_faker:
             number: 10
             custom_formatters:
                 Password: { method: password }
-        AppBundle\Entity\CategoryType:
-            number: 2
-            custom_formatters:
-                Name: { method: word }
-                Slug: { method: slug }
         AppBundle\Entity\CookingTool:
             number: 9
             custom_formatters:
