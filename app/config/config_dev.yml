@@ -40,6 +40,7 @@ bazinga_faker:
         AppBundle\Entity\Category:
             number: 6
             custom_formatters:
+                Name: { method: word }
                 Slug: { method: slug }
         AppBundle\Entity\User:
             number: 10
@@ -48,18 +49,22 @@ bazinga_faker:
         AppBundle\Entity\CategoryType:
             number: 2
             custom_formatters:
+                Name: { method: word }
                 Slug: { method: slug }
         AppBundle\Entity\CookingTool:
             number: 9
             custom_formatters:
+                Name: { method: words, parameters: [ '2', 'true' ] }
                 Slug: { method: slug }
         AppBundle\Entity\Ingredient:
             number: 20
             custom_formatters:
+                Name: { method: words, parameters: [ '2', 'true' ] }
                 Slug: { method: slug }
         AppBundle\Entity\Recipe:
             number: 4
             custom_formatters:
+                Name: { method: words, parameters: [ '3', 'true' ] }
                 Slug: { method: slug }
                 Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
         AppBundle\Entity\RecipeCategory:
