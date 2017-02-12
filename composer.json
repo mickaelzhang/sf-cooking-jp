@@ -32,7 +32,8 @@
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
-        "symfony/var-dumper": "^3.2"
+        "symfony/var-dumper": "^3.2",
+        "willdurand/faker-bundle": "@stable"
     },
     "scripts": {
         "symfony-scripts": [
@@ -48,6 +49,12 @@
         ],
         "post-update-cmd": [
             "@symfony-scripts"
+        ],
+        "regenerate-db": [
+            "php bin/console doctrine:database:drop --force",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:schema:update --force",
+            "php bin/console faker:populate"
         ]
     },
     "extra": {
