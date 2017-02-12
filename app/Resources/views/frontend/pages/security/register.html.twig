@@ -1,8 +1,14 @@
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+{% extends 'frontend/templates/default.html.twig' %}
 
-    <button type="submit">Register!</button>
-{{ form_end(form) }}
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+
+        <button type="submit">Register!</button>
+    {{ form_end(form) }}
+{% endblock %}
