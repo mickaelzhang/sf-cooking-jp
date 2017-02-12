@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RegistrationController extends Controller
 {
     /**
-    * @Route("/register", name="user_registration")
+    * @Route("/inscription", name="user_registration")
     */
    public function registerAction(Request $request)
    {
@@ -40,7 +40,7 @@ class RegistrationController extends Controller
        }
 
        return $this->render(
-           'frontend/pages/security/register.html.twig',
+           '@frontend/security/register.html.twig',
            array('form' => $form->createView())
        );
    }

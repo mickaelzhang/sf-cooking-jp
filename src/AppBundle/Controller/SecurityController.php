@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SecurityController extends Controller
 {
   /**
-   * @Route("/login", name="login")
+   * @Route("/connexion", name="login")
    */
   public function loginAction(Request $request)
   {
@@ -21,7 +21,7 @@ class SecurityController extends Controller
       // last username entered by the user
       $lastUsername = $authenticationUtils->getLastUsername();
 
-      return $this->render('frontend/pages/security/login.html.twig', array(
+      return $this->render('@frontend/security/login.html.twig', array(
           'last_username' => $lastUsername,
           'error'         => $error,
       ));

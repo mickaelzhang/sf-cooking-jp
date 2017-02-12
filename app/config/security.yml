@@ -30,7 +30,7 @@ security:
             provider: our_db_provider
 
             logout:
-                path:   /logout
+                path:   /deconnexion
                 target: /
 
 
