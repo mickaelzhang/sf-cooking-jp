@@ -84,14 +84,7 @@ class UserController extends Controller
 
             $file = $user->getImage();
 
-            // Generate unique name
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            // Move the file to the directory where user image are stored
-            $file->move(
-                $this->getParameter('image_user_directory'),
-                $fileName
-            );
+            $fileName = $this->get('app_user.image_uploader')->upload($file);
 
             // Update image property to store image file name instead of content
             $user->setImage($fileName);
