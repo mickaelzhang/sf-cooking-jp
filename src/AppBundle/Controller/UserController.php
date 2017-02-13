@@ -20,7 +20,7 @@ class UserController extends Controller
     /**
      * Find and display a user entity
      *
-     * @Route("/{userId}", name="user_show")
+     * @Route("/{id}", name="user_show")
      * @Method("GET")
      */
     public function showAction(User $user)
@@ -60,6 +60,13 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
+        $loggedInUser = $this->get('security.token_storage')->getToken()->getUser();
+
+        // If it's not the user we redirect him to user page
+        if ($loggedInUser != $user) {
+            return $this->redirectToRoute('user_show', array('id' => $user->getUserId()));
+        }
+
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 

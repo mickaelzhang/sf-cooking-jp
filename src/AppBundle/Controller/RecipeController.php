@@ -45,14 +45,14 @@ class RecipeController extends Controller
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
-        $user ='';
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $recipe->setAuthor($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($recipe);
-            $em->flush($recipe);
+            $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
         }
