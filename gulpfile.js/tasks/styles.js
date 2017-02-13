@@ -1,14 +1,20 @@
 // ==== STYLES ==== //
 
 var gulp         = require('gulp'),
-		sass         = require('gulp-sass'),
-		autoprefixer = require('gulp-autoprefixer'),
-		cssnano      = require('gulp-cssnano'),
-    config       = require('../gulpconfig');
+  	sass         = require('gulp-sass'),
+  	autoprefixer = require('gulp-autoprefixer'),
+  	cssnano      = require('gulp-cssnano'),
+    config       = require('../gulpconfig'),
+    plumber      = require('gulp-plumber');
 
 gulp.task('styles', function() {
-  /* Where scss file come from */
+  /* Where scss figle come from */
   return gulp.src( config.path.src + 'scss/*.scss' )
+  /* Prevent pipe breaking */
+  .pipe(plumber(function(error){
+      console.log("Error happend!", error.message);
+      this.emit('end');
+  }))
   /* SASS Config */
   .pipe( sass( {
     includePaths: [
