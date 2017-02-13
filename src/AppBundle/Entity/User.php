@@ -15,6 +15,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface, \Serializable
 {
     /**
+     * Construct User
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->roles = array('ROLE_USER');
+    }
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="user_id", type="integer")
@@ -220,8 +230,6 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         $roles = $this->roles;
-        // each connected user has the role ROLE_USER
-        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
