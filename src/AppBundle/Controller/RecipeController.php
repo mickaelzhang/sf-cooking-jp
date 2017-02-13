@@ -33,7 +33,7 @@ class RecipeController extends Controller
         ));
     }
     /**
-     * Create a new student entity
+     * Create a new recipe entity
      *
      * @Route("/nouveau", name="recipe_new")
      * @Method({"GET", "POST"})

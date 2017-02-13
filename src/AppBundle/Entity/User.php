@@ -64,6 +64,11 @@ class User implements UserInterface, \Serializable
      */
     private $firstName;
 
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = array();
+
 
 
     /**
@@ -215,7 +220,19 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+        // each connected user has the role ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        // allows for chaining
+        return $this;
     }
 
     public function eraseCredentials()
