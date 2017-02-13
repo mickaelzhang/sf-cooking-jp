@@ -13,11 +13,30 @@ use Symfony\Component\HttpFoundation\Response;
  * Class UserController
  *
  * @package AppBundle\Controller
- * @Route("utilisateurs")
+ * @Route("profil")
  */
 class UserController extends Controller
 {
     /**
+     * Find and display a user entity
+     *
+     * @Route("/{userId}", name="user_show")
+     * @Method("GET")
+     */
+    public function showAction(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
+            array( 'author' => $user->getUserId() )
+        );
+
+        return $this->render('@frontend/user/show.html.twig', array(
+            'user' => $user,
+            'recipes' => $recipes
+        ));
+    }
+  
+     /**
      * List all users
      *
      * @Route("/", name="users_list")
