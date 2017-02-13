@@ -54,7 +54,7 @@ class RecipeController extends Controller
             $em->persist($recipe);
             $em->flush($recipe);
 
-//            return $this->redirectToRoute('recipe_show', array('id' => $recipe->getRecipeId()));
+            return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
         }
 
         return $this->render('@frontend/recipe/new.html.twig', array(
