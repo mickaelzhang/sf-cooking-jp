@@ -24,8 +24,14 @@ class UserController extends Controller
      */
     public function showAction(User $user)
     {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
+            array( 'author' => $user->getUserId() )
+        );
+
         return $this->render('@frontend/user/show.html.twig', array(
             'user' => $user,
+            'recipes' => $recipes
         ));
     }
 }
