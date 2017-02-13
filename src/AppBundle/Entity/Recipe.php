@@ -38,7 +38,7 @@ class Recipe
     /**
      * @var float
      *
-     * @ORM\Column(name="difficulty", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="difficulty", type="integer", precision=10, scale=0, nullable=true)
      */
     private $difficulty;
 
