@@ -75,7 +75,7 @@ class RecipeController extends Controller
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
-        $comments = $em->getRepository('AppBundle:HasCommented')->findByRecipe($recipeId);
+        $comments = $em->getRepository('AppBundle:HasCommented')->orderByPublishedAt($recipeId);
 
         // Create comment form
         $hasCommented = new HasCommented();
@@ -85,8 +85,8 @@ class RecipeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $hasCommented->setUser($user);
-
             $hasCommented->setRecipe($recipe);
+            $hasCommented->setPublishedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($hasCommented);
