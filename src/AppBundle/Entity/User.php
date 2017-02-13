@@ -65,22 +65,9 @@ class User implements UserInterface, \Serializable
     private $firstName;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="is_admin_since", type="datetime", nullable=true)
+     * @ORM\Column(type="json_array")
      */
-    private $isAdminSince;
-
-    /**
-     * @var \AppBundle\Entity\User
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="changed_to_admin_by_user_id", referencedColumnName="user_id")
-     * })
-     */
-    private $changedToAdminByUser;
-
+    private $roles = array();
 
 
     /**
@@ -232,7 +219,19 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+        // each connected user has the role ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        // allows for chaining
+        return $this;
     }
 
     public function eraseCredentials()
@@ -262,52 +261,4 @@ class User implements UserInterface, \Serializable
            // $this->salt
        ) = unserialize($serialized);
    }
-
-    /**
-     * Set isAdminSince
-     *
-     * @param \DateTime $isAdminSince
-     *
-     * @return User
-     */
-    public function setIsAdminSince($isAdminSince)
-    {
-        $this->isAdminSince = $isAdminSince;
-
-        return $this;
-    }
-
-    /**
-     * Get isAdminSince
-     *
-     * @return \DateTime
-     */
-    public function getIsAdminSince()
-    {
-        return $this->isAdminSince;
-    }
-
-    /**
-     * Set changedToAdminByUser
-     *
-     * @param \AppBundle\Entity\User $changedToAdminByUser
-     *
-     * @return User
-     */
-    public function setChangedToAdminByUser(\AppBundle\Entity\User $changedToAdminByUser = null)
-    {
-        $this->changedToAdminByUser = $changedToAdminByUser;
-
-        return $this;
-    }
-
-    /**
-     * Get changedToAdminByUser
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getChangedToAdminByUser()
-    {
-        return $this->changedToAdminByUser;
-    }
 }
