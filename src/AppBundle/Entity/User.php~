@@ -65,6 +65,13 @@ class User implements UserInterface, \Serializable
     private $firstName;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_public", type="boolean", options={"default":false})
+     */
+    private $isPublic;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="is_admin_since", type="datetime", nullable=true)
@@ -81,7 +88,7 @@ class User implements UserInterface, \Serializable
      */
     private $changedToAdminByUser;
 
-    
+
 
     /**
      * Get userId
@@ -262,4 +269,52 @@ class User implements UserInterface, \Serializable
            // $this->salt
        ) = unserialize($serialized);
    }
+
+    /**
+     * Set isAdminSince
+     *
+     * @param \DateTime $isAdminSince
+     *
+     * @return User
+     */
+    public function setIsAdminSince($isAdminSince)
+    {
+        $this->isAdminSince = $isAdminSince;
+
+        return $this;
+    }
+
+    /**
+     * Get isAdminSince
+     *
+     * @return \DateTime
+     */
+    public function getIsAdminSince()
+    {
+        return $this->isAdminSince;
+    }
+
+    /**
+     * Set changedToAdminByUser
+     *
+     * @param \AppBundle\Entity\User $changedToAdminByUser
+     *
+     * @return User
+     */
+    public function setChangedToAdminByUser(\AppBundle\Entity\User $changedToAdminByUser = null)
+    {
+        $this->changedToAdminByUser = $changedToAdminByUser;
+
+        return $this;
+    }
+
+    /**
+     * Get changedToAdminByUser
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getChangedToAdminByUser()
+    {
+        return $this->changedToAdminByUser;
+    }
 }

@@ -81,7 +81,7 @@ class User implements UserInterface, \Serializable
      */
     private $changedToAdminByUser;
 
-    
+
 
     /**
      * Get userId
