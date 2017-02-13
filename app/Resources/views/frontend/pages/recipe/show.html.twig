@@ -7,4 +7,13 @@
     <p> {{ recipe.description }} </p>
     <p> Temps de préparation : {{ recipe.preparationTime|date('H:i:s') }} </p>
     {{ dump(comments) }}
+
+    {% if is_granted('ROLE_USER') %}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Envoyer" />
+        {{ form_end(form) }}
+    {% else %}
+        <p><a href="{{ path('login') }}">Connectez-vous</a> pour commentez cette recette !</p>
+    {% endif %}
 {% endblock %}
