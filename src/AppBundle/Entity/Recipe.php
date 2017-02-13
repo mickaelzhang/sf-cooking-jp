@@ -37,9 +37,16 @@ class Recipe
     private $description;
 
     /**
-     * @var float
+     * @var integer
      *
-     * @ORM\Column(name="difficulty", type="integer", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="serving_size", type="integer", precision=3, scale=0, nullable=true)
+     */
+    private $servingSize;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="difficulty", type="integer", precision=1, scale=0, nullable=true)
      * @Assert\Range(
      *     min = 0,
      *     max = 5
@@ -218,5 +225,29 @@ class Recipe
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set servingSize
+     *
+     * @param integer $servingSize
+     *
+     * @return Recipe
+     */
+    public function setServingSize($servingSize)
+    {
+        $this->servingSize = $servingSize;
+
+        return $this;
+    }
+
+    /**
+     * Get servingSize
+     *
+     * @return integer
+     */
+    public function getServingSize()
+    {
+        return $this->servingSize;
     }
 }
