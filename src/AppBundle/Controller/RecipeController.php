@@ -23,7 +23,12 @@ class RecipeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@frontend/recipe/list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->findAll();
+
+        return $this->render('@frontend/recipe/list.html.twig', array(
+            'recipes' => $recipes
+        ));
     }
 
     /**
