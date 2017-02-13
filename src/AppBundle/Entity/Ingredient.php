@@ -29,13 +29,6 @@ class Ingredient
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=45, nullable=false)
-     */
-    private $slug;
-
-    /**
      * @var \AppBundle\Entity\Ingredient
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ingredient")
@@ -79,30 +72,6 @@ class Ingredient
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Ingredient
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**

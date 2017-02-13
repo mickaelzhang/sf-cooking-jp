@@ -20,12 +20,12 @@ class RecipeController extends Controller
     /**
      * Lists all recipe entities.
      *
-     * @Route("/", name="recipe_index")
+     * @Route("/", name="recipe_list")
      * @Method("GET")
      */
     public function indexAction()
     {
-        return $this->render('@frontend/recipe/index.html.twig');
+        return $this->render('@frontend/recipe/list.html.twig');
     }
     /**
      * Create a new student entity

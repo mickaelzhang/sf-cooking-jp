@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Recipe
  *
- * @ORM\Table(name="recipe", uniqueConstraints={@ORM\UniqueConstraint(name="slug_UNIQUE", columns={"slug"})}, indexes={@ORM\Index(name="user_id_idx", columns={"author_id"})})
+ * @ORM\Table(name="recipe", indexes={@ORM\Index(name="user_id_idx", columns={"author_id"})})
  * @ORM\Entity
  */
 class Recipe
@@ -27,13 +27,6 @@ class Recipe
      * @ORM\Column(name="name", type="string", length=60, nullable=false)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=60, nullable=false)
-     */
-    private $slug;
 
     /**
      * @var string
