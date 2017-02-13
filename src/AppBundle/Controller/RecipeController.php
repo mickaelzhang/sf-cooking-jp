@@ -71,8 +71,13 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe)
     {
+        $em = $this->getDoctrine()->getManager();
+        $recipeId = $recipe->getRecipeId();
+        $comments = $em->getRepository('AppBundle:HasCommented')->findByRecipe($recipeId);
+
         return $this->render('@frontend/recipe/show.html.twig', array(
             'recipe' => $recipe,
+            'comments' => $comments,
         ));
     }
 }
