@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category
  *
- * @ORM\Table(name="category", uniqueConstraints={@ORM\UniqueConstraint(name="slug_UNIQUE", columns={"slug"})}, indexes={@ORM\Index(name="category_category_type_idx", columns={"category_type_id"}), @ORM\Index(name="category_category_idx", columns={"parent_id"})})
+ * @ORM\Table(name="category", indexes={@ORM\Index(name="category_category_type_idx", columns={"category_type_id"}), @ORM\Index(name="category_category_idx", columns={"parent_id"})})
  * @ORM\Entity
  */
 class Category

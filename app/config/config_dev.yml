@@ -40,27 +40,30 @@ bazinga_faker:
         AppBundle\Entity\CategoryType:
             number: 2
             custom_formatters:
-                Name: { method: word }
+                Name: { method: sentence, parameters: [ '1', 'true' ] }
         AppBundle\Entity\Category:
             number: 6
             custom_formatters:
-                Name: { method: word }
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
         AppBundle\Entity\User:
             number: 10
             custom_formatters:
                 Password: { method: password }
+                ChangedToAdminByUser: { method: null }
+                IsAdminSince: { method: null }
         AppBundle\Entity\CookingTool:
             number: 9
             custom_formatters:
-                Name: { method: words, parameters: [ '2', 'true' ] }
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
         AppBundle\Entity\Ingredient:
             number: 20
             custom_formatters:
-                Name: { method: words, parameters: [ '2', 'true' ] }
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
         AppBundle\Entity\Recipe:
             number: 4
             custom_formatters:
-                Name: { method: words, parameters: [ '3', 'true' ] }
+                Name: { method: sentence, parameters: [ '4', 'true' ] }
+                ServingSize: { method: numberBetween, parameters: [ '1', '10' ] }
                 Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
         AppBundle\Entity\RecipeCategory:
             number: 4

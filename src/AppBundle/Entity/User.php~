@@ -65,6 +65,13 @@ class User implements UserInterface, \Serializable
     private $firstName;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_public", type="boolean", options={"default":false})
+     */
+    private $isPublic;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="is_admin_since", type="datetime", nullable=true)
