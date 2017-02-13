@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Recipe
@@ -38,7 +39,11 @@ class Recipe
     /**
      * @var float
      *
-     * @ORM\Column(name="difficulty", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="difficulty", type="integer", precision=10, scale=0, nullable=true)
+     * @Assert\Range(
+     *     min = 0,
+     *     max = 5
+     * )
      */
     private $difficulty;
 

@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Recipe;
+use AppBundle\Form\RecipeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class RecipeController
@@ -30,16 +32,35 @@ class RecipeController extends Controller
             'recipes' => $recipes
         ));
     }
-
     /**
      * Create a new student entity
      *
      * @Route("/nouveau", name="recipe_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        return $this->render('@frontend/recipe/new.html.twig');
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+        $user ='';
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $recipe->setAuthor($user);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush($recipe);
+
+//            return $this->redirectToRoute('recipe_show', array('id' => $recipe->getRecipeId()));
+        }
+
+        return $this->render('@frontend/recipe/new.html.twig', array(
+            'form' => $form->createView(),
+            'recipe' => $recipe
+        ));
     }
 
     /**
