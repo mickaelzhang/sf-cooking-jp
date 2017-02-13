@@ -35,7 +35,7 @@ class UserController extends Controller
             'recipes' => $recipes
         ));
     }
-  
+
      /**
      * List all users
      *
@@ -47,7 +47,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
 
-        return $this->render('@frontend/users/list.html.twig', array(
+        return $this->render('@frontend/user/list.html.twig', array(
             'users' => $users
         ));
     }
@@ -60,7 +60,6 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
@@ -75,47 +74,9 @@ class UserController extends Controller
             return $this->redirectToRoute('user_edit', array('id' => $user->getUserId()));
         }
 
-        return $this->render('@frontend/users/edit.html.twig', array(
+        return $this->render('@frontend/user/edit.html.twig', array(
             'user' => $user,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
-    }
-
-    /**
-     * Deletes a student entity.
-     *
-     * @Route("/{id}", name="user_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, User $user)
-    {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush($user);
-        }
-
-        return $this->redirectToRoute('user_index');
-    }
-
-
-    /**
-     * Creates a form to delete a user entity.
-     *
-     * @param User $user The user entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(User $user)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $user->getUserId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }
