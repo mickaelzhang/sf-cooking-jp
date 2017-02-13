@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Recipe;
+use AppBundle\Entity\HasCommented;
 use AppBundle\Form\RecipeType;
+use AppBundle\Form\HasCommentedType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -67,12 +69,36 @@ class RecipeController extends Controller
      * Find and display a recipe entity
      *
      * @Route("/{recipeId}", name="recipe_show")
-     * @Method("GET")
      */
-    public function showAction(Recipe $recipe)
+    public function showAction(Recipe $recipe, Request $request)
     {
+        // Show comments for this recipe
+        $em = $this->getDoctrine()->getManager();
+        $recipeId = $recipe->getRecipeId();
+        $comments = $em->getRepository('AppBundle:HasCommented')->orderByPublishedAt($recipeId);
+
+        // Create comment form
+        $hasCommented = new HasCommented();
+        $form = $this->createForm(HasCommentedType::class, $hasCommented);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $hasCommented->setUser($user);
+            $hasCommented->setRecipe($recipe);
+            $hasCommented->setPublishedAt(new \DateTime('now'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hasCommented);
+            $em->flush();
+
+            return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
+        }
+
         return $this->render('@frontend/recipe/show.html.twig', array(
             'recipe' => $recipe,
+            'comments' => $comments,
+            'form' => $form->createView(),
         ));
     }
 }

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * HasCommented
  *
  * @ORM\Table(name="has_commented", indexes={@ORM\Index(name="has_commented_user_idx", columns={"user_id"}), @ORM\Index(name="has_commented_recipe_idx", columns={"recipe_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HasCommentedRepository")
  */
 class HasCommented
 {
@@ -27,6 +27,13 @@ class HasCommented
      * @ORM\Column(name="message", type="string", length=100, nullable=false)
      */
     private $message;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="published_at", type="datetime", length=100, nullable=false)
+     */
+    private $publishedAt;
 
     /**
      * @var \AppBundle\Entity\Recipe
@@ -80,6 +87,30 @@ class HasCommented
      * @return string
      */
     public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set publishedAt
+     *
+     * @param datetime $publishedAt
+     *
+     * @return HasCommented
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt
+     *
+     * @return datetime
+     */
+    public function getPublishedAt()
     {
         return $this->message;
     }
