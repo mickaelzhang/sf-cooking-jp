@@ -4,5 +4,6 @@
 
 {% block content %}
     {{ dump(user) }}
+    <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
     {{ dump(recipes) }}
 {% endblock %}

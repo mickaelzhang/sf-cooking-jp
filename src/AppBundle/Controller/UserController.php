@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class UserController
@@ -67,6 +68,11 @@ class UserController extends Controller
             return $this->redirectToRoute('user_show', array('id' => $user->getUserId()));
         }
 
+        // image field expect a file
+        $user->setImage(
+            new File($this->getParameter('image_user_directory').'/'.$user->getImage())
+        );
+
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
@@ -75,6 +81,20 @@ class UserController extends Controller
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+
+            $file = $user->getImage();
+
+            // Generate unique name
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            // Move the file to the directory where user image are stored
+            $file->move(
+                $this->getParameter('image_user_directory'),
+                $fileName
+            );
+
+            // Update image property to store image file name instead of content
+            $user->setImage($fileName);
 
             $this->getDoctrine()->getManager()->flush();
 

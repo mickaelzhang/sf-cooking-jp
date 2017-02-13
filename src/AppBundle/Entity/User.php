@@ -243,7 +243,6 @@ class User implements UserInterface, \Serializable
     {
         $this->roles = $roles;
 
-        // allows for chaining
         return $this;
     }
 
