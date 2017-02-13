@@ -75,4 +75,30 @@ class RecipeController extends Controller
             'recipe' => $recipe,
         ));
     }
+
+    /**
+     * Displays a form to edit an existing recipe entity.
+     *
+     * @Route("/{id}/editer", name="recipe_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Recipe $recipe)
+    {
+        $editForm = $this->createForm(RecipeType::class, $recipe);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+
+            return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
+        }
+
+        return $this->render('@frontend/recipe/edit.html.twig', array(
+            'recipe' => $recipe,
+            'edit_form' => $editForm->createView()
+        ));
+    }
 }
