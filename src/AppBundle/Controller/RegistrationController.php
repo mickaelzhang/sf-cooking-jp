@@ -22,6 +22,21 @@ class RegistrationController extends Controller
        // handle the submit on POST
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid()) {
+           // $file stores the uploaded PDF file
+           /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+           $file = $user->getImage();
+
+           // Generate unique name
+           $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+           // Move the file to the directory where user image are stored
+           $file->move(
+               $this->getParameter('image_user_directory'),
+               $fileName
+           );
+
+           // Update image property to store image file name instead of content
+           $user->setImage($fileName);
 
            // 3) Encode the password (you could also do this via Doctrine listener)
            $password = $this->get('security.password_encoder')

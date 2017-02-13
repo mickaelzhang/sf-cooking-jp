@@ -16,8 +16,6 @@ class User implements UserInterface, \Serializable
 {
     /**
      * Construct User
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -78,6 +76,13 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json_array")
      */
     private $roles = array();
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image;
 
 
     /**
@@ -239,6 +244,18 @@ class User implements UserInterface, \Serializable
         $this->roles = $roles;
 
         // allows for chaining
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
         return $this;
     }
 
