@@ -27,6 +27,7 @@ class RecipeType extends AbstractType
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
             ->add('difficulty', IntegerType::class)
+            ->add('servingSize', IntegerType::class)
             ->add('preparationTime', TimeType::class, array(
                 'input' => 'datetime',
                 'widget' => 'single_text',
