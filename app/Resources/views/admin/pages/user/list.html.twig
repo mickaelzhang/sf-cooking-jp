@@ -2,4 +2,28 @@
 
 {% block content %}
     <h1>Liste des utilisateurs</h1>
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Pseudo</th>
+            <th>Email</th>
+            <th>Date d'inscription</th>
+            <th>Vérifié</th>
+            <th>Voir le profil</th>
+        </tr>
+        {{ dump(users) }}
+        {% for user in users %}
+            <tr>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>register date here</td>
+                <td>{{ user.isVerified }}</td>
+                <td><a href="{{ path('admin_user_show', {'id': user.userId}) }}">Voir le profil</a></td>
+                <td><a href="{{ path('admin_user_edit', {'id': user.userId}) }}">Editer le profil</a></td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
