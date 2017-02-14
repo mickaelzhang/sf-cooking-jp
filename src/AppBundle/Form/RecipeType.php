@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class RecipeType
@@ -28,6 +29,9 @@ class RecipeType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('difficulty', IntegerType::class)
             ->add('servingSize', IntegerType::class)
+            ->add('image', FileType::class, array(
+                'label' => 'Image de la recette'
+            ))
             ->add('preparationTime', TimeType::class, array(
                 'input' => 'datetime',
                 'widget' => 'single_text',

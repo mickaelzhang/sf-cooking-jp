@@ -7,3 +7,6 @@ services:
     app_user.image_uploader:
         class: AppBundle\Service\FileUploader
         arguments: ['%image_user_directory%']
+    app_recipe.image_uploader:
+        class: AppBundle\Service\FileUploader
+        arguments: ['%image_recipe_directory%']

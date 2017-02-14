@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class RecipeController
@@ -54,6 +55,14 @@ class RecipeController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // $file stores the uploaded PDF file
+            /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $recipe->getImage();
+            $fileName = $this->get('app_recipe.image_uploader')->upload($file);
+
+            // Update image property to store image file name instead of content
+            $recipe->setImage($fileName);
+
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $recipe->setAuthor($user);
 
@@ -141,10 +150,18 @@ class RecipeController extends Controller
      */
     public function editAction(Request $request, Recipe $recipe)
     {
+        $recipe->setImage(
+            new File($this->getParameter('image_recipe_directory').'/'.$recipe->getImage())
+        );
+
         $editForm = $this->createForm(RecipeType::class, $recipe);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $file = $recipe->getImage();
+            $fileName = $this->get('app_recipe.image_uploader')->upload($file);
+            $recipe->setImage($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($recipe);
             $em->flush();

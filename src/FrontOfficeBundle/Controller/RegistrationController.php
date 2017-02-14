@@ -33,7 +33,7 @@ class RegistrationController extends Controller
             $file = $user->getImage();
 
             $fileName = $this->get('app_user.image_uploader')->upload($file);
-
+            
             // Update image property to store image file name instead of content
             $user->setImage($fileName);
 
