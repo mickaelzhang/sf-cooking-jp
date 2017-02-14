@@ -11,7 +11,7 @@
         {% endif %}
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            Bonjour {{ app.user.username }} !
+            <a href="{{ path('user_show', { 'id': app.user.userId }) }}">Bonjour {{ app.user.username }} !</a>
             <img src="{{ asset('uploads/user/' ~ app.user.image) }}" width="100px" alt="">
         {% endif %}
     </ul>
