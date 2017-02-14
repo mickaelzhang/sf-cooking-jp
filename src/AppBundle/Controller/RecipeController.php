@@ -7,6 +7,9 @@ use AppBundle\Form\RecipeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -38,7 +41,7 @@ class RecipeController extends Controller
      * @Route("/nouveau", name="recipe_new")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function newAction(Request $request)
     {
@@ -81,6 +84,11 @@ class RecipeController extends Controller
      *
      * @Route("/{id}/editer", name="recipe_edit")
      * @Method({"GET", "POST"})
+     * @Security("recipe.isAuthor(user)")
+     *
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return RedirectResponse|Response
      */
     public function editAction(Request $request, Recipe $recipe)
     {
@@ -88,7 +96,6 @@ class RecipeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($recipe);
             $em->flush();
