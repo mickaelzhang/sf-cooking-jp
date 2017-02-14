@@ -5,21 +5,24 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * IsFavorite
+ * UserFavoriteRecipe
  *
- * @ORM\Table(name="is_favorite", indexes={@ORM\Index(name="is_favorite_user_idx", columns={"user_id"}), @ORM\Index(name="is_favorite_recipe_idx", columns={"recipe_id"})})
+ * @ORM\Table(name="user_favorite_recipe", indexes={
+ *     @ORM\Index(name="user_favorite_recipe_user_idx", columns={"user_id"}),
+ *     @ORM\Index(name="user_favorite_recipe_recipe_idx", columns={"recipe_id"})
+ * })
  * @ORM\Entity
  */
-class IsFavorite
+class UserFavoriteRecipe
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="is_favorite_id", type="integer")
+     * @ORM\Column(name="user_favorite_recipe_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $isFavoriteId;
+    private $userFavoriteRecipeId;
 
     /**
      * @var \AppBundle\Entity\User
@@ -50,7 +53,7 @@ class IsFavorite
      */
     public function getIsFavoriteId()
     {
-        return $this->isFavoriteId;
+        return $this->userFavoriteRecipeId;
     }
 
     /**
@@ -58,7 +61,7 @@ class IsFavorite
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return IsFavorite
+     * @return UserFavoriteRecipe
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -82,7 +85,7 @@ class IsFavorite
      *
      * @param \AppBundle\Entity\Recipe $recipe
      *
-     * @return IsFavorite
+     * @return UserFavoriteRecipe
      */
     public function setRecipe(\AppBundle\Entity\Recipe $recipe = null)
     {
