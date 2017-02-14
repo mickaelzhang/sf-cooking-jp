@@ -5,6 +5,7 @@ namespace FrontOfficeBundle\Controller;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\UserRateRecipe;
 use AppBundle\Entity\UserCommentOnRecipe;
+use AppBundle\Entity\UserFavoriteRecipe;
 use AppBundle\Form\RecipeType;
 use AppBundle\Form\UserRateRecipeType;
 use AppBundle\Form\UserCommentOnRecipeType;
@@ -40,6 +41,7 @@ class RecipeController extends Controller
             'recipes' => $recipes
         ));
     }
+
     /**
      * Create a new recipe entity
      *
@@ -173,5 +175,38 @@ class RecipeController extends Controller
             'recipe' => $recipe,
             'edit_form' => $editForm->createView()
         ));
+    }
+
+    /**
+     * Add to favorite a recipe
+     *
+     * @Route("/{recipeId}/favori", name="recipe_addToFavorite")
+     * @Method("GET")
+     *
+     * @param Recipe $recipe
+     * @return null
+     */
+    public function addToFavoriteAction(Recipe $recipe)
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $userFavoriteRecipe = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
+            array( 'user' => $user->getUserId() )
+        );
+
+        if ($userFavoriteRecipe == null) {
+            $userFavoriteRecipe = new UserFavoriteRecipe();
+            $userFavoriteRecipe->setUser($user);
+            $userFavoriteRecipe->setRecipe($recipe);
+
+            $em->persist($userFavoriteRecipe);
+            $em->flush();
+        } else {
+            $em->remove($userFavoriteRecipe);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
     }
 }
