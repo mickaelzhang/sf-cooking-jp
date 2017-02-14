@@ -3,6 +3,8 @@
 {% block title %}
 {% endblock %}
 
+{% block page_id %}{{ parent() }}{% endblock %}
+
 {% block body %}
     {% block header %}
         {% include 'frontend/layouts/default_header.html.twig' %}

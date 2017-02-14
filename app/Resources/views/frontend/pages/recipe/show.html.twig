@@ -1,5 +1,7 @@
 {% extends 'frontend/templates/default.html.twig' %}
 
+{% block page_id %}{{ parent() }} recipePage{% endblock %}
+
 {% block title %}Recipe | Show{% endblock %}
 
 {% block content %}
