@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     @ORM\Index(name="user_rate_recipe_user_idx", columns={"user_id"}),
  *     @ORM\Index(name="user_rate_recipe_recipe_idx", columns={"recipe_id"})
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Repository\HasRatedRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRateRecipeRepository")
  */
 class UserRateRecipe
 {

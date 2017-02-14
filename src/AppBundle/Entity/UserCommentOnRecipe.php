@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     @ORM\Index(name="user_comment_on_recipe_user_idx", columns={"user_id"}),
  *     @ORM\Index(name="user_comment_on_recipe_idx", columns={"recipe_id"})
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Repository\HasCommentedRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserCommentOnRecipeRepository")
  */
 class UserCommentOnRecipe
 {

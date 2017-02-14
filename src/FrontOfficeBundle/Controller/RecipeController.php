@@ -81,7 +81,7 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
-        $rating = $em->getRepository('AppBundle:HasRated')->findRecipeAverageRating($recipeId);
+        $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
 
         // Create rating form
         $userRating = new UserRateRecipe();
