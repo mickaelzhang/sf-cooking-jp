@@ -184,7 +184,7 @@ class RecipeController extends Controller
      * @Method("GET")
      *
      * @param Recipe $recipe
-     * @return null
+     * @return RedirectResponse
      */
     public function addToFavoriteAction(Recipe $recipe)
     {
@@ -192,7 +192,10 @@ class RecipeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $userFavoriteRecipe = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
-            array( 'user' => $user->getUserId() )
+            array(
+                'user' => $user->getUserId(),
+                'recipe' => $recipe->getRecipeId()
+            )
         );
 
         if ($userFavoriteRecipe == null) {
