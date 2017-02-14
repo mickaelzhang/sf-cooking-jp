@@ -71,6 +71,20 @@ class Recipe
      */
     private $author;
 
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="cooking_time", type="time")
+     */
+    private $cookingTime;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructions", type="string")
+     */
+    private $instructions;
+
 
 
     /**
@@ -249,6 +263,54 @@ class Recipe
     public function getServingSize()
     {
         return $this->servingSize;
+    }
+
+    /**
+     * Set cookingTime
+     *
+     * @param integer $cookingTime
+     *
+     * @return Recipe
+     */
+    public function setCookingTime($cookingTime)
+    {
+        $this->cookingTime = $cookingTime;
+
+        return $this;
+    }
+
+    /**
+     * Get cookingTime
+     *
+     * @return datetime
+     */
+    public function getCookingTime()
+    {
+        return $this->cookingTime;
+    }
+
+    /**
+     * Set instructions
+     *
+     * @param integer $instructions
+     *
+     * @return Recipe
+     */
+    public function setInstructions($instructions)
+    {
+        $this->instructions = $instructions;
+
+        return $this;
+    }
+
+    /**
+     * Get instructions
+     *
+     * @return datetime
+     */
+    public function getInstructions()
+    {
+        return $this->instructions;
     }
 
     /**
