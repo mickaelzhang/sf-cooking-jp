@@ -85,6 +85,14 @@ class Recipe
      */
     private $instructions;
 
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+
+    private $image;
+
 
 
     /**
@@ -311,6 +319,28 @@ class Recipe
     public function getInstructions()
     {
         return $this->instructions;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @return User
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
     /**
