@@ -12,6 +12,7 @@ parameters:
 
     # Uploaded image directory
     image_user_directory: '%kernel.root_dir%/../web/uploads/user'
+    image_recipe_directory: '%kernel.root_dir%/../web/uploads/recipe'
 
 framework:
     #esi:             ~
