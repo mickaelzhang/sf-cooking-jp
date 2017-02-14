@@ -49,4 +49,5 @@
 /.idea/workspace.xml
 
 #Modules
+/web/assets/
 /node_modules/
