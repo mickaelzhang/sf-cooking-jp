@@ -2,4 +2,33 @@
 
 {% block content %}
     <h1>Liste des recettes</h1>
+    {{dump(recipes)}}
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Auteur</th>
+            <th>Description</th>
+            <th>Nombre de personnes</th>
+            <th>Difficulté</th>
+            <th>Temps de préparation</th>
+            <th>Temps de cuisson</th>
+            <th>Instructions</th>
+            <th>Lien</th>
+            <th>Editer</th>
+        </tr>
+        {% for recipe in recipes %}
+            <tr>
+                <td> {{recipe.name}} </td>
+                <td> {{ recipe.author.username }} </td>
+                <td> {{ recipe.description }} </td>
+                <td> {{ recipe.servingSize }} </td>
+                <td> {{ recipe.difficulty }} </td>
+                <td> {{ recipe.preparationTime|date('H:i:s') }} </td>
+                <td> {{ recipe.cookingTime|date('H:i:s') }} </td>
+                <td> {{ recipe.instructions }} </td>
+                <td> <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">Voir la recette</a> </td>
+                <td> <a href="{{ path('admin_recipe_edit', {'id': recipe.recipeId}) }}">Editer la recette</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

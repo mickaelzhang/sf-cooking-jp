@@ -22,7 +22,12 @@ class RecipeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@admin/recipe/list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->findAll();
+
+        return $this->render('@admin/recipe/list.html.twig', array(
+            'recipes' => $recipes,
+        ));
     }
 
     /**
@@ -34,6 +39,33 @@ class RecipeController extends Controller
     {
         return $this->render('@admin/recipe/show.html.twig', array(
             'recipe' => $recipe,
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing recipe entity.
+     *
+     * @Route("/{id}/editer", name="admin_recipe_edit")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return Response
+     */
+    public function editAction(Request $request, Recipe $recipe)
+    {
+        $editForm = $this->createForm('AdminBundle\Form\RecipeAdminType', $recipe);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('admin_recipe_edit', array('id' => $recipe->getRecipeId()));
+        }
+
+        return $this->render('@admin/recipe/edit.html.twig', array(
+            'user' => $recipe,
+            'edit_form' => $editForm->createView()
         ));
     }
 }
