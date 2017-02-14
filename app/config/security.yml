@@ -33,10 +33,11 @@ security:
                 path:   /deconnexion
                 target: /
 
-
     encoders:
         AppBundle\Entity\User: bcrypt
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/recette/nouveau, roles: ROLE_USER }
+
+    access_denied_url: /404

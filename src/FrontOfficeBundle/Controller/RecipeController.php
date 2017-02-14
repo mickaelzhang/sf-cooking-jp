@@ -9,6 +9,9 @@ use AppBundle\Form\HasCommentedType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -40,7 +43,7 @@ class RecipeController extends Controller
      * @Route("/nouveau", name="recipe_new")
      * @Method({"GET", "POST"})
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function newAction(Request $request)
     {
@@ -99,6 +102,36 @@ class RecipeController extends Controller
             'recipe' => $recipe,
             'comments' => $comments,
             'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing recipe entity.
+     *
+     * @Route("/{id}/editer", name="recipe_edit")
+     * @Method({"GET", "POST"})
+     * @Security("recipe.isAuthor(user)")
+     *
+     * @param Request $request
+     * @param Recipe $recipe
+     * @return RedirectResponse|Response
+     */
+    public function editAction(Request $request, Recipe $recipe)
+    {
+        $editForm = $this->createForm(RecipeType::class, $recipe);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($recipe);
+            $em->flush();
+
+            return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
+        }
+
+        return $this->render('@frontend/recipe/edit.html.twig', array(
+            'recipe' => $recipe,
+            'edit_form' => $editForm->createView()
         ));
     }
 }

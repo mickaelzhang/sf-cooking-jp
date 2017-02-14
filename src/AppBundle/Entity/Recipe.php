@@ -250,4 +250,15 @@ class Recipe
     {
         return $this->servingSize;
     }
+
+    /**
+     * Check if the given User is the author of the Recipe
+     *
+     * @param User|null $user
+     * @return bool
+     */
+    public function isAuthor(User $user = null)
+    {
+        return $user && $user == $this->getAuthor();
+    }
 }
