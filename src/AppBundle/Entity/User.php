@@ -100,9 +100,12 @@ class User implements UserInterface, \Serializable
     private $verifiedSince;
 
     /**
-     * @var integer
+     * @var \AppBundle\Entity\User
      *
-     * @ORM\Column(name="verified_by", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="verified_by", referencedColumnName="user_id", nullable=true)
+     * })
      */
     private $verifiedBy;
 
