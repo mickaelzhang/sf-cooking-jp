@@ -2,10 +2,12 @@
 
 namespace FrontOfficeBundle\Controller;
 
+use AppBundle\Entity\HasRated;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\HasCommented;
 use AppBundle\Form\RecipeType;
 use AppBundle\Form\HasCommentedType;
+use AppBundle\Form\HasRatedType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -79,13 +81,33 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:HasCommented')->orderByPublishedAt($recipeId);
+        $rating = $em->getRepository('AppBundle:HasRated')->findRecipeAverageRating($recipeId);
+
+
+        // Create rating form
+        $hasRated = new HasRated();
+        $ratingForm = $this->createForm(HasRatedType::class, $hasRated);
+        $ratingForm->handleRequest($request);
+
+        if ($ratingForm->isSubmitted() && $ratingForm->isValid()) {
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $hasRated->setUser($user);
+            $hasRated->setRecipe($recipe);
+            $hasRated->setRatedAt(new \DateTime('now'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($hasRated);
+            $em->flush();
+
+            return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
+        }
 
         // Create comment form
         $hasCommented = new HasCommented();
-        $form = $this->createForm(HasCommentedType::class, $hasCommented);
-        $form->handleRequest($request);
+        $commentForm = $this->createForm(HasCommentedType::class, $hasCommented);
+        $commentForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $hasCommented->setUser($user);
             $hasCommented->setRecipe($recipe);
@@ -101,7 +123,9 @@ class RecipeController extends Controller
         return $this->render('@frontend/recipe/show.html.twig', array(
             'recipe' => $recipe,
             'comments' => $comments,
-            'form' => $form->createView(),
+            'rating' => $rating,
+            'commentForm' => $commentForm->createView(),
+            'ratingForm' => $ratingForm->createView(),
         ));
     }
 

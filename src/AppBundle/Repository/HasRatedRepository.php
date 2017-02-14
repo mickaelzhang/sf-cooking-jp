@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class HasRatedRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findRecipeAverageRating($recipeId)
+    {
+        $query = $this->createQueryBuilder('h')
+            ->select("avg(h.rating) as rating_avg, count(h.rating) as rating_count")
+            ->where('h.recipe = :id')
+            ->setParameter(':id', $recipeId)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
