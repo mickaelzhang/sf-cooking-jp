@@ -20,6 +20,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
+        $this->isVerified = false;
     }
 
     /**
@@ -83,6 +84,27 @@ class User implements UserInterface, \Serializable
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $image;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_verified",type="boolean")
+     */
+    private $isVerified;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="verified_since", type="datetime", nullable=true)
+     */
+    private $verifiedSince;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="verified_by", type="integer", nullable=true)
+     */
+    private $verifiedBy;
 
 
     /**
@@ -232,6 +254,11 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    /**
+     * Get roles
+     *
+     * @return array
+     */
     public function getRoles()
     {
         $roles = $this->roles;
@@ -239,6 +266,11 @@ class User implements UserInterface, \Serializable
         return array_unique($roles);
     }
 
+    /**
+     * Set roles
+     *
+     * @return User
+     */
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
@@ -246,14 +278,90 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    /**
+     * Get image
+     *
+     * @return string
+     */
     public function getImage()
     {
         return $this->image;
     }
 
+    /**
+     * Set image
+     *
+     * @return User
+     */
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get isVerified
+     *
+     * @return boolean
+     */
+    public function getIsVerified()
+    {
+        return $this->isVerified;
+    }
+
+    /**
+     * Set isVerified
+     *
+     * @return User
+     */
+    public function setIsVerified($isVerified)
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * Get verifiedSince
+     *
+     * @return boolean
+     */
+    public function getVerifiedSince()
+    {
+        return $this->verifiedSince;
+    }
+
+    /**
+     * Set verifiedSince
+     *
+     * @return User
+     */
+    public function setVerifiedSince($verifiedSince)
+    {
+        $this->verifiedSince = $verifiedSince;
+
+        return $this;
+    }
+
+    /**
+     * Get verifiedBy
+     *
+     * @return boolean
+     */
+    public function getVerifiedBy()
+    {
+        return $this->verifiedBy;
+    }
+
+    /**
+     * Set verifiedBy
+     *
+     * @return User
+     */
+    public function setVerifiedBy($verifiedBy)
+    {
+        $this->verifiedBy = $verifiedBy;
 
         return $this;
     }
