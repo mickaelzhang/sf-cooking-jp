@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * HasRated
+ *
+ * @ORM\Table(name="has_rated", indexes={
+ *     @ORM\Index(name="has_rated_user_idx", columns={"user_id"}),
+ *     @ORM\Index(name="has_rated_recipe_idx", columns={"recipe_id"})
+ * })
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\HasRatedRepository")
+ */
+class HasRated
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="has_rated_id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $hasRatedId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer", length=1, nullable=false)
+     */
+    private $rating;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="rated_at", type="datetime", length=100, nullable=false)
+     */
+    private $ratedAt;
+
+    /**
+     * @var \AppBundle\Entity\Recipe
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Recipe")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recipe_id", referencedColumnName="recipe_id")
+     * })
+     */
+    private $recipe;
+
+    /**
+     * @var \AppBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="user_id")
+     * })
+     */
+    private $user;
+}

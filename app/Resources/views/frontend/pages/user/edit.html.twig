@@ -1,6 +1,8 @@
 {% extends 'frontend/templates/default.html.twig' %}
 
-{% block body %}
+{% block page_id %}{{ parent() }} userEdit{% endblock %}
+
+{% block content %}
     <h1>User edit</h1>
 
     {{ form_start(edit_form) }}

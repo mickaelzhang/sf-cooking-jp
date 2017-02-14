@@ -13,8 +13,10 @@
     {% endblock %}
 {% endblock %}
 
+{% block page_id %}{{ parent() }}{% endblock %}
+
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
 {% endblock %}
 
 {% block javascripts %}

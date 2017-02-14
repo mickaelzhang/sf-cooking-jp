@@ -3,6 +3,8 @@
 {% block title %}
 {% endblock %}
 
+{% block page_id %}{{ parent() }}{% endblock %}
+
 {% block body %}
     {% block header %}
         {% include 'frontend/layouts/default_header.html.twig' %}
@@ -14,7 +16,7 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" />
 {% endblock %}
 
 {% block javascripts %}

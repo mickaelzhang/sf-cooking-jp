@@ -1,5 +1,7 @@
 {% extends 'frontend/templates/default.html.twig' %}
 
+{% block page_id %}{{ parent() }} recipePage{% endblock %}
+
 {% block title %}Recipe | Show{% endblock %}
 
 {% block content %}
@@ -8,11 +10,20 @@
     <p> Temps de préparation : {{ recipe.preparationTime|date('H:i:s') }} </p>
     {{ dump(comments) }}
 
+    {{ dump(rating) }}
+
     {% if is_granted('ROLE_USER') %}
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
+        {{ form_start(ratingForm) }}
+            {{ form_widget(ratingForm) }}
+            <input type="submit" value="Noter" />
+        {{ form_end(ratingForm) }}
+    {% endif %}
+
+    {% if is_granted('ROLE_USER') %}
+        {{ form_start(commentForm) }}
+            {{ form_widget(commentForm) }}
             <input type="submit" value="Envoyer" />
-        {{ form_end(form) }}
+        {{ form_end(commentForm) }}
     {% else %}
         <p><a href="{{ path('login') }}">Connectez-vous</a> pour commenter cette recette !</p>
     {% endif %}
