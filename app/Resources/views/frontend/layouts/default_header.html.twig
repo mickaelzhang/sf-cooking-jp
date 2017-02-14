@@ -3,12 +3,16 @@
         <li><a href="{{ path('homepage') }}">Home</a></li>
         <li><a href="{{ path('recipe_list') }}">Recipe list</a></li>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-
             <li><a href="{{ path('recipe_new') }}">Créer une recette</a></li>
             <li><a href="{{ path('logout') }}">Deconnexion</a></li>
         {% else %}
             <li><a href="{{ path('user_registration') }}">Inscription</a></li>
             <li><a href="{{ path('login') }}">Connexion</a></li>
+        {% endif %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            Bonjour {{ app.user.username }} !
+            <img src="{{ app.request.getBasePath }}/uploads/user/{{app.user.image}}" width="100px" alt="">
         {% endif %}
     </ul>
 </header>

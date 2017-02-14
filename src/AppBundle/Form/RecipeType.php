@@ -31,7 +31,12 @@ class RecipeType extends AbstractType
             ->add('preparationTime', TimeType::class, array(
                 'input' => 'datetime',
                 'widget' => 'single_text',
-            ));
+            ))
+            ->add('cookingTime', TimeType::class, array(
+                'input' => 'datetime',
+                'widget' => 'single_text',
+            ))
+            ->add('instructions', TextareaType::class);
     }
 
     /**
