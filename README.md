@@ -1,35 +1,36 @@
 # sf-cooking-jp
 Symfony project
 
-## Table of contents
-* [Team member](#team-member)
-* [Commit - Tag](#commit-tags)
-* [Project view structure](#twig-structure)
-* [View namespace](#view-namespace)
-* [CLI Command](#cli-command)
-
-## <a name="team-member">Team member</a>
+## Team member
 * Benjamin Corsini
 * Thaddé Meneur
 * Sulivan Nguyen
-* Raphëal Piacitellio
+* Raphaël Piacitelli
 * Clément Vion
 * Mickaël Zhang
 
+## Table of contents
+* [Commit - Tag](#commit-tags)
+* [CLI Command](#cli-command)
+* [Project view structure](#twig-structure)
+* [View namespace](#view-namespace)
 
 ## <a name="commit-tags">Commit - Tags</a>
 - [X] [ADD] - Add new files / dependencies
 - [X] [REMOVE] - Remove files / dependencies
 - [X] [UPDATE] - Update important part of the project
 - [X] [FIX] - Fix bugs, codes and other stuff
-- [X] [MERGE] - Merge branches
+
+## <a name="cli-command">CLI Command</a>
+- `composer regenerate-db`: Regenerate database with false data
+- `npm run start`: Start Gulp tasks
 
 ## <a name="twig-structure">Project view structure</a>
 The project view is located in `app/Resources/views`.
 
 When you are in `app/Resources/views`, you can see that their is only 2 folders `admin` and `frontend`. It is to separate .twig template that are used for the `admin` and `frontend` interface. The reason is that those 2 interfaces possess different template for the view.
 
-For exemple, if go into frontend, the file structure look like this :
+For example, if go into frontend, the file structure look like this :
 
 ```
 frontend/
@@ -97,5 +98,3 @@ public function indexAction()
 
 ```
 
-## <a name="cli-command">CLI Command</a>
-- `composer regenerate-db`: Regenerate database with false data
