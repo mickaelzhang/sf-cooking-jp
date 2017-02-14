@@ -7,22 +7,22 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * HasRated
  *
- * @ORM\Table(name="has_rated", indexes={
- *     @ORM\Index(name="has_rated_user_idx", columns={"user_id"}),
- *     @ORM\Index(name="has_rated_recipe_idx", columns={"recipe_id"})
+ * @ORM\Table(name="user_rate_recipe", indexes={
+ *     @ORM\Index(name="user_rate_recipe_user_idx", columns={"user_id"}),
+ *     @ORM\Index(name="user_rate_recipe_recipe_idx", columns={"recipe_id"})
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Repository\HasRatedRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRateRecipeRepository")
  */
-class HasRated
+class UserRateRecipe
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="has_rated_id", type="integer")
+     * @ORM\Column(name="user_rate_recipe_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $hasRatedId;
+    private $userRateRecipeId;
 
     /**
      * @var integer
@@ -65,7 +65,7 @@ class HasRated
      */
     public function getHasRatedId()
     {
-        return $this->hasRatedId;
+        return $this->userRateRecipeId;
     }
 
     /**
@@ -73,7 +73,7 @@ class HasRated
      *
      * @param integer $rating
      *
-     * @return HasRated
+     * @return UserRateRecipe
      */
     public function setRating($rating)
     {
@@ -97,7 +97,7 @@ class HasRated
      *
      * @param \DateTime $ratedAt
      *
-     * @return HasRated
+     * @return UserRateRecipe
      */
     public function setRatedAt($ratedAt)
     {
@@ -121,7 +121,7 @@ class HasRated
      *
      * @param \AppBundle\Entity\Recipe $recipe
      *
-     * @return HasRated
+     * @return UserRateRecipe
      */
     public function setRecipe(\AppBundle\Entity\Recipe $recipe = null)
     {
@@ -145,7 +145,7 @@ class HasRated
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return HasRated
+     * @return UserRateRecipe
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {

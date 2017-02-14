@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class HasRatedType extends AbstractType
+class UserRateRecipeType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ class HasRatedType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\HasRated'
+            'data_class' => 'AppBundle\Entity\UserRateRecipe'
         ));
     }
 
@@ -31,7 +31,7 @@ class HasRatedType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_hasrated';
+        return 'appbundle_userraterecipe';
     }
 
 

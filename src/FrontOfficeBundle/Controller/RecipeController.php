@@ -2,12 +2,12 @@
 
 namespace FrontOfficeBundle\Controller;
 
-use AppBundle\Entity\HasRated;
 use AppBundle\Entity\Recipe;
-use AppBundle\Entity\HasCommented;
+use AppBundle\Entity\UserRateRecipe;
+use AppBundle\Entity\UserCommentOnRecipe;
 use AppBundle\Form\RecipeType;
-use AppBundle\Form\HasCommentedType;
-use AppBundle\Form\HasRatedType;
+use AppBundle\Form\UserRateRecipeType;
+use AppBundle\Form\UserCommentOnRecipeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -80,41 +80,40 @@ class RecipeController extends Controller
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
-        $comments = $em->getRepository('AppBundle:HasCommented')->orderByPublishedAt($recipeId);
-        $rating = $em->getRepository('AppBundle:HasRated')->findRecipeAverageRating($recipeId);
-
+        $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
+        $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
 
         // Create rating form
-        $hasRated = new HasRated();
-        $ratingForm = $this->createForm(HasRatedType::class, $hasRated);
+        $userRating = new UserRateRecipe();
+        $ratingForm = $this->createForm(UserRateRecipeType::class, $userRating);
         $ratingForm->handleRequest($request);
 
         if ($ratingForm->isSubmitted() && $ratingForm->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $hasRated->setUser($user);
-            $hasRated->setRecipe($recipe);
-            $hasRated->setRatedAt(new \DateTime('now'));
+            $userRating->setUser($user);
+            $userRating->setRecipe($recipe);
+            $userRating->setRatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($hasRated);
+            $em->persist($userRating);
             $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
         }
 
         // Create comment form
-        $hasCommented = new HasCommented();
-        $commentForm = $this->createForm(HasCommentedType::class, $hasCommented);
+        $userComment = new UserCommentOnRecipe();
+        $commentForm = $this->createForm(UserCommentOnRecipeType::class, $userComment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $hasCommented->setUser($user);
-            $hasCommented->setRecipe($recipe);
-            $hasCommented->setPublishedAt(new \DateTime('now'));
+            $userComment->setUser($user);
+            $userComment->setRecipe($recipe);
+            $userComment->setPublishedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($hasCommented);
+            $em->persist($userComment);
             $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));

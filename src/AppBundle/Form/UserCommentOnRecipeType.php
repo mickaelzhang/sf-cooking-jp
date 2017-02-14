@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class HasCommentedType extends AbstractType
+class UserCommentOnRecipeType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ class HasCommentedType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\HasCommented'
+            'data_class' => 'AppBundle\Entity\UserCommentOnRecipe'
         ));
     }
 
@@ -31,7 +31,7 @@ class HasCommentedType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_hascommented';
+        return 'appbundle_usercommentonrecipe';
     }
 
 

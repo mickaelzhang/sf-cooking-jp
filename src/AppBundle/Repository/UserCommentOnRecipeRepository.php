@@ -3,10 +3,10 @@
 namespace AppBundle\Repository;
 
 /**
- * HasCommentedRepository
+ * UserCommentOnRecipeRepository
  *
  */
-class HasCommentedRepository extends \Doctrine\ORM\EntityRepository
+class UserCommentOnRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
     public function orderByPublishedAt($recipeId)
     {
