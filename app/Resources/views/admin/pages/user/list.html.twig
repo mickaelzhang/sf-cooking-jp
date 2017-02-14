@@ -21,7 +21,7 @@
                 <td>{{ user.email }}</td>
                 <td>register date here</td>
                 <td>{{ user.isVerified }}</td>
-                <td><a href="{{ path('admin_user_show', {'id': user.userId}) }}">Voir le profil</a></td>
+                <td><a href="{{ path('user_show', {'id': user.userId}) }}">Voir le profil</a></td>
                 <td><a href="{{ path('admin_user_edit', {'id': user.userId}) }}">Editer le profil</a></td>
             </tr>
         {% endfor %}
