@@ -47,3 +47,5 @@
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
 /.idea/workspace.xml
+/web/assets/
+/node_modules/
