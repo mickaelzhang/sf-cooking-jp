@@ -83,7 +83,16 @@ class User implements UserInterface, \Serializable
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
+
     private $image;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="registered_date", type="datetime")
+     * @ORM\Version
+     */
+    private $registeredDate;
 
     /**
      * @var boolean
@@ -304,6 +313,29 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * Get registeredDate
+     *
+     * @return boolean
+     */
+    public function getRegisteredDate()
+    {
+        return $this->registeredDate;
+    }
+
+    /**
+     * Set registeredDate
+     *
+     * @return User
+     */
+    public function setRegisteredDate($registeredDate)
+    {
+        $this->registeredDate = $registeredDate;
+
+        return $this;
+    }
+
+
+    /**
      * Get isVerified
      *
      * @return boolean
@@ -376,24 +408,24 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-       return serialize(array(
-           $this->userId,
-           $this->username,
-           $this->password,
-           // see section on salt below
-           // $this->salt,
-       ));
-   }
+        return serialize(array(
+            $this->userId,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
 
-   /** @see \Serializable::unserialize() */
-   public function unserialize($serialized)
-   {
-       list (
-           $this->userId,
-           $this->username,
-           $this->password,
-           // see section on salt below
-           // $this->salt
-       ) = unserialize($serialized);
-   }
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->userId,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
 }

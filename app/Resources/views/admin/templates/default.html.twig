@@ -4,6 +4,13 @@
 {% endblock %}
 
 {% block body %}
+    {% block header %}
+        {% include 'admin/layouts/default_header.html.twig' %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+    {% endblock %}
 {% endblock %}
 
 {% block page_id %}{{ parent() }}{% endblock %}
@@ -15,5 +22,3 @@
 {% block javascripts %}
     <script src="{{ asset('assets/js/main.js') }}"></script>
 {% endblock %}
-
-

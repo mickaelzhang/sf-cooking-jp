@@ -12,7 +12,7 @@
 
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             Bonjour {{ app.user.username }} !
-            <img src="{{ app.request.getBasePath }}/uploads/user/{{app.user.image}}" width="100px" alt="">
+            <img src="{{ asset('uploads/user/' ~ app.user.image) }}" width="100px" alt="">
         {% endif %}
     </ul>
 </header>
