@@ -56,16 +56,19 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="user_edit")
+     * @Route("/{id}/editer", name="user_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
     public function editAction(Request $request, User $user)
     {
         $loggedInUser = $this->get('security.token_storage')->getToken()->getUser();
 
-        // If it's not the user we redirect him to user page
+        // If it's not the user own profile, throw error
         if ($loggedInUser != $user) {
-            return $this->redirectToRoute('user_show', array('id' => $user->getUserId()));
+            throw $this->createAccessDeniedException();
         }
 
         // image field expect a file
