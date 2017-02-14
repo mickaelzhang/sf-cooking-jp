@@ -6,7 +6,7 @@ use AppBundle\Entity\HasRated;
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\UserCommentOnRecipe;
 use AppBundle\Form\RecipeType;
-use AppBundle\Form\HasCommentedType;
+use AppBundle\Form\UserCommentOnRecipeType;
 use AppBundle\Form\HasRatedType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -103,7 +103,7 @@ class RecipeController extends Controller
 
         // Create comment form
         $userComment = new UserCommentOnRecipe();
-        $commentForm = $this->createForm(HasCommentedType::class, $userComment);
+        $commentForm = $this->createForm(UserCommentOnRecipeType::class, $userComment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
