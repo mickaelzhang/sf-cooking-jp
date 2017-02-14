@@ -4,7 +4,7 @@ namespace FrontOfficeBundle\Controller;
 
 use AppBundle\Entity\HasRated;
 use AppBundle\Entity\Recipe;
-use AppBundle\Entity\HasCommented;
+use AppBundle\Entity\UserCommentOnRecipe;
 use AppBundle\Form\RecipeType;
 use AppBundle\Form\HasCommentedType;
 use AppBundle\Form\HasRatedType;
@@ -80,9 +80,8 @@ class RecipeController extends Controller
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
-        $comments = $em->getRepository('AppBundle:HasCommented')->orderByPublishedAt($recipeId);
+        $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:HasRated')->findRecipeAverageRating($recipeId);
-
 
         // Create rating form
         $hasRated = new HasRated();
@@ -103,18 +102,18 @@ class RecipeController extends Controller
         }
 
         // Create comment form
-        $hasCommented = new HasCommented();
-        $commentForm = $this->createForm(HasCommentedType::class, $hasCommented);
+        $userComment = new UserCommentOnRecipe();
+        $commentForm = $this->createForm(HasCommentedType::class, $userComment);
         $commentForm->handleRequest($request);
 
         if ($commentForm->isSubmitted() && $commentForm->isValid()) {
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $hasCommented->setUser($user);
-            $hasCommented->setRecipe($recipe);
-            $hasCommented->setPublishedAt(new \DateTime('now'));
+            $userComment->setUser($user);
+            $userComment->setRecipe($recipe);
+            $userComment->setPublishedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($hasCommented);
+            $em->persist($userComment);
             $em->flush();
 
             return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));

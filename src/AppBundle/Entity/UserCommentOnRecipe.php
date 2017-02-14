@@ -5,21 +5,24 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * HasCommented
+ * UserCommentOnRecipe
  *
- * @ORM\Table(name="has_commented", indexes={@ORM\Index(name="has_commented_user_idx", columns={"user_id"}), @ORM\Index(name="has_commented_recipe_idx", columns={"recipe_id"})})
+ * @ORM\Table(name="user_comment_on_recipe", indexes={
+ *     @ORM\Index(name="user_comment_on_recipe_user_idx", columns={"user_id"}),
+ *     @ORM\Index(name="user_comment_on_recipe_idx", columns={"recipe_id"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\HasCommentedRepository")
  */
-class HasCommented
+class UserCommentOnRecipe
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="has_commented_id", type="integer")
+     * @ORM\Column(name="user_comment_on_recipe_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $hasCommentedId;
+    private $userCommentOnRecipeId;
 
     /**
      * @var string
@@ -64,7 +67,7 @@ class HasCommented
      */
     public function getHasCommentedId()
     {
-        return $this->hasCommentedId;
+        return $this->userCommentOnRecipeId;
     }
 
     /**
@@ -72,7 +75,7 @@ class HasCommented
      *
      * @param string $message
      *
-     * @return HasCommented
+     * @return UserCommentOnRecipe
      */
     public function setMessage($message)
     {
@@ -96,7 +99,7 @@ class HasCommented
      *
      * @param datetime $publishedAt
      *
-     * @return HasCommented
+     * @return UserCommentOnRecipe
      */
     public function setPublishedAt($publishedAt)
     {
@@ -120,7 +123,7 @@ class HasCommented
      *
      * @param \AppBundle\Entity\Recipe $recipe
      *
-     * @return HasCommented
+     * @return UserCommentOnRecipe
      */
     public function setRecipe(\AppBundle\Entity\Recipe $recipe = null)
     {
@@ -144,7 +147,7 @@ class HasCommented
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return HasCommented
+     * @return UserCommentOnRecipe
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
