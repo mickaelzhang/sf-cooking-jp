@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace FrontOfficeBundle\Controller;
 
 use AppBundle\Entity\Recipe;
 use AppBundle\Entity\HasCommented;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class RecipeController
  *
- * @package AppBundle\Controller
+ * @package FrontOfficeBundle\Controller
  * @Route("recette")
  */
 class RecipeController extends Controller

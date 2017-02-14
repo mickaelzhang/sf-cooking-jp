@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace FrontOfficeBundle\Controller;
 
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
