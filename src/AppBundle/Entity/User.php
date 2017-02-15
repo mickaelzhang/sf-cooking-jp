@@ -9,7 +9,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}), @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})})
+ * @ORM\Table(name="user", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}),
+ *     @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
+ * })
  * @ORM\Entity
  */
 class User implements UserInterface, \Serializable

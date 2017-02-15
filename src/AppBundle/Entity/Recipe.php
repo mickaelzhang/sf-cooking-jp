@@ -8,7 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Recipe
  *
- * @ORM\Table(name="recipe", indexes={@ORM\Index(name="user_id_idx", columns={"author_id"})})
+ * @ORM\Table(name="recipe", indexes={
+ *     @ORM\Index(name="user_id_idx", columns={"author_id"})
+ * })
  * @ORM\Entity
  */
 class Recipe
