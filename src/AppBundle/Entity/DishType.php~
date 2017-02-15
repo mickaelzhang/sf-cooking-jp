@@ -29,38 +29,4 @@ class DishType
      * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
-
-    /**
-     * Get dishTypeId
-     *
-     * @return integer
-     */
-    public function getDishTypeId()
-    {
-        return $this->dishTypeId;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return DishType
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }

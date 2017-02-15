@@ -5,38 +5,38 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * HasRated
+ * UserCommentOnRecipe
  *
- * @ORM\Table(name="user_rate_recipe", indexes={
- *     @ORM\Index(name="user_rate_recipe_user_idx", columns={"user_id"}),
- *     @ORM\Index(name="user_rate_recipe_recipe_idx", columns={"recipe_id"})
+ * @ORM\Table(name="user_comment_on_recipe", indexes={
+ *     @ORM\Index(name="user_comment_on_recipe_user_idx", columns={"user_id"}),
+ *     @ORM\Index(name="user_comment_on_recipe_idx", columns={"recipe_id"})
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRateRecipeRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserCommentOnRecipeRepository")
  */
-class UserRateRecipe
+class UserCommentOnRecipe
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_rate_recipe_id", type="integer")
+     * @ORM\Column(name="user_comment_on_recipe_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $userRateRecipeId;
+    private $userCommentOnRecipeId;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="rating", type="integer", length=1, nullable=false)
+     * @ORM\Column(name="message", type="string", length=100, nullable=false)
      */
-    private $rating;
+    private $message;
 
     /**
      * @var datetime
      *
-     * @ORM\Column(name="rated_at", type="datetime", length=100, nullable=false)
+     * @ORM\Column(name="published_at", type="datetime", length=100, nullable=false)
      */
-    private $ratedAt;
+    private $publishedAt;
 
     /**
      * @var \AppBundle\Entity\Recipe
@@ -58,62 +58,64 @@ class UserRateRecipe
      */
     private $user;
 
+
+
     /**
-     * Get hasRatedId
+     * Get hasCommentedId
      *
      * @return integer
      */
-    public function getHasRatedId()
+    public function getHasCommentedId()
     {
-        return $this->userRateRecipeId;
+        return $this->userCommentOnRecipeId;
     }
 
     /**
-     * Set rating
+     * Set message
      *
-     * @param integer $rating
+     * @param string $message
      *
-     * @return UserRateRecipe
+     * @return UserCommentOnRecipe
      */
-    public function setRating($rating)
+    public function setMessage($message)
     {
-        $this->rating = $rating;
+        $this->message = $message;
 
         return $this;
     }
 
     /**
-     * Get rating
+     * Get message
      *
-     * @return integer
+     * @return string
      */
-    public function getRating()
+    public function getMessage()
     {
-        return $this->rating;
+        return $this->message;
     }
 
     /**
-     * Set ratedAt
+     * Set publishedAt
      *
-     * @param \DateTime $ratedAt
+     * @param datetime $publishedAt
      *
-     * @return UserRateRecipe
+     * @return UserCommentOnRecipe
      */
-    public function setRatedAt($ratedAt)
+    public function setPublishedAt($publishedAt)
     {
-        $this->ratedAt = $ratedAt;
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
 
     /**
-     * Get ratedAt
+     * Get publishedAt
      *
-     * @return \DateTime
+     * @return datetime
      */
-    public function getRatedAt()
+    public function getPublishedAt()
     {
-        return $this->ratedAt;
+        return $this->message;
     }
 
     /**
@@ -121,7 +123,7 @@ class UserRateRecipe
      *
      * @param \AppBundle\Entity\Recipe $recipe
      *
-     * @return UserRateRecipe
+     * @return UserCommentOnRecipe
      */
     public function setRecipe(\AppBundle\Entity\Recipe $recipe = null)
     {
@@ -145,7 +147,7 @@ class UserRateRecipe
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return UserRateRecipe
+     * @return UserCommentOnRecipe
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -162,15 +164,5 @@ class UserRateRecipe
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Get userRateRecipeId
-     *
-     * @return integer
-     */
-    public function getUserRateRecipeId()
-    {
-        return $this->userRateRecipeId;
     }
 }

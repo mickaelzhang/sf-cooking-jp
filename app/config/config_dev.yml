@@ -37,20 +37,17 @@ monolog:
 bazinga_faker:
     orm: doctrine
     entities:
-        AppBundle\Entity\CategoryType:
-            number: 2
-            custom_formatters:
-                Name: { method: sentence, parameters: [ '1', 'true' ] }
-        AppBundle\Entity\Category:
-            number: 6
-            custom_formatters:
-                Name: { method: sentence, parameters: [ '2', 'true' ] }
         AppBundle\Entity\User:
             number: 10
             custom_formatters:
                 Password: { method: password }
                 ChangedToAdminByUser: { method: null }
                 IsAdminSince: { method: null }
+        AppBundle\Entity\Category:
+            number: 6
+            custom_formatters:
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
+
         AppBundle\Entity\Recipe:
             number: 4
             custom_formatters:

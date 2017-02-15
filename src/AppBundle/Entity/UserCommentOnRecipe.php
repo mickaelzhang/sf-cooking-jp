@@ -165,4 +165,14 @@ class UserCommentOnRecipe
     {
         return $this->user;
     }
+
+    /**
+     * Get userCommentOnRecipeId
+     *
+     * @return integer
+     */
+    public function getUserCommentOnRecipeId()
+    {
+        return $this->userCommentOnRecipeId;
+    }
 }
