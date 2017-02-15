@@ -88,7 +88,7 @@ class Recipe
     private $instructions;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="image", type="string", nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
