@@ -43,6 +43,22 @@ class RecipeController extends Controller
     }
 
     /**
+     * Lists latest recipes
+     *
+     * @Route("/recentes", name="latest_recipe_list")
+     * @Method("GET")
+     */
+    public function listLatestAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->orderByPublishedDate();
+
+        return $this->render('@frontend/recipe/latest_list.html.twig', array(
+            'recipes' => $recipes
+        ));
+    }
+
+    /**
      * Create a new recipe entity
      *
      * @Route("/nouveau", name="recipe_new")

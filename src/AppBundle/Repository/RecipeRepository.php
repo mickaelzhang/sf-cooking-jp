@@ -21,4 +21,12 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function orderByPublishedDate()
+    {
+        $query = $this->createQueryBuilder('h')
+            ->addOrderBy('h.publishedDate', 'DESC')
+            ->getQuery();
+        return $query->getResult();
+    }
 }
