@@ -53,6 +53,30 @@ class FavoriteController extends Controller
         $userId = $request->get('u');
         $recipeId = $request->get('r');
 
-        return new Response($recipeId);
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->find($userId);
+        $recipe = $em->getRepository('AppBundle:Recipe')->find($recipeId);
+
+        $userFavoriteRecipe = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
+            array(
+                'user' => $userId,
+                'recipe' => $recipeId
+            )
+        );
+
+        if ($userFavoriteRecipe == null) {
+            $userFavoriteRecipe = new UserFavoriteRecipe();
+            $userFavoriteRecipe->setUser($user);
+            $userFavoriteRecipe->setRecipe($recipe);
+
+            $em->persist($userFavoriteRecipe);
+            $em->flush();
+        } else {
+            $em->remove($userFavoriteRecipe);
+            $em->flush();
+        }
+
+        return new Response('Ok');
     }
 }

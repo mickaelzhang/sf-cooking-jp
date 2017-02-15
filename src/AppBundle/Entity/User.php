@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *     @ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"}),
  *     @ORM\UniqueConstraint(name="email_UNIQUE", columns={"email"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {

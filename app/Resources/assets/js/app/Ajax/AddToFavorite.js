@@ -8,8 +8,6 @@ export default class AddToFavorite {
     this.recipeId = this.button.attr('data-recipe-id')
     this.url = this.button.attr('data-href')
 
-    console.log(this.url)
-
     this.initEvents()
   }
 
@@ -17,9 +15,6 @@ export default class AddToFavorite {
     const _ = this
 
     this.button.on('click', function() {
-      console.log('CLICK')
-      console.log(_.url)
-
       $.ajax({
         type: "POST",
         url: _.url,
