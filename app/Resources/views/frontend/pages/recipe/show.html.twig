@@ -7,6 +7,19 @@
 {% block content %}
     {{ dump(recipe) }}
 
+    <div class="favoriteButton"
+         style="border: 2px solid {% if favorite is null %}red{% else %}green{% endif %};"
+         data-user-id="{{ app.user.userId }}"
+         data-recipe-id="{{ recipe.recipeId }}"
+         data-href="{{ url('favorite_add')}}"
+    >
+        {% if favorite is null %}
+            Pas en FAVORI
+        {% else %}
+            En FAVORI
+        {% endif %}
+    </div>
+
     <h2> {{ recipe.name }} </h2>
     <p> {{ recipe.description }} </p>
     <p> Temps de préparation : {{ recipe.preparationTime|date('H:i:s') }} </p>
