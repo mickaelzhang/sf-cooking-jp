@@ -13,7 +13,12 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     public function lastVerifiedRecipes()
     {
         $query = $this->createQueryBuilder('h')
-            ->where('h.recipe = :id');
+            ->join('h.author', 'd')
+            ->where('d.isVerified = :isVerified')
+            ->setParameter('isVerified', 1)
+            ->addOrderBy('h.publishedDate', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
         return $query->getResult();
     }
 }

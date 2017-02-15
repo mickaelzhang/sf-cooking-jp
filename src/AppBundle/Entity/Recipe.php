@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="recipe", indexes={
  *     @ORM\Index(name="user_id_idx", columns={"author_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
  */
 class Recipe
 {
