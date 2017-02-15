@@ -103,7 +103,8 @@ class RecipeController extends Controller
                 'recipe' => $recipe->getRecipeId()
             )
         );
-        $top = $recipe->getDishCategory()->toArray();
+
+        $dishCategories = $recipe->getDishCategory()->toArray();
 
         // Create rating form
         $userRating = new UserRateRecipe();
@@ -148,7 +149,7 @@ class RecipeController extends Controller
             'favorite' => $favorite,
             'commentForm' => $commentForm->createView(),
             'ratingForm' => $ratingForm->createView(),
-            'dishCategories' => $top
+            'dishCategories' => $dishCategories
         ));
     }
 
