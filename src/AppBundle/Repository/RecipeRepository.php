@@ -29,4 +29,9 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function mostPopular()
+    {
+
+    }
 }

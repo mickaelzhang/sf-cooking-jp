@@ -45,7 +45,7 @@ class RecipeController extends Controller
     /**
      * Lists latest recipes
      *
-     * @Route("/recentes", name="latest_recipe_list")
+     * @Route("/recentes", name="recipe_latest_list")
      * @Method("GET")
      */
     public function listLatestAction()
@@ -56,6 +56,18 @@ class RecipeController extends Controller
         return $this->render('@frontend/recipe/latest_list.html.twig', array(
             'recipes' => $recipes
         ));
+    }
+
+    /**
+     * List most popular recipes of the week
+     *
+     * @Route("/populaire", name="recipe_popular")
+     * @Method("GET")
+     *
+     */
+    public function latestRecipesAction()
+    {
+        return $this->render('@frontend/recipe/popular.html.twig');
     }
 
     /**
@@ -242,4 +254,5 @@ class RecipeController extends Controller
 
         return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
     }
+
 }
