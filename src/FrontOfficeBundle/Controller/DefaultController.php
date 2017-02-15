@@ -12,6 +12,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('@frontend/home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->lastVerifiedRecipes();
+
+        return $this->render('@frontend/home.html.twig', array(
+            'recipes' => $recipes
+        ));
     }
 }

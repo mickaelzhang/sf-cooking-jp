@@ -113,4 +113,26 @@ class UserFavoriteRecipe
     {
         return $this->userFavoriteRecipeId;
     }
+
+    /**
+     * Get addedDate
+     *
+     * @return boolean
+     */
+    public function getAddedDate()
+    {
+        return $this->addedDate;
+    }
+
+    /**
+     * Set addedDate
+     *
+     * @return UserFavoriteRecipe
+     */
+    public function setAddedDate($addedDate)
+    {
+        $this->addedDate = $addedDate;
+
+        return $this;
+    }
 }

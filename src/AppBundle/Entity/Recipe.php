@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="recipe", indexes={
  *     @ORM\Index(name="user_id_idx", columns={"author_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
  */
 class Recipe
 {
@@ -104,6 +104,14 @@ class Recipe
      * })
      */
     private $dishCategory;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="published_date", type="datetime")
+     * @ORM\Version
+     */
+    private $publishedDate;
 
     /**
      * Get recipeId
@@ -386,5 +394,27 @@ class Recipe
     public function getDishCategory()
     {
         return $this->dishCategory;
+    }
+
+    /**
+     * Get publishedDate
+     *
+     * @return boolean
+     */
+    public function getPublishedDate()
+    {
+        return $this->publishedDate;
+    }
+
+    /**
+     * Set publishedDate
+     *
+     * @return Recipe
+     */
+    public function setPublishedDate($publishedDate)
+    {
+        $this->publishedDateDate = $publishedDate;
+
+        return $this;
     }
 }

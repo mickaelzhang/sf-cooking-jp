@@ -43,6 +43,22 @@ class RecipeController extends Controller
     }
 
     /**
+     * Lists latest recipes
+     *
+     * @Route("/recentes", name="latest_recipe_list")
+     * @Method("GET")
+     */
+    public function listLatestAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->orderByPublishedDate();
+
+        return $this->render('@frontend/recipe/latest_list.html.twig', array(
+            'recipes' => $recipes
+        ));
+    }
+
+    /**
      * Create a new recipe entity
      *
      * @Route("/nouveau", name="recipe_new")
@@ -88,6 +104,7 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
+        $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         // Show comments for this recipe
@@ -96,12 +113,17 @@ class RecipeController extends Controller
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
 
-        $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
-            array(
-                'user' => $user->getUserId(),
-                'recipe' => $recipe->getRecipeId()
-            )
-        );
+        if ($user === TRUE) {
+            $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
+                array(
+                    'user' => $user->getUserId(),
+                    'recipe' => $recipe->getRecipeId()
+                )
+            );
+        }
+        else {
+            $favorite = '';
+        }
 
         // Create rating form
         $userRating = new UserRateRecipe();
