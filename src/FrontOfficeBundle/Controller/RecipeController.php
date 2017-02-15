@@ -112,17 +112,15 @@ class RecipeController extends Controller
         $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
+        $favorite = null;
 
-        if ($user === TRUE) {
+        if ($user) {
             $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
                 array(
                     'user' => $user->getUserId(),
                     'recipe' => $recipe->getRecipeId()
                 )
             );
-        }
-        else {
-            $favorite = '';
         }
 
         // Create rating form
