@@ -98,21 +98,13 @@ class Recipe
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="DishCategory", inversedBy="recipe")
-     * @ORM\JoinTable(
-     *     name="recipe_has_dish_category",
-     *     joinColumns={
-     *         @ORM\JoinColumn(name="recipe_id", referencedColumnName="recipe_id")
-     *     },
-     *     inverseJoinColumns={
-     *         @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
-     *     }
-     * )
+     * @ORM\JoinTable(name="recipe_has_dish_category")
      */
-    private $dishCategories;
+    private $dishCategory;
 
     public function __construct()
     {
-        $this->dishCategories = new ArrayCollection();
+        $this->dishCategory = new ArrayCollection();
     }
 
     /**
@@ -372,39 +364,5 @@ class Recipe
     public function isAuthor(User $user = null)
     {
         return $user && $user == $this->getAuthor();
-    }
-
-    /**
-     * Add dishCategory
-     *
-     * @param \AppBundle\Entity\DishCategory $dishCategory
-     *
-     * @return Recipe
-     */
-    public function addDishCategory(\AppBundle\Entity\DishCategory $dishCategory)
-    {
-        $this->dishCategories[] = $dishCategory;
-
-        return $this;
-    }
-
-    /**
-     * Remove dishCategory
-     *
-     * @param \AppBundle\Entity\DishCategory $dishCategory
-     */
-    public function removeDishCategory(\AppBundle\Entity\DishCategory $dishCategory)
-    {
-        $this->dishCategories->removeElement($dishCategory);
-    }
-
-    /**
-     * Get dishCategory
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDishCategory()
-    {
-        return $this->dishCategories;
     }
 }
