@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class FavoriteController
@@ -35,5 +37,22 @@ class FavoriteController extends Controller
            'favorites' => $favorites
         ));
 
+    }
+
+    /**
+     * Add to favorite
+     *
+     * @Route("/", name="favorite_add")
+     * @Method("POST")
+     */
+    public function ajaxAddToFavoriteAction(Request $request) {
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+        }
+
+        $userId = $request->get('u');
+        $recipeId = $request->get('r');
+
+        return new Response($recipeId);
     }
 }
