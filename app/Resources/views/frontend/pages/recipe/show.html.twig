@@ -7,6 +7,11 @@
 {% block content %}
     {{ dump(recipe) }}
 
+    {% if favorite is null %}
+        <div class="favoriteButton" style="background-color: red; color: white;">Pas en FAVORI</div>
+    {% else %}
+        <div class="favoriteButton" style="background-color: green; color: white;">En FAVORI</div>
+    {% endif %}
     <h2> {{ recipe.name }} </h2>
     <p> {{ recipe.description }} </p>
     <p> Temps de préparation : {{ recipe.preparationTime|date('H:i:s') }} </p>

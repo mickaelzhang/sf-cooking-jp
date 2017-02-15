@@ -8,4 +8,6 @@ namespace AppBundle\Repository;
  */
 class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUserFavoriteByRecipe() {
+    }
 }

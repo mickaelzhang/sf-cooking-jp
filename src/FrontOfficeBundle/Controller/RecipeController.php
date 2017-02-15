@@ -88,11 +88,20 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
         $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
+
+        $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
+            array(
+                'user' => $user->getUserId(),
+                'recipe' => $recipe->getRecipeId()
+            )
+        );
 
         // Create rating form
         $userRating = new UserRateRecipe();
@@ -134,6 +143,7 @@ class RecipeController extends Controller
             'recipe' => $recipe,
             'comments' => $comments,
             'rating' => $rating,
+            'favorite' => $favorite,
             'commentForm' => $commentForm->createView(),
             'ratingForm' => $ratingForm->createView(),
         ));
