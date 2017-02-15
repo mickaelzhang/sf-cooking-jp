@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -92,18 +93,27 @@ class Recipe
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-
     private $image;
 
     /**
-     * @var \AppBundle\Entity\DishCategory
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DishCategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
-     * })
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="DishCategory", inversedBy="recipe")
+     * @ORM\JoinTable(
+     *     name="recipe_has_dish_category",
+     *     joinColumns={
+     *         @ORM\JoinColumn(name="recipe_id", referencedColumnName="recipe_id")
+     *     },
+     *     inverseJoinColumns={
+     *         @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
+     *     }
+     * )
      */
-    private $dishCategory;
+    private $dishCategories;
+
+    public function __construct()
+    {
+        $this->dishCategories = new ArrayCollection();
+    }
 
     /**
      * @var datetime
@@ -145,30 +155,6 @@ class Recipe
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Recipe
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -373,27 +359,37 @@ class Recipe
     }
 
     /**
-     * Set dishCategory
+     * Add dishCategory
      *
      * @param \AppBundle\Entity\DishCategory $dishCategory
      *
      * @return Recipe
      */
-    public function setDishCategory(\AppBundle\Entity\DishCategory $dishCategory = null)
+    public function addDishCategory(\AppBundle\Entity\DishCategory $dishCategory)
     {
-        $this->dishCategory = $dishCategory;
+        $this->dishCategories[] = $dishCategory;
 
         return $this;
     }
 
     /**
+     * Remove dishCategory
+     *
+     * @param \AppBundle\Entity\DishCategory $dishCategory
+     */
+    public function removeDishCategory(\AppBundle\Entity\DishCategory $dishCategory)
+    {
+        $this->dishCategories->removeElement($dishCategory);
+    }
+
+    /**
      * Get dishCategory
      *
-     * @return \AppBundle\Entity\DishCategory
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDishCategory()
     {
-        return $this->dishCategory;
+        return $this->dishCategories;
     }
 
     /**

@@ -22,6 +22,8 @@
         </div>
     {% endif %}
 
+    {{ dump(dishCategories) }}
+
     <h2> {{ recipe.name }} </h2>
     <p> {{ recipe.description }} </p>
     <p> Temps de préparation : {{ recipe.preparationTime|date('H:i:s') }} </p>

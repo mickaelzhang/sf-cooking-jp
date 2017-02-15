@@ -68,6 +68,7 @@ class RecipeController extends Controller
      */
     public function newAction(Request $request)
     {
+        // Get dish categories
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -93,7 +94,7 @@ class RecipeController extends Controller
 
         return $this->render('@frontend/recipe/new.html.twig', array(
             'form' => $form->createView(),
-            'recipe' => $recipe
+            'recipe' => $recipe,
         ));
     }
 
@@ -122,6 +123,8 @@ class RecipeController extends Controller
                 )
             );
         }
+
+        $dishCategories = $recipe->getDishCategory()->toArray();
 
         // Create rating form
         $userRating = new UserRateRecipe();
@@ -166,6 +169,7 @@ class RecipeController extends Controller
             'favorite' => $favorite,
             'commentForm' => $commentForm->createView(),
             'ratingForm' => $ratingForm->createView(),
+            'dishCategories' => $dishCategories
         ));
     }
 

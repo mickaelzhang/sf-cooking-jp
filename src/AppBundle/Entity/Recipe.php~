@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -92,18 +93,19 @@ class Recipe
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
-
     private $image;
 
     /**
-     * @var \AppBundle\Entity\DishCategory
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DishCategory")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
-     * })
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="DishCategory", inversedBy="recipe")
+     * @ORM\JoinTable(name="recipe_has_dish_category")
      */
     private $dishCategory;
+
+    public function __construct()
+    {
+        $this->dishCategory = new ArrayCollection();
+    }
 
     /**
      * Get recipeId
