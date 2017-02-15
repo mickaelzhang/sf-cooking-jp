@@ -3,6 +3,7 @@
 namespace FrontOfficeBundle\Controller;
 
 use AppBundle\Entity\User;
+use FrontOfficeBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -75,7 +76,7 @@ class UserController extends Controller
             new File($this->getParameter('image_user_directory').'/'.$user->getImage())
         );
 
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        $editForm = $this->createForm(UserType::class, $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

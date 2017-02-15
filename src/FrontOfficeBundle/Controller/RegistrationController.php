@@ -2,8 +2,8 @@
 
 namespace FrontOfficeBundle\Controller;
 
-use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
+use FrontOfficeBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -33,7 +33,7 @@ class RegistrationController extends Controller
             $file = $user->getImage();
 
             $fileName = $this->get('app_user.image_uploader')->upload($file);
-            
+
             // Update image property to store image file name instead of content
             $user->setImage($fileName);
 

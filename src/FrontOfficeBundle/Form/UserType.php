@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Form;
+namespace FrontOfficeBundle\Form;
 
 use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
