@@ -10,4 +10,10 @@ namespace AppBundle\Repository;
  */
 class RecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function lastVerifiedRecipes()
+    {
+        $query = $this->createQueryBuilder('h')
+            ->where('h.recipe = :id');
+        return $query->getResult();
+    }
 }

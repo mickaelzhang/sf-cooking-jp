@@ -106,6 +106,14 @@ class Recipe
     private $dishCategory;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="published_date", type="datetime")
+     * @ORM\Version
+     */
+    private $publishedDate;
+
+    /**
      * Get recipeId
      *
      * @return integer
@@ -386,5 +394,27 @@ class Recipe
     public function getDishCategory()
     {
         return $this->dishCategory;
+    }
+
+    /**
+     * Get publishedDate
+     *
+     * @return boolean
+     */
+    public function getPublishedDate()
+    {
+        return $this->publishedDate;
+    }
+
+    /**
+     * Set publishedDate
+     *
+     * @return Recipe
+     */
+    public function setRegisteredDate($publishedDate)
+    {
+        $this->registeredDate = $publishedDate;
+
+        return $this;
     }
 }

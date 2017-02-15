@@ -44,6 +44,14 @@ class UserFavoriteRecipe
      */
     private $recipe;
 
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="added_date", type="datetime")
+     * @ORM\Version
+     */
+    private $addedDate;
+
 
 
     /**
@@ -112,5 +120,27 @@ class UserFavoriteRecipe
     public function getUserFavoriteRecipeId()
     {
         return $this->userFavoriteRecipeId;
+    }
+
+    /**
+     * Get addedDate
+     *
+     * @return boolean
+     */
+    public function getAddedDate()
+    {
+        return $this->addedDate;
+    }
+
+    /**
+     * Set addedDate
+     *
+     * @return UserFavoriteRecipe
+     */
+    public function setRegisteredDate($addedDate)
+    {
+        $this->registeredDate = $addedDate;
+
+        return $this;
     }
 }
