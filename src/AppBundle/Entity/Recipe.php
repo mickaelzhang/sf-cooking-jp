@@ -95,7 +95,15 @@ class Recipe
 
     private $image;
 
-
+    /**
+     * @var \AppBundle\Entity\Category
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="author_id", referencedColumnName="user_id")
+     * })
+     */
+    private $author;
 
     /**
      * Get recipeId
