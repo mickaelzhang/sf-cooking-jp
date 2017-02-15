@@ -5,19 +5,19 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * DishCategory
  *
- * @ORM\Table(name="category", indexes={
- *     @ORM\Index(name="category_category_idx", columns={"parent_id"})
+ * @ORM\Table(name="dish_category", indexes={
+ *     @ORM\Index(name="dish_category_category_idx", columns={"parent_id"})
  * })
  * @ORM\Entity
  */
-class Category
+class DishCategory
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="category_id", type="integer")
+     * @ORM\Column(name="dish_category_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -31,11 +31,11 @@ class Category
     private $name;
 
     /**
-     * @var \AppBundle\Entity\Category
+     * @var \AppBundle\Entity\DishCategory
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DishCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="category_id")
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="dish_category_id")
      * })
      */
     private $parent;
@@ -55,7 +55,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return DishCategory
      */
     public function setName($name)
     {
@@ -77,11 +77,11 @@ class Category
     /**
      * Set parent
      *
-     * @param \AppBundle\Entity\Category $parent
+     * @param \AppBundle\Entity\DishCategory $parent
      *
-     * @return Category
+     * @return DishCategory
      */
-    public function setParent(\AppBundle\Entity\Category $parent = null)
+    public function setParent(\AppBundle\Entity\DishCategory $parent = null)
     {
         $this->parent = $parent;
 
@@ -91,7 +91,7 @@ class Category
     /**
      * Get parent
      *
-     * @return \AppBundle\Entity\Category
+     * @return \AppBundle\Entity\DishCategory
      */
     public function getParent()
     {
