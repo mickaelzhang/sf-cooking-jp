@@ -38,11 +38,16 @@ bazinga_faker:
     orm: doctrine
     entities:
         AppBundle\Entity\User:
-            number: 10
+            number: 6
             custom_formatters:
                 Password: { method: password }
                 ChangedToAdminByUser: { method: null }
                 IsAdminSince: { method: null }
+                Image: { method: file, optional: 1 }
+                IsVerified: { method: numberBetween, parameters: ['0', '0'] }
+                VerifiedBy: { method: numberBetween, optional: 1 }
+                VerifiedSince: { method: dateTimeAD, optional: 1 }
+
         AppBundle\Entity\Category:
             number: 6
             custom_formatters:
