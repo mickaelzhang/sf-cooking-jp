@@ -88,14 +88,22 @@ class Recipe
     private $instructions;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="image", type="string", nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
 
     private $image;
 
-
+    /**
+     * @var \AppBundle\Entity\DishCategory
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DishCategory")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
+     * })
+     */
+    private $dishCategory;
 
     /**
      * Get recipeId

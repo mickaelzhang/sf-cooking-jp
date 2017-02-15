@@ -103,4 +103,14 @@ class UserFavoriteRecipe
     {
         return $this->recipe;
     }
+
+    /**
+     * Get userFavoriteRecipeId
+     *
+     * @return integer
+     */
+    public function getUserFavoriteRecipeId()
+    {
+        return $this->userFavoriteRecipeId;
+    }
 }

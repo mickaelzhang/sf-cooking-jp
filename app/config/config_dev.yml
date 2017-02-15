@@ -48,6 +48,12 @@ bazinga_faker:
                 VerifiedBy: { method: numberBetween, optional: 1 }
                 VerifiedSince: { method: dateTimeAD, optional: 1 }
 
+        AppBundle\Entity\DishCategory:
+            number: 6
+            custom_formatters:
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
+                Parent: { method: numberBetween, optional: 1 }
+
         AppBundle\Entity\Recipe:
             number: 10
             custom_formatters:
@@ -55,12 +61,3 @@ bazinga_faker:
                 ServingSize: { method: numberBetween, parameters: [ '1', '10' ] }
                 Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
                 Image: { method: file, optional: 1 }
-
-        AppBundle\Entity\Category:
-            number: 6
-            custom_formatters:
-                Name: { method: sentence, parameters: [ '2', 'true' ] }
-
-
-        AppBundle\Entity\RecipeCategory:
-            number: 4

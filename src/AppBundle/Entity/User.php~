@@ -82,7 +82,7 @@ class User implements UserInterface, \Serializable
     private $roles = array();
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(name="image", type="string", nullable=true)
      *
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */

@@ -163,4 +163,14 @@ class UserRateRecipe
     {
         return $this->user;
     }
+
+    /**
+     * Get userRateRecipeId
+     *
+     * @return integer
+     */
+    public function getUserRateRecipeId()
+    {
+        return $this->userRateRecipeId;
+    }
 }

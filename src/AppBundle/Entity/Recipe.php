@@ -96,14 +96,14 @@ class Recipe
     private $image;
 
     /**
-     * @var \AppBundle\Entity\Category
+     * @var \AppBundle\Entity\DishCategory
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\DishCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="author_id", referencedColumnName="user_id")
+     *   @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
      * })
      */
-    private $author;
+    private $dishCategory;
 
     /**
      * Get recipeId
@@ -362,5 +362,29 @@ class Recipe
     public function isAuthor(User $user = null)
     {
         return $user && $user == $this->getAuthor();
+    }
+
+    /**
+     * Set dishCategory
+     *
+     * @param \AppBundle\Entity\DishCategory $dishCategory
+     *
+     * @return Recipe
+     */
+    public function setDishCategory(\AppBundle\Entity\DishCategory $dishCategory = null)
+    {
+        $this->dishCategory = $dishCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get dishCategory
+     *
+     * @return \AppBundle\Entity\DishCategory
+     */
+    public function getDishCategory()
+    {
+        return $this->dishCategory;
     }
 }
