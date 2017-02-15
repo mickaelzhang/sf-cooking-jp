@@ -411,9 +411,9 @@ class Recipe
      *
      * @return Recipe
      */
-    public function setRegisteredDate($publishedDate)
+    public function setPublishedDate($publishedDate)
     {
-        $this->registeredDate = $publishedDate;
+        $this->publishedDateDate = $publishedDate;
 
         return $this;
     }
