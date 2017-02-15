@@ -51,10 +51,6 @@ bazinga_faker:
                 Password: { method: password }
                 ChangedToAdminByUser: { method: null }
                 IsAdminSince: { method: null }
-        AppBundle\Entity\Ingredient:
-            number: 20
-            custom_formatters:
-                Name: { method: sentence, parameters: [ '2', 'true' ] }
         AppBundle\Entity\Recipe:
             number: 4
             custom_formatters:
@@ -63,6 +59,3 @@ bazinga_faker:
                 Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
         AppBundle\Entity\RecipeCategory:
             number: 4
-        AppBundle\Entity\RecipeNeedIngredient:
-            number: 12
-
