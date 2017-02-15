@@ -14,9 +14,11 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $recipes = $em->getRepository('AppBundle:Recipe')->lastVerifiedRecipes();
+        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->mostPopular();
 
         return $this->render('@frontend/home.html.twig', array(
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'favorites' => $favorites
         ));
     }
 }

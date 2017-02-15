@@ -67,6 +67,7 @@ class RecipeController extends Controller
      */
     public function latestRecipesAction()
     {
+
         return $this->render('@frontend/recipe/popular.html.twig');
     }
 
@@ -126,7 +127,7 @@ class RecipeController extends Controller
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
         $favorite = null;
 
-        if ($user) {
+        if ($auth_checker) {
             $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
                 array(
                     'user' => $user->getUserId(),
