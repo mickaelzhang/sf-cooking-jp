@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace FrontOfficeBundle\Form;
 
 use AppBundle\Entity\Recipe;
 use Symfony\Component\Form\AbstractType;
