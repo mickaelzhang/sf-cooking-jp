@@ -88,6 +88,7 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
+        $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         // Show comments for this recipe
@@ -96,7 +97,7 @@ class RecipeController extends Controller
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
 
-        if ($user != 'anon.') {
+        if ($user === TRUE) {
             $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
                 array(
                     'user' => $user->getUserId(),
