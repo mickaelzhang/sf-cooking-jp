@@ -3,6 +3,7 @@
 namespace FrontOfficeBundle\Form;
 
 use AppBundle\Entity\Recipe;
+use FrontOfficeBundle\Form\DishCategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +41,8 @@ class RecipeType extends AbstractType
                 'input' => 'datetime',
                 'widget' => 'single_text',
             ))
-            ->add('instructions', TextareaType::class);
+            ->add('instructions', TextareaType::class)
+            ->add('dishCategory', DishCategoryType::class);
     }
 
     /**

@@ -39,7 +39,7 @@ class RecipeHasDishCategory
      *   @ORM\JoinColumn(name="dish_category_id", referencedColumnName="dish_category_id")
      * })
      */
-    private $dishCategoryId;
+    private $dishCategory;
 
     /**
      * Get recipeHasDishCategoryId

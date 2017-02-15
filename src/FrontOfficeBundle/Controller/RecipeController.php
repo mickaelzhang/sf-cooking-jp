@@ -52,6 +52,10 @@ class RecipeController extends Controller
      */
     public function newAction(Request $request)
     {
+        // Get dish categories
+        $em = $this->getDoctrine()->getManager();
+        $dishCategories = $em->getRepository('AppBundle:DishCategory')->findAll();
+
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -77,7 +81,8 @@ class RecipeController extends Controller
 
         return $this->render('@frontend/recipe/new.html.twig', array(
             'form' => $form->createView(),
-            'recipe' => $recipe
+            'recipe' => $recipe,
+            'dishCategories' => $dishCategories,
         ));
     }
 
