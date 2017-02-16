@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class DishCategoryController
@@ -19,16 +20,17 @@ class DishCategoryController extends Controller
     /**
      * List all recipes that has this dishCategory
      *
-     * @Route("/{dishCategoryId}", name="dish_category_list")
+     * @Route("/{categoryId}", name="dish_category_list")
      * @Method("GET")
      * @return Response
      */
-    public function listAction()
+    public function listAction(DishCategory $dishCategory, Request $request)
     {
-        $recipes = "";
+        $em = $this->getDoctrine()->getManager();
+        $categoriesId = $em->getRepository('AppBundle:DishCategory')->getChildCategoryId($dishCategory->getCategoryId());
 
         return $this->render('@frontend/dish_category/list.html.twig', array(
-            'recipes' => $recipes,
+            'recipes' => $categoriesId,
         ));
     }
 }

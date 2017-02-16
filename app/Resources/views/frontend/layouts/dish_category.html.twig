@@ -2,7 +2,7 @@
 <ul>
     {% for dishCategory in dishCategories %}
         <li>
-            <a href="{{ path('dish_category_list', { 'dishCategoryId':dishCategory.categoryId }) }}">{{ dishCategory.name }}</a>
+            <a href="{{ path('dish_category_list', { 'categoryId':dishCategory.categoryId }) }}">{{ dishCategory.name }}</a>
         </li>
     {% endfor %}
 </ul>
