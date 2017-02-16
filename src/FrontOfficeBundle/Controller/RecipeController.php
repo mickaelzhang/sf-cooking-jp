@@ -105,12 +105,17 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
-        $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
+
+        $this->get('security.authorization_checker')->isGranted('ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $recipeId = $recipe->getRecipeId();
+
+        // Generate Token for Favorite Ajax
+        $tokenId = 'favorite_recipe'.$recipeId.'_user'.$user->getUserId();
+        $token = $this->get('security.csrf.token_manager')->refreshToken($tokenId);
 
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
-        $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
         $favorite = null;
@@ -169,7 +174,8 @@ class RecipeController extends Controller
             'favorite' => $favorite,
             'commentForm' => $commentForm->createView(),
             'ratingForm' => $ratingForm->createView(),
-            'dishCategories' => $dishCategories
+            'dishCategories' => $dishCategories,
+            'favoriteToken' => $token
         ));
     }
 
