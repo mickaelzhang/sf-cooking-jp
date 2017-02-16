@@ -3,10 +3,18 @@ import $ from 'jquery'
 export default class AddToFavorite {
   constructor() {
     this.button = $('.favoriteButton')
+    this.hiddenInput = this.button.find('#app_favorite_token')
 
-    this.userId = this.button.attr('data-user-id')
-    this.recipeId = this.button.attr('data-recipe-id')
-    this.url = this.button.attr('data-href')
+    // URL for AJAX call
+    this.ajaxUrl = this.hiddenInput.attr('data-href')
+
+    // Get data from the hidden input and split it into relevant data
+    this.content = this.hiddenInput.attr('data-content').split("_")
+
+    // DATA SEND THROUGH AJAX
+    this.userId = this.content[0]
+    this.recipeId = this.content[1]
+    this.token = this.hiddenInput.val()
 
     this.initEvents()
   }
@@ -17,13 +25,10 @@ export default class AddToFavorite {
     this.button.on('click', function() {
       $.ajax({
         type: "POST",
-        url: _.url,
-        data: `u=${_.userId}&r=${_.recipeId}`,
+        url: _.ajaxUrl,
+        data: `u=${_.userId}&r=${_.recipeId}&token=${_.token}`,
         success: function(data) {
-          console.log('_______________________________')
-          console.log('SUCCESS')
           console.log(data)
-
         }
       })
     })

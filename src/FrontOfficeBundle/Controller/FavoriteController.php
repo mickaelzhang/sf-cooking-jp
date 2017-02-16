@@ -46,12 +46,22 @@ class FavoriteController extends Controller
      * @Method("POST")
      */
     public function ajaxAddToFavoriteAction(Request $request) {
+        // Make sure the request is from ajax
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
         }
 
+        // Data from request
         $userId = $request->get('u');
         $recipeId = $request->get('r');
+        $submittedToken = $request->get('token');
+
+        // Make sure the token send is valid
+        $tokenId = 'favorite_recipe'.$recipeId.'_user'.$userId;
+
+        if (!$this->isCsrfTokenValid($tokenId, $submittedToken)) {
+            return new JsonResponse(array('message' => 'Invalid Token.'), 400);
+        }
 
         $em = $this->getDoctrine()->getManager();
 
@@ -72,11 +82,13 @@ class FavoriteController extends Controller
 
             $em->persist($userFavoriteRecipe);
             $em->flush();
+
+            return new JsonResponse(array('message' => 'The user now has this recipe in his favorite.'), 200);
         } else {
             $em->remove($userFavoriteRecipe);
             $em->flush();
-        }
 
-        return new Response('Ok');
+            return new JsonResponse(array('message' => 'The user removed this recipe from his favorite.'), 200);
+        }
     }
 }
