@@ -29,4 +29,13 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function getByCategoryId($categoriesIdList) {
+        $query = $this->createQueryBuilder('h')
+            ->innerJoin('h.dishCategories', 's')
+            ->where('s.categoryId IN (:categoriesIdList)')
+            ->setParameter('categoriesIdList', $categoriesIdList)
+            ->getQuery();
+        return $query->getResult();
+    }
 }

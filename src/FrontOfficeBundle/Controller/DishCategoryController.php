@@ -32,11 +32,13 @@ class DishCategoryController extends Controller
         $categoriesIdList = [];
 
         foreach ($categoriesId as $categoryId) {
-            $categoriesIdList[] = $categoryId->getCategoryId();
+            $categoriesIdList[] = $categoryId['categoryId'];
         }
 
+        $recipes = $em->getRepository('AppBundle:Recipe')->getByCategoryId($categoriesIdList);
+
         return $this->render('@frontend/dish_category/list.html.twig', array(
-            'recipes' => $categoriesIdList,
+            'recipes' => $recipes,
         ));
     }
 }
