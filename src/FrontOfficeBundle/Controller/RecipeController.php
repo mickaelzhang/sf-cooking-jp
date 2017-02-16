@@ -67,8 +67,13 @@ class RecipeController extends Controller
      */
     public function latestRecipesAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->lastVerifiedRecipes();
+        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->mostPopular(0);
 
-        return $this->render('@frontend/recipe/popular.html.twig');
+        return $this->render('@frontend/recipe/popular.html.twig', array(
+            'favorites' => $favorites
+        ));
     }
 
     /**
