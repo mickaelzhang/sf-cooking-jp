@@ -216,40 +216,4 @@ class RecipeController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
-
-    /**
-     * Add to favorite a recipe
-     *
-     * @Route("/{recipeId}/favori", name="recipe_addToFavorite")
-     * @Method("GET")
-     *
-     * @param Recipe $recipe
-     * @return RedirectResponse
-     */
-    public function addToFavoriteAction(Recipe $recipe)
-    {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        $em = $this->getDoctrine()->getManager();
-        $userFavoriteRecipe = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
-            array(
-                'user' => $user->getUserId(),
-                'recipe' => $recipe->getRecipeId()
-            )
-        );
-
-        if ($userFavoriteRecipe == null) {
-            $userFavoriteRecipe = new UserFavoriteRecipe();
-            $userFavoriteRecipe->setUser($user);
-            $userFavoriteRecipe->setRecipe($recipe);
-
-            $em->persist($userFavoriteRecipe);
-            $em->flush();
-        } else {
-            $em->remove($userFavoriteRecipe);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
-    }
 }
