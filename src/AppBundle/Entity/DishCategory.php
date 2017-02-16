@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="dish_category", indexes={
  *     @ORM\Index(name="dish_category_category_idx", columns={"parent_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DishCategoryRepository")
  */
 class DishCategory
 {

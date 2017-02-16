@@ -15,4 +15,6 @@
             <img src="{{ asset('uploads/user/' ~ app.user.image) }}" width="100px" alt="">
         {% endif %}
     </ul>
+
+    {{ render(controller('FrontOfficeBundle:Default:listDishCategory')) }}
 </header>
