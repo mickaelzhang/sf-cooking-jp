@@ -45,7 +45,7 @@ class RecipeController extends Controller
     /**
      * Lists latest recipes
      *
-     * @Route("/recentes", name="latest_recipe_list")
+     * @Route("/recentes", name="recipe_latest_list")
      * @Method("GET")
      */
     public function listLatestAction()
@@ -55,6 +55,24 @@ class RecipeController extends Controller
 
         return $this->render('@frontend/recipe/latest_list.html.twig', array(
             'recipes' => $recipes
+        ));
+    }
+
+    /**
+     * List most popular recipes of the week
+     *
+     * @Route("/populaire", name="recipe_popular")
+     * @Method("GET")
+     *
+     */
+    public function latestRecipesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->lastVerifiedRecipes();
+        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->mostPopular(0);
+
+        return $this->render('@frontend/recipe/popular.html.twig', array(
+            'favorites' => $favorites
         ));
     }
 
@@ -120,7 +138,7 @@ class RecipeController extends Controller
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
         $favorite = null;
 
-        if ($user) {
+        if ($auth_checker) {
             $favorite = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
                 array(
                     'user' => $user->getUserId(),

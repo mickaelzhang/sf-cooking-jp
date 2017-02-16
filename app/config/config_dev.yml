@@ -61,3 +61,6 @@ bazinga_faker:
                 ServingSize: { method: numberBetween, parameters: [ '1', '10' ] }
                 Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
                 Image: { method: file, optional: 1 }
+
+        AppBundle\Entity\UserFavoriteRecipe:
+            number: 10

@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     @ORM\Index(name="user_favorite_recipe_user_idx", columns={"user_id"}),
  *     @ORM\Index(name="user_favorite_recipe_recipe_idx", columns={"recipe_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserFavoriteRecipeRepository")
  */
 class UserFavoriteRecipe
 {
@@ -43,6 +43,14 @@ class UserFavoriteRecipe
      * })
      */
     private $recipe;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="added_date", type="datetime")
+     * @ORM\Version
+     */
+    private $addedDate;
 
 
 
