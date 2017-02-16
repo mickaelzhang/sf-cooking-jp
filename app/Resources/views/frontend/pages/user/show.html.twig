@@ -8,4 +8,12 @@
     {{ dump(user) }}
     <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
     {{ dump(recipes) }}
+
+    {% if app.user is not null %}
+        <div class="followButton"
+             style="border: 2px solid blue;">
+             Follow me
+        </div>
+    {% endif %}
+
 {% endblock %}
