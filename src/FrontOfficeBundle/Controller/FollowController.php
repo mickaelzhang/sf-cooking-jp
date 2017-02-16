@@ -6,14 +6,17 @@ use AppBundle\Entity\UserFavoriteRecipe;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Class FavoriteController
+ * Class FollowController
  *
  * @package FrontOfficeBundle\Controller
- * @Route("favoris")
+ * @Route("follow")
  */
-class FavoriteController extends Controller
+class FollowController extends Controller
 {
     /**
      * Lists all user's favorites.
@@ -26,13 +29,14 @@ class FavoriteController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $em = $this->getDoctrine()->getManager();
-        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findBy(
-            array('user' => $user->getUserId())
+        $follows = $em->getRepository('AppBundle:UserFollow')->findBy(
+            array('follower' => $user->getUserId())
         );
 
-        return $this->render('@frontend/favorites/list.html.twig', array(
-           'favorites' => $favorites
+        return $this->render('@frontend/follow/list.html.twig', array(
+           'follows' => $follows
         ));
 
     }
+
 }

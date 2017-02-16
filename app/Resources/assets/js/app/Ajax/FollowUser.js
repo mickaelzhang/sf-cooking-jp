@@ -1,8 +1,8 @@
 import $ from 'jquery'
 
-export default class AddToFavorite {
+export default class FollowUser {
   constructor() {
-    this.button = $('.favoriteButton')
+    this.button = $('.followButton')
     this.hiddenInput = this.button.find('.app_follow_token')
 
     // URL for AJAX call
@@ -12,8 +12,8 @@ export default class AddToFavorite {
     this.content = this.hiddenInput.attr('data-content').split("_")
 
     // DATA SEND THROUGH AJAX
-    this.userId = this.content[0]
-    this.recipeId = this.content[1]
+    this.followerId = this.content[0]
+    this.followedId = this.content[1]
     this.token = this.hiddenInput.val()
 
     this.initEvents()
@@ -26,7 +26,7 @@ export default class AddToFavorite {
       $.ajax({
         type: "POST",
         url: _.ajaxUrl,
-        data: `u=${_.userId}&r=${_.recipeId}&token=${_.token}`,
+        data: `follower=${_.followerId}&followed=${_.followedId}&token=${_.token}`,
         success: function(data) {
           console.log(data)
         }

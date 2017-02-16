@@ -8,4 +8,17 @@
     {{ dump(user) }}
     <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
     {{ dump(recipes) }}
+
+    {% if app.user is not null %}
+        <div class="followButton"
+             style="border: 2px solid blue;">
+             Follow me
+            <input type="hidden" class="app_follow_token"
+                   data-href="{{ url('api_follow_user')}}"
+                   data-content="{{ app.user.userId }}_{{ user.userId }}"
+                   value="{{ followToken.value }}"
+            >
+        </div>
+    {% endif %}
+
 {% endblock %}
