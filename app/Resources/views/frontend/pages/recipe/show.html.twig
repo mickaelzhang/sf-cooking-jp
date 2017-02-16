@@ -18,7 +18,7 @@
             {% else %}
                 En FAVORI
             {% endif %}
-            <input type="hidden" id="app_favorite_token"
+            <input type="hidden" class="app_favorite_token"
                    data-href="{{ url('api_favorite_add')}}"
                    data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
                    value="{{ favoriteToken.value }}"

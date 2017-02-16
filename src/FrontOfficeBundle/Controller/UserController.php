@@ -31,9 +31,16 @@ class UserController extends Controller
             array( 'author' => $user->getUserId() )
         );
 
+        $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
+
+        // Generate Token for Follow Ajax
+        $tokenId = 'follow_follower'.$connectedUser->getUserId().'_followed'.$user->getUserId();
+        $token = $this->get('security.csrf.token_manager')->refreshToken($tokenId);
+
         return $this->render('@frontend/user/show.html.twig', array(
             'user' => $user,
-            'recipes' => $recipes
+            'recipes' => $recipes,
+            'followToken' => $token
         ));
     }
 

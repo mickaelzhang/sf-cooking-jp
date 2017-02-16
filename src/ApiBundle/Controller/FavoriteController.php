@@ -23,7 +23,7 @@ class FavoriteController extends Controller
      * @Route("/", name="api_favorite_add")
      * @Method("POST")
      */
-    public function ajaxAddToFavoriteAction(Request $request) {
+    public function addToFavoriteAction(Request $request) {
         // Make sure the request is from ajax
         if (!$request->isXmlHttpRequest()) {
             return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
@@ -35,6 +35,7 @@ class FavoriteController extends Controller
         $submittedToken = $request->get('token');
 
         // Make sure the token send is valid
+        // tokenId -> favorite_recipe{recipeId}_user{userId}
         $tokenId = 'favorite_recipe'.$recipeId.'_user'.$userId;
 
         if (!$this->isCsrfTokenValid($tokenId, $submittedToken)) {
