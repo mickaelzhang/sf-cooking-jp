@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,6 +40,17 @@ class DishCategory
      * })
      */
     private $parent;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Recipe", mappedBy="dishCategories")
+     */
+    protected $recipe;
+
+    public function __construct()
+    {
+        $this->recipe = new ArrayCollection();
+    }
 
     /**
      * Get categoryId
@@ -96,5 +108,39 @@ class DishCategory
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Add recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     *
+     * @return DishCategory
+     */
+    public function addRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipe[] = $recipe;
+
+        return $this;
+    }
+
+    /**
+     * Remove recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     */
+    public function removeRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipe->removeElement($recipe);
+    }
+
+    /**
+     * Get recipe
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecipe()
+    {
+        return $this->recipe;
     }
 }

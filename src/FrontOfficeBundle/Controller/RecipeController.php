@@ -86,6 +86,7 @@ class RecipeController extends Controller
      */
     public function newAction(Request $request)
     {
+        // Get dish categories
         $recipe = new Recipe();
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($request);
@@ -111,7 +112,7 @@ class RecipeController extends Controller
 
         return $this->render('@frontend/recipe/new.html.twig', array(
             'form' => $form->createView(),
-            'recipe' => $recipe
+            'recipe' => $recipe,
         ));
     }
 
@@ -122,12 +123,17 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
-        $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
+
+        $this->get('security.authorization_checker')->isGranted('ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $recipeId = $recipe->getRecipeId();
+
+        // Generate Token for Favorite Ajax
+        $tokenId = 'favorite_recipe'.$recipeId.'_user'.$user->getUserId();
+        $token = $this->get('security.csrf.token_manager')->refreshToken($tokenId);
 
         // Show comments for this recipe
         $em = $this->getDoctrine()->getManager();
-        $recipeId = $recipe->getRecipeId();
         $comments = $em->getRepository('AppBundle:UserCommentOnRecipe')->orderByPublishedAt($recipeId);
         $rating = $em->getRepository('AppBundle:UserRateRecipe')->findRecipeAverageRating($recipeId);
         $favorite = null;
@@ -140,6 +146,8 @@ class RecipeController extends Controller
                 )
             );
         }
+
+        $dishCategories = $recipe->getDishCategory()->toArray();
 
         // Create rating form
         $userRating = new UserRateRecipe();
@@ -184,6 +192,8 @@ class RecipeController extends Controller
             'favorite' => $favorite,
             'commentForm' => $commentForm->createView(),
             'ratingForm' => $ratingForm->createView(),
+            'dishCategories' => $dishCategories,
+            'favoriteToken' => $token
         ));
     }
 
@@ -224,41 +234,4 @@ class RecipeController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
-
-    /**
-     * Add to favorite a recipe
-     *
-     * @Route("/{recipeId}/favori", name="recipe_addToFavorite")
-     * @Method("GET")
-     *
-     * @param Recipe $recipe
-     * @return RedirectResponse
-     */
-    public function addToFavoriteAction(Recipe $recipe)
-    {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
-        $em = $this->getDoctrine()->getManager();
-        $userFavoriteRecipe = $em->getRepository('AppBundle:UserFavoriteRecipe')->findOneBy(
-            array(
-                'user' => $user->getUserId(),
-                'recipe' => $recipe->getRecipeId()
-            )
-        );
-
-        if ($userFavoriteRecipe == null) {
-            $userFavoriteRecipe = new UserFavoriteRecipe();
-            $userFavoriteRecipe->setUser($user);
-            $userFavoriteRecipe->setRecipe($recipe);
-
-            $em->persist($userFavoriteRecipe);
-            $em->flush();
-        } else {
-            $em->remove($userFavoriteRecipe);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('recipe_show', array('recipeId' => $recipe->getRecipeId()));
-    }
-
 }

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -39,6 +40,17 @@ class DishCategory
      * })
      */
     private $parent;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Recipe", mappedBy="dish_category")
+     */
+    protected $recipe;
+
+    public function __construct()
+    {
+        $this->recipe = new ArrayCollection();
+    }
 
     /**
      * Get categoryId

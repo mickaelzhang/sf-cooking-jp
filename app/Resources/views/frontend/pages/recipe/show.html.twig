@@ -7,20 +7,26 @@
 {% block content %}
     {{ dump(recipe) }}
 
+    {{ dump(favoriteToken) }}
+
     {% if app.user is not null %}
         <div class="favoriteButton"
              style="border: 2px solid {% if favorite is null %}red{% else %}green{% endif %};"
-             data-user-id="{{ app.user.userId }}"
-             data-recipe-id="{{ recipe.recipeId }}"
-             data-href="{{ url('favorite_add')}}"
         >
             {% if favorite is null %}
                 Pas en FAVORI
             {% else %}
                 En FAVORI
             {% endif %}
+            <input type="hidden" id="app_favorite_token"
+                   data-href="{{ url('favorite_add')}}"
+                   data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                   value="{{ favoriteToken.value }}"
+            >
         </div>
     {% endif %}
+
+    {{ dump(dishCategories) }}
 
     <h2> {{ recipe.name }} </h2>
     <p> {{ recipe.description }} </p>
