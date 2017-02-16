@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="dish_type",uniqueConstraints={
  *     @ORM\UniqueConstraint(name="name_UNIQUE", columns={"name"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DishCategoryRepository")
  */
 class DishType
 {

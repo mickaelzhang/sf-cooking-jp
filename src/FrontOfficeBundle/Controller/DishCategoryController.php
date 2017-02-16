@@ -29,8 +29,14 @@ class DishCategoryController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categoriesId = $em->getRepository('AppBundle:DishCategory')->getChildCategoryId($dishCategory->getCategoryId());
 
+        $categoriesIdList = [];
+
+        foreach ($categoriesId as $categoryId) {
+            $categoriesIdList[] = $categoryId->getCategoryId();
+        }
+
         return $this->render('@frontend/dish_category/list.html.twig', array(
-            'recipes' => $categoriesId,
+            'recipes' => $categoriesIdList,
         ));
     }
 }
