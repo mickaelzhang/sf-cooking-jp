@@ -1,0 +1,9 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} dishCategory List{% endblock %}
+
+{% block title %}DishCategory | List{% endblock %}
+
+{% block content %}
+    {{ dump(recipes) }}
+{% endblock %}

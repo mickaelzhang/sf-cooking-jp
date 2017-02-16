@@ -21,4 +21,16 @@ class DefaultController extends Controller
             'favorites' => $favorites
         ));
     }
+
+    public function listDishCategoryAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dishCategories = $em->getRepository('AppBundle:DishCategory')->findBy(
+            array( 'parent' => null )
+        );
+
+        return $this->render('@frontend_layouts/dish_category.html.twig', array(
+            'dishCategories' => $dishCategories
+        ));
+    }
 }
