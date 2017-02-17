@@ -42,6 +42,14 @@ class UserFollow
     private $userFollowed;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="followed_date", type="datetime")
+     * @ORM\Version
+     */
+    private $followedDate;
+
+    /**
      * Get id
      *
      * @return int
@@ -97,5 +105,27 @@ class UserFollow
     public function getUserFollowed()
     {
         return $this->userFollowed;
+    }
+
+    /**
+     * Get followedDate
+     *
+     * @return boolean
+     */
+    public function getFollowedDate()
+    {
+        return $this->followedDate;
+    }
+
+    /**
+     * Set followedDate
+     *
+     * @return UserFollow
+     */
+    public function setFollowedDate($followedDate)
+    {
+        $this->followedDate = $followedDate;
+
+        return $this;
     }
 }

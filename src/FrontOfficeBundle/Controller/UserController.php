@@ -19,6 +19,22 @@ use Symfony\Component\HttpFoundation\File\File;
 class UserController extends Controller
 {
     /**
+     * List users
+     *
+     * @Route("/populaire", name="users_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        return $this->render('@frontend/user/list.html.twig', array(
+            'users' => $users
+        ));
+    }
+
+    /**
      * Find and display a user entity
      *
      * @Route("/{id}", name="user_show")
@@ -41,22 +57,6 @@ class UserController extends Controller
             'user' => $user,
             'recipes' => $recipes,
             'followToken' => $token
-        ));
-    }
-
-     /**
-     * List all users
-     *
-     * @Route("/", name="users_list")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('AppBundle:User')->findAll();
-
-        return $this->render('@frontend/user/list.html.twig', array(
-            'users' => $users
         ));
     }
 
