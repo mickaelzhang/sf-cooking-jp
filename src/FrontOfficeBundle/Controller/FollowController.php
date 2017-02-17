@@ -21,7 +21,7 @@ class FollowController extends Controller
     /**
      * Lists all user's favorites.
      *
-     * @Route("/", name="favorite_list")
+     * @Route("/", name="follow_list")
      * @Method("GET")
      */
     public function indexAction()

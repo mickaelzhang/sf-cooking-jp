@@ -10,6 +10,14 @@ namespace AppBundle\Repository;
  */
 class UserFollowRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getTotalFollowers($userId)
+    {
+        $query = $this->createQueryBuilder('h')
+            ->select('COUNT(h.userFollowed) AS total_followers')
+            ->where('h.userFollowed = :userId')
+            ->setParameter(':userId', $userId)
+            ->getQuery();
     /**
      * Get all follows since 7 days and sort them by group of users
      *
@@ -34,7 +42,8 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
         }
 
         $query;
-
+      
         return $query->getResult();
     }
 }
+
