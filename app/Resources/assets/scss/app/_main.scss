@@ -1,7 +1,9 @@
-
+// Default
 @import 'general/defaultTemplate';
 
+// Layouts scss
 @import 'layouts/defaultHeader';
+@import 'layouts/searchByCol';
 
-// Import page scss
+// Pages
 @import 'pages/home';

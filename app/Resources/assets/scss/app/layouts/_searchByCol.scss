@@ -1,0 +1,40 @@
+.searchByCol {
+    width: 175px;
+    background: #FFF;
+    margin-top: 33px;
+}
+
+.searchByCol__title {
+    height: 33px;
+    background: #F8F6F0;
+    padding: 5px 0 0 12px;
+
+    h4 {
+        color: #F5A623;
+        font-size: 14px;
+        text-decoration: underline;
+        width: 90px;
+    }
+}
+
+.searchByCol__list {
+    height: 260px;
+}
+
+.searchByCol__list li{
+    list-style: none;
+    margin: 20px 0px;
+    cursor: pointer;
+    background: #FFF;
+
+    img {
+        width: 26px;
+        margin: 0 8px 0 12px;
+        vertical-align: middle;
+    }
+
+    &:hover {
+
+    }
+
+}
