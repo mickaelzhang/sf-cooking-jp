@@ -18,6 +18,8 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
             ->where('h.userFollowed = :userId')
             ->setParameter(':userId', $userId)
             ->getQuery();
+    }
+
     /**
      * Get all follows since 7 days and sort them by group of users
      *
