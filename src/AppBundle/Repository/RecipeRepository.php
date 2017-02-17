@@ -38,4 +38,14 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function getRecipesCountById($userId)
+    {
+        $query = $this->createQueryBuilder('h')
+            ->select('COUNT(h.author) AS total_recipes')
+            ->where('h.author = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery();
+        return $query->getResult();
+    }
 }
