@@ -3,8 +3,8 @@ import $ from 'jquery'
 export default class AddToFavorite {
   constructor() {
     this.button = $('.favoriteButton')
-    this.hiddenInput = this.button.find('.app_follow_token')
-
+    this.hiddenInput = this.button.find('.app_favorite_token')
+    console.log(this.hiddenInput)
     // URL for AJAX call
     this.ajaxUrl = this.hiddenInput.attr('data-href')
 
