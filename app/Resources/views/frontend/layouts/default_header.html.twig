@@ -4,16 +4,32 @@
             <img class="defaultHeader__logo" src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
         <div class="defaultHeader__menu">
-            <a href="{{ path('recipe_list') }}">Recette</a>
+            <a class="defaultHeader__nav" href="{{ path('recipe_list') }}">
+                <img class="defaultHeader__imgs" src="{{ asset('assets/img/food.png') }}" alt="">
+                <span class="defaultHeader__texts">Recettes</span>
+            </a>
 
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="{{ path('recipe_new') }}">Ecrire une recette</a>
-                <a href="{{ path('user_show', { 'id': app.user.userId }) }}">{{ app.user.username }}</a>
-                <a href="{{ path('logout') }}">Deconnexion</a>
-            {% else %}
-                <a href="{{ path('user_registration') }}">Inscription</a>
-                <a href="{{ path('login') }}">Connexion</a>
-            {% endif %}
+            <a class="defaultHeader__nav" href="#">
+                <img class="defaultHeader__imgs" src="{{ asset('assets/img/pot.png') }}" alt="">
+                <span class="defaultHeader__texts">Catégories</span>
+            </a>
+
+            <a class="defaultHeader__nav" href="{{ path('recipe_new') }}">
+                <img class="defaultHeader__imgs" src="{{ asset('assets/img/write.png') }}" alt="">
+                <span class="defaultHeader__texts">Ecrire une recette</span>
+            </a>
+
+            <input class="defaultHeader__search" type="search" name="" value="" placeholder="Rechercher">
+
+            <div class="defaultHeader__login">
+                <img src="{{ asset('assets/img/lock.png') }}" alt="">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="defaultHeader__texts" href="{{ path('logout') }}">Deconnexion</a>
+                {% else %}
+                    <a class="defaultHeader__texts" href="{{ path('login') }}">Se connecter</a>
+                {% endif %}
+            </div>
+
         </div>
     </div>
 </header>
