@@ -31,8 +31,6 @@ class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
             $query->setMaxResults($maxResults);
         }
 
-        $query;
-
         return $query->getResult();
     }
 }

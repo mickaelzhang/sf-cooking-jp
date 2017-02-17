@@ -42,8 +42,6 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
         if ($maxResults != 0) {
             $query->setMaxResults($maxResults);
         }
-
-        $query;
       
         return $query->getResult();
     }
