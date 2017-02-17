@@ -1,20 +1,19 @@
 <header class="defaultHeader">
-    <ul>
-        <li><a href="{{ path('homepage') }}">Home</a></li>
-        <li><a href="{{ path('recipe_list') }}">Recette</a></li>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li><a href="{{ path('recipe_new') }}">Créer une recette</a></li>
-            <li><a href="{{ path('logout') }}">Deconnexion</a></li>
-        {% else %}
-            <li><a href="{{ path('user_registration') }}">Inscription</a></li>
-            <li><a href="{{ path('login') }}">Connexion</a></li>
-        {% endif %}
+    <div class="defaultHeader__container">
+        <a href="{{ path('homepage') }}">
+            <img class="defaultHeader__logo" src="{{ asset('assets/img/logo.png') }}" alt="">
+        </a>
+        <div class="defaultHeader__menu">
+            <a href="{{ path('recipe_list') }}">Recette</a>
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a href="{{ path('user_show', { 'id': app.user.userId }) }}">Bonjour {{ app.user.username }} !</a>
-            <img src="{{ asset('uploads/user/' ~ app.user.image) }}" width="100px" alt="">
-        {% endif %}
-    </ul>
-
-    {{ render(controller('FrontOfficeBundle:Default:listDishCategory')) }}
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('recipe_new') }}">Ecrire une recette</a>
+                <a href="{{ path('user_show', { 'id': app.user.userId }) }}">{{ app.user.username }}</a>
+                <a href="{{ path('logout') }}">Deconnexion</a>
+            {% else %}
+                <a href="{{ path('user_registration') }}">Inscription</a>
+                <a href="{{ path('login') }}">Connexion</a>
+            {% endif %}
+        </div>
+    </div>
 </header>
