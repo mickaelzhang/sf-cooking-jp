@@ -5,7 +5,7 @@
     'base/reset',
     'base/fonts',
     'base/variables',
-    'base/mixins',
     'base/base';
 
-// Common components
+@import 'utils/mixins';
+@import 'utils/functions';

@@ -6,13 +6,15 @@
 {% block page_id %}{{ parent() }}{% endblock %}
 
 {% block body %}
-    {% block header %}
-        {% include 'frontend/layouts/default_header.html.twig' %}
-    {% endblock %}
-    {% block content %}
-    {% endblock %}
-    {% block footer %}
-    {% endblock %}
+    <div class="globalContentContainer">
+        {% block header %}
+            {% include 'frontend/layouts/default_header.html.twig' %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock %}
+    </div>
 {% endblock %}
 
 {% block stylesheets %}
