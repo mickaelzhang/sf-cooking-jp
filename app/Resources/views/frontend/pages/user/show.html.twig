@@ -5,20 +5,74 @@
 {% block title %}User | Show{% endblock %}
 
 {% block content %}
-    {{ dump(user) }}
-    <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
-    {{ dump(recipes) }}
 
-    {% if app.user is not null %}
-        <div class="followButton"
-             style="border: 2px solid blue;">
-             Follow me
-            <input type="hidden" class="app_follow_token"
-                   data-href="{{ url('api_follow_user')}}"
-                   data-content="{{ app.user.userId }}_{{ user.userId }}"
-                   value="{{ followToken.value }}"
-            >
+<div class="defaultContainer">
+
+    <div class="mainContent profileContent">
+
+        <div class="profile profileCards">
+            <div class="profile__title profileCards__title">
+                <img src="{{ asset('assets/img/user.png') }}" alt="">
+                <h2>Profil</h2>
+            </div>
+            <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
+            <div class="profile__infos">
+                <h4 class="profile__name">{{ user.username }}</h4>
+                <p class="profile__recipes">{{ recipes|length }} recettes</p>
+                {% if app.user is not null %}
+                    <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles">
+                         Suivre
+                        <input type="hidden" class="app_follow_token"
+                               data-href="{{ url('api_follow_user')}}"
+                               data-content="{{ app.user.userId }}_{{ user.userId }}"
+                               value="{{ followToken.value }}"
+                        >
+                    </div>
+                {% endif %}
+            </div>
+            <div class="profile__followers">
+                <p>{{ followers|length }} followers</p>
+            </div>
         </div>
-    {% endif %}
+
+        <div class="profileFavorites profileCards">
+            <div class="profileFavorites__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Favoris</h2>
+            </div>
+            <ul class="profileFavorites__list profileCards__list">
+                {% for favorite in favorites %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                        </div>
+                        <h4>{{ favorite.recipe.name }}</h4>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="profileRecipes profileCards">
+            <div class="profileRecipes__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Recettes</h2>
+            </div>
+            <ul class="profileRecipes__list profileCards__list">
+                {% for recipe in recipes %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                        </div>
+                        <h4>{{ recipe.name }}</h4>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+
+</div>
 
 {% endblock %}

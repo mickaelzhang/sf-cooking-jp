@@ -43,6 +43,12 @@ class UserController extends Controller
         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
             array( 'author' => $user->getUserId() )
         );
+        $followers = $em->getRepository('AppBundle:UserFollow')->findBy(
+            array( 'userFollowed' => $user->getUserId())
+        );
+        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findBy(
+            array( 'user' => $user->getUserId())
+        );
 
         $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -53,7 +59,9 @@ class UserController extends Controller
         return $this->render('@frontend/user/show.html.twig', array(
             'user' => $user,
             'recipes' => $recipes,
-            'followToken' => $token
+            'followToken' => $token,
+            'followers' => $followers,
+            'favorites' => $favorites,
         ));
     }
 }

@@ -5,6 +5,7 @@
 @import 'components/ads',
         'components/recipeCard',
         'components/forms',
+        'components/profileCards',
         'components/_recipeSmallCard';
 
 // Layouts scss
@@ -14,6 +15,9 @@
         'layouts/popularProfiles',
         'layouts/lastRecipes',
         'layouts/categories',
+        'layouts/profile',
+        'layouts/profileFavorites',
+        'layouts/profileRecipes',
         'layouts/searchByCol';
 
 // Pages
