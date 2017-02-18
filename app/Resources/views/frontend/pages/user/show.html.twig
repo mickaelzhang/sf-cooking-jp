@@ -6,6 +6,11 @@
 
 {% block content %}
 
+{{dump(user)}}
+{{dump(recipes)}}
+{{dump(followers)}}
+{{dump(favorites)}}
+
 <div class="defaultContainer">
 
     <div class="mainContent profileContent">
@@ -15,19 +20,23 @@
                 <img src="{{ asset('assets/img/user.png') }}" alt="">
                 <h2>Profil</h2>
             </div>
-            <img class="profile__img" src="{{ asset('assets/img/profileExampleBigger.png') }}" alt="">
+            <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
             <div class="profile__infos">
-                <h4 class="profile__name">Katsudon</h4>
-                <p class="profile__recipes">219 recettes</p>
-                <h6 class="profile__descTitle">Description</h6>
-                <p class="profile__desc">
-                    Jeune étudiant en droit à Paris, je suis un grand amateur de cuisine et de vin.
-                    Grand passionné de la cuisine japonaise je suis très actif sur ce réseaux. N’hesitez pas a
-                    me contacter :)
-                </p>
+                <h4 class="profile__name">{{ user.username }}</h4>
+                <p class="profile__recipes">{{ recipes|length }} recettes</p>
+                {% if app.user is not null %}
+                    <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles">
+                         Suivre
+                        <input type="hidden" class="app_follow_token"
+                               data-href="{{ url('api_follow_user')}}"
+                               data-content="{{ app.user.userId }}_{{ user.userId }}"
+                               value="{{ followToken.value }}"
+                        >
+                    </div>
+                {% endif %}
             </div>
             <div class="profile__followers">
-                <p>2048 followers</p>
+                <p>{{ followers|length }} followers</p>
             </div>
         </div>
 
@@ -37,18 +46,14 @@
                 <h2>Favoris</h2>
             </div>
             <ul class="profileFavorites__list profileCards__list">
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Porc à la japonnaise</h4>
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Croquette de riz au poulet yakitori</h4>
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Porc à la japonnaise</h4>
-                </li>
+                {% for favorite in favorites %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                        </div>
+                        <h4>{{ favorite.recipe.name }}</h4>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
 
@@ -58,18 +63,14 @@
                 <h2>Recettes</h2>
             </div>
             <ul class="profileRecipes__list profileCards__list">
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Porc à la japonnaise</h4>
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Croquette de riz au poulet yakitori</h4>
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                    <h4>Porc à la japonnaise</h4>
-                </li>
+                {% for recipe in recipes %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                        </div>
+                        <h4>{{ recipe.name }}</h4>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
 

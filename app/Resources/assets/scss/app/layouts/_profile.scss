@@ -12,7 +12,7 @@ most on the styles of this one are in _profileCards.scss */
     display: inline-block;
     vertical-align: top;
     width: 350px;
-    margin-left: 30px;
+    margin: 10px 0 0 30px;
 }
 
 .profile__name {
@@ -40,4 +40,5 @@ most on the styles of this one are in _profileCards.scss */
     color: #59352f;
     display: inline-block;
     vertical-align: top;
+    margin-top: 10px;
 }

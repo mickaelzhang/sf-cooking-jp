@@ -16,7 +16,7 @@
 }
 
 .profileCards__title {
-    margin: 20px 20px 5px 20px;
+    margin: 20px 20px 15px 20px;
 
     h2 {
         letter-spacing: 0.3px;
@@ -38,13 +38,18 @@
     height: 215px;
     display: flex;
     background: #FFF;
-    justify-content: center;
+    justify-content: flex-start;;
 
     li {
         width: 190px;
         margin: 0 10px;
         text-align: center;
         margin-top: 25px;
+
+        .profileCards__imgContainer {
+            overflow: hidden;
+            height: 110px;
+        }
 
         img {
             width: 190px;
