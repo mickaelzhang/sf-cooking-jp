@@ -5,20 +5,78 @@
 {% block title %}User | Show{% endblock %}
 
 {% block content %}
-    {{ dump(user) }}
-    <img src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
-    {{ dump(recipes) }}
 
-    {% if app.user is not null %}
-        <div class="followButton"
-             style="border: 2px solid blue;">
-             Follow me
-            <input type="hidden" class="app_follow_token"
-                   data-href="{{ url('api_follow_user')}}"
-                   data-content="{{ app.user.userId }}_{{ user.userId }}"
-                   value="{{ followToken.value }}"
-            >
+<div class="defaultContainer">
+
+    <div class="mainContent profileContent">
+
+        <div class="profile profileCards">
+            <div class="profile__title profileCards__title">
+                <img src="{{ asset('assets/img/user.png') }}" alt="">
+                <h2>Profil</h2>
+            </div>
+            <img class="profile__img" src="{{ asset('assets/img/profileExampleBigger.png') }}" alt="">
+            <div class="profile__infos">
+                <h4 class="profile__name">Katsudon</h4>
+                <p class="profile__recipes">219 recettes</p>
+                <h6 class="profile__descTitle">Description</h6>
+                <p class="profile__desc">
+                    Jeune étudiant en droit à Paris, je suis un grand amateur de cuisine et de vin.
+                    Grand passionné de la cuisine japonaise je suis très actif sur ce réseaux. N’hesitez pas a
+                    me contacter :)
+                </p>
+            </div>
+            <div class="profile__followers">
+                <p>2048 followers</p>
+            </div>
         </div>
-    {% endif %}
+
+        <div class="profileFavorites profileCards">
+            <div class="profileFavorites__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Favoris</h2>
+            </div>
+            <ul class="profileFavorites__list profileCards__list">
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Porc à la japonnaise</h4>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Croquette de riz au poulet yakitori</h4>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Porc à la japonnaise</h4>
+                </li>
+            </ul>
+        </div>
+
+        <div class="profileRecipes profileCards">
+            <div class="profileRecipes__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Recettes</h2>
+            </div>
+            <ul class="profileRecipes__list profileCards__list">
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Porc à la japonnaise</h4>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Croquette de riz au poulet yakitori</h4>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                    <h4>Porc à la japonnaise</h4>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+
+</div>
 
 {% endblock %}

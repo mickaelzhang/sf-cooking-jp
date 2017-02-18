@@ -1,0 +1,43 @@
+/* Because of its commons styles with other cards
+most on the styles of this one are in _profileCards.scss */
+.profile__img {
+    width: 120px;
+    clip-path: circle(60px at 60px 62px);
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+}
+
+.profile__infos {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    margin-left: 30px;
+}
+
+.profile__name {
+    letter-spacing: 0.2px;
+    color: #59352f;
+    font-size: 18px;
+}
+
+.profile__recipes {
+    font-size: 14px;
+    margin-top: 5px;
+    letter-spacing: 0.2px;
+    color: #f5a623;
+    text-decoration: underline;
+}
+
+.profile__descTitle {
+    color: #000;
+    margin: 20px 0 10px 0;
+}
+
+.profile__followers {
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    color: #59352f;
+    display: inline-block;
+    vertical-align: top;
+}
