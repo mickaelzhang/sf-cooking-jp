@@ -35,7 +35,7 @@
     border: thin solid #99C900;
     background: #F6F6F6;
     border-radius: 5px;
-    padding: 8px;
+    padding: 8px 0 8px 8px;
     font-size: 14px;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -49,11 +49,11 @@
 }
 
 .forms__inputsFull {
-    width: 100%;
+    width: 98%;
 }
 
 .forms__rows {
-    width: 100%;
+    width: 99%;
     display: flex;
     justify-content: space-between;
 
@@ -63,7 +63,7 @@
 }
 
 .forms__inputsHalf {
-    width: 100%;
+    width: 98%;
     display: inline-block;
 }
 
