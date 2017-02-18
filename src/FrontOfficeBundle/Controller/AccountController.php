@@ -108,4 +108,24 @@ class AccountController extends Controller
             'edit_form' => $editForm->createView()
         ));
     }
+
+    /**
+     * List connected user's following list
+     *
+     * @Route("/follow", name="follow_list")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $follows = $em->getRepository('AppBundle:UserFollow')->findBy(
+            array('follower' => $user->getUserId())
+        );
+
+        return $this->render('@frontend/follow/list.html.twig', array(
+            'follows' => $follows
+        ));
+    }
 }
