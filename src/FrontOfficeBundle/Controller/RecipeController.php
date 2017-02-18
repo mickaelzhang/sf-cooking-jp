@@ -157,7 +157,6 @@ class RecipeController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $userRating->setUser($user);
             $userRating->setRecipe($recipe);
-            $userRating->setRatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($userRating);
