@@ -9,11 +9,11 @@
     <div class="globalContentContainer">
         {% block header %}
             {% include 'frontend/layouts/default_header.html.twig' %}
-            {{ render(controller('FrontOfficeBundle:Default:listDishCategory')) }}
         {% endblock %}
         {% block content %}
         {% endblock %}
         {% block footer %}
+            {% include 'frontend/layouts/default_footer.html.twig' %}
         {% endblock %}
     </div>
 {% endblock %}
