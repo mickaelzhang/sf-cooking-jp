@@ -52,7 +52,7 @@ class Recipe
      * @ORM\Column(name="difficulty", type="integer", precision=1, scale=0, nullable=true)
      * @Assert\Range(
      *     min = 0,
-     *     max = 5
+     *     max = 3
      * )
      */
     private $difficulty;
