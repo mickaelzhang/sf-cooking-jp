@@ -58,7 +58,10 @@ class UserCommentOnRecipe
      */
     private $user;
 
-
+    function __construct()
+    {
+        $this->publishedAt = new \DateTime('now');
+    }
 
     /**
      * Get hasCommentedId
