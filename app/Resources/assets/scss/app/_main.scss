@@ -2,7 +2,8 @@
 @import 'general/defaultTemplate';
 
 // Components reusables
-@import 'components/ads';
+@import 'components/ads',
+        'components/forms';
 
 // Layouts scss
 @import 'layouts/defaultHeader',
