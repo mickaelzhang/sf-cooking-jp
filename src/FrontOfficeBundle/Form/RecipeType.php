@@ -103,7 +103,6 @@ class RecipeType extends AbstractType
                 'expanded' => true,
                 'attr' => array(
                     'class' => 'forms__inputs forms__inputsCheckboxes',
-                    'rows' => '20',
                 ),
             ));
     }
