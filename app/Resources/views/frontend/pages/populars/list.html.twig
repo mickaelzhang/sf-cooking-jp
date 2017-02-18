@@ -5,6 +5,59 @@
 {% block title %}Populars | List{% endblock %}
 
 {% block content %}
-    Populars Index
-    {{ dump(populars) }}
+
+<div class="defaultContainer">
+
+    <div class="mainContent">
+
+        {% include 'frontend/components/searchByCol.html.twig' %}
+
+        <div class="popularProfiles">
+
+            <div class="popularProfiles__title">
+                <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                <h2>Profils populaires</h2>
+            </div>
+
+            <ul class="popularProfiles__list">
+                <li>
+                    <img src="{{ asset('assets/img/profileExampleBigger.png') }}" class="popularProfiles__imgs">
+                    <div class="popularProfiles__infos">
+                        <h5 class="popularProfiles__names">Katsudon</h5>
+                        <p class="popularProfiles__recipes">219 recettes</p>
+                    </div>
+                    <div class="popularProfiles__followers">
+                        <p>3000 followers</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/profileExampleBigger.jpg') }}" class="popularProfiles__imgs">
+                    <div class="popularProfiles__infos">
+                        <h5 class="popularProfiles__names">Katsudon</h5>
+                        <p class="popularProfiles__recipes">219 recettes</p>
+                    </div>
+                    <div class="popularProfiles__followers">
+                        <p>3000 followers</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/profileExampleBigger.png') }}" class="popularProfiles__imgs">
+                    <div class="popularProfiles__infos">
+                        <h5 class="popularProfiles__names">Katsudon</h5>
+                        <p class="popularProfiles__recipes">219 recettes</p>
+                    </div>
+                    <div class="popularProfiles__followers">
+                        <p>3000 followers</p>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+
+</div>
+
 {% endblock %}
