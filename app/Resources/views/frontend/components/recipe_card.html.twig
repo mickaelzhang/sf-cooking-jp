@@ -4,24 +4,27 @@
         <div class="recipeCardHeader">
             <div class="recipeAuthor">
                 <div class="recipeAuthor__img">
-                    <img src="{{ recipe.author.image }}" /></div>
+                    <img src="{{ recipe.author.image }}" />
+                </div>
                 <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
             </div>
-            <div class="addToFavorite favoriteButton">
-                <div class="addToFavorite__text">
-                    {% if favorite is null %}
-                        Ajouter aux favoris
-                    {% else %}
-                        Retirer des favoris
-                    {% endif %}
-                    <input type="hidden" class="app_favorite_token"
-                           data-href="{{ url('api_favorite_add')}}"
-                           data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
-                           value="{{ favoriteToken.value }}"
-                    >
+            {% if app.user %}
+                <div class="addToFavorite favoriteButton">
+                    <div class="addToFavorite__text">
+                        {% if favorite is null %}
+                            Ajouter aux favoris
+                        {% else %}
+                            Retirer des favoris
+                        {% endif %}
+                        <input type="hidden" class="app_favorite_token"
+                               data-href="{{ url('api_favorite_add')}}"
+                               data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                               value="{{ favoriteToken.value }}"
+                        >
+                    </div>
+                    <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
                 </div>
-                <img class="addToFavorite__icon" src="/assets/img/favorite.png" />
-            </div>
+            {% endif %}
         </div>
 
         <div class="recipeInfos">

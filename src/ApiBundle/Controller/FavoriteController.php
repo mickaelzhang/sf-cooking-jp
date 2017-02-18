@@ -22,6 +22,9 @@ class FavoriteController extends Controller
      *
      * @Route("/", name="api_favorite_add")
      * @Method("POST")
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
     public function addToFavoriteAction(Request $request) {
         // Make sure the request is from ajax

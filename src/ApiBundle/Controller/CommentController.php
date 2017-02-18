@@ -13,7 +13,7 @@ use AppBundle\Entity\UserCommentOnRecipe;
  * Class CommentController
  *
  * @package ApiBundle\Controller
- * @Route("favorite")
+ * @Route("comment")
  */
 class CommentController extends Controller
 {
