@@ -5,25 +5,105 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h1>Login</h1>
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="defaultContainer">
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        <div class="mainContent">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
+            <div class="searchByCol">
+                <div class="searchByCol__title">
+                    <h4>Recherche par popularité</h4>
+                </div>
+                <div class="searchByCol__list">
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Profils populaires
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Tendances
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Spécialité
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Classement
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Menu
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Région
+                    </li>
+                </div>
+                <div class="searchByCol__title">
+                    <h4>Recherche par plats</h4>
+                </div>
+                <ul class="searchByCol__list">
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Nouilles
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Salades
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Soupes
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Fruits de mer
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Sushis
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                        Viandes
+                    </li>
+                </ul>
+            </div>
 
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type="hidden" name="_target_path" value="/account" />
-        #}
 
-        <button type="submit">login</button>
-    </form>
+            <div class="forms">
+
+                <div class="forms__title">
+                    <img src="{{ asset('assets/img/lockGreen.png') }}" alt="">
+                    <h2>Connexion</h2>
+                </div>
+
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <form action="{{ path('login') }}" method="post">
+
+                    <div class="forms__inputsContainer">
+                        <label for="username" class="forms__labels">Mon pseudo</label>
+                        <input class="forms__inputs forms__inputsFull" type="text" id="username" name="_username" value="{{ last_username }}" />
+
+                        <label for="username" class="forms__labels">Mon mot de passe</label>
+                        <input class="forms__inputs forms__inputsFull" type="password" id="password" name="_password" />
+
+                        <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Connexion</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="ads">
+            <img src="{{ asset('assets/img/_PUB1.png') }}" alt="">
+            <img src="{{ asset('assets/img/_PUB2.png') }}" alt="">
+        </div>
+
+    </div>
 {% endblock %}
