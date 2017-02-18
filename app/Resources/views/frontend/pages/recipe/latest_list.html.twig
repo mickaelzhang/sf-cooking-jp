@@ -1,10 +1,28 @@
 {% extends 'frontend/templates/default.html.twig' %}
 
-{% block page_id %}{{ parent() }} recipeList{% endblock %}
+{% block page_id %}{{ parent() }} mostPopularRecipeList{% endblock %}
 
-{% block title %}Recipe | Latest List{% endblock %}
+{% block title %}Délice du Japon | Recettes populaires{% endblock %}
 
 {% block content %}
-    Recipe Latest List
-    {{ dump(recipes) }}
+
+    <div class="defaultContainer">
+
+        <div class="smallCards">
+            <div class="pageTitle">Recettes les plus populaires</div>
+
+            {% for recipe in recipes  %}
+
+                {% include 'frontend/components/recipe_small_card.html.twig' with {'recipe': recipe} %}
+
+            {% endfor %}
+
+        </div>
+
+        <div class="ads">
+            <img src="{{ asset('assets/img/_PUB1.png') }}" alt="">
+            <img src="{{ asset('assets/img/_PUB2.png') }}" alt="">
+        </div>
+    </div>
+
 {% endblock %}

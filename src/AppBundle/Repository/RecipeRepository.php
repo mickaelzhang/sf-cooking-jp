@@ -25,6 +25,8 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     public function orderByPublishedDate()
     {
         $query = $this->createQueryBuilder('h')
+            ->join('h.author', 'd')
+            ->select('d.username', 'd.image AS author_image', 'h.image', 'h.name', 'h.difficulty', 'h.cookingTime', 'h.preparationTime', 'h.servingSize')
             ->addOrderBy('h.publishedDate', 'DESC')
             ->getQuery();
         return $query->getResult();

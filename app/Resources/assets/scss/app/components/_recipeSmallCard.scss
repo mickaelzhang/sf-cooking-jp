@@ -1,0 +1,55 @@
+.smallCard {
+    background-color:$white;
+    margin-bottom:5px;
+    border:1px solid $brown-tana;
+    box-sizing: border-box;
+    border-radius:2.5px;
+}
+
+.smallCard__container {
+    display:flex;
+    padding-top:10px;
+}
+
+.largeImage {
+    background-color:$gray;
+    width:440px;
+    height:250px;
+}
+
+.smallCardInfos {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+}
+
+.smallCardAuthor {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.smallCardAuthor__image {
+    height:23px;
+    width:23px;
+    border-radius:50%;
+    background-color:$gray;
+}
+
+.smallCardAuthor__username {
+    font-size: 11px;
+}
+
+
+.smallCardIndications__indication {
+    margin-bottom:15px;
+}
+
+.smallCard__name {
+    font-size:17px;
+    color:$green-limeade;
+    font-weight:600;
+    margin:15px 0;
+}

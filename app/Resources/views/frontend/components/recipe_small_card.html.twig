@@ -1,0 +1,36 @@
+<div class="smallCard">
+    <div class="wrapper">
+        <div class="smallCard__container">
+            <img class="largeImage" src="{{ recipe.image }}" />
+            <div class="smallCardInfos">
+                <div class="smallCardAuthor">
+                    <div class="smallCardAuthor__image">
+                        <img src="{{ recipe.author_image }}" />
+                    </div>
+                    <div class="smallCardAuthor__username">
+                        {{ recipe.username }}
+                    </div>
+                </div>
+                <ul class="smallCardIndications">
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        Facile
+                    </li>
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        8-10€
+                    </li>
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        20 min
+                    </li>
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        12 min
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h3 class="smallCard__name">{{ recipe.name }}</h3>
+    </div>
+</div>

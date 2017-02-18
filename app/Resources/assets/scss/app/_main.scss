@@ -3,7 +3,9 @@
 
 // Components reusables
 @import 'components/ads',
-        'components/forms';
+        'components/recipeCard',
+        'components/forms',
+        'components/_recipeSmallCard';
 
 // Layouts scss
 @import 'layouts/defaultHeader',
@@ -14,6 +16,5 @@
         'layouts/searchByCol';
 
 // Pages
-@import 'pages/home';
-
-@import 'components/recipeCard';
+@import 'pages/home',
+        'pages/_recipePopularLatest';
