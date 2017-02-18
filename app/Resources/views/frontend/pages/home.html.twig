@@ -12,66 +12,7 @@
 
         <div class="mainContent">
 
-            <div class="searchByCol">
-                <div class="searchByCol__title">
-                    <h4>Recherche par popularité</h4>
-                </div>
-                <div class="searchByCol__list">
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Profils populaires
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Tendances
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Spécialité
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Classement
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Menu
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Région
-                    </li>
-                </div>
-                <div class="searchByCol__title">
-                    <h4>Recherche par plats</h4>
-                </div>
-                <ul class="searchByCol__list">
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Nouilles
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Salades
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Soupes
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Fruits de mer
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Sushis
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                        Viandes
-                    </li>
-                </ul>
-            </div>
+            {% include 'frontend/components/searchByCol.html.twig' %}
 
             <div class="popularRecipes">
                 <div class="popularRecipes__title">
@@ -83,7 +24,9 @@
 
                     <div class="popularRecipes__infos">
                         <div class="popularRecipes__infosLeft">
-                            <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                            <div class="popularRecipes__userImgContainer">
+                                <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                            </div>
                             <h4 class="popularRecipes__username">Sofia Kiria</h4>
                             <ul class="popularRecipes__notation">
                                 <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
@@ -123,7 +66,9 @@
 
                     <div class="popularRecipes__infos">
                         <div class="popularRecipes__infosLeft">
-                            <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                            <div class="popularRecipes__userImgContainer">
+                                <img src="{{ asset('assets/img/profileExampleBigger.png') }}" alt="" class="popularRecipes__userImg">
+                            </div>
                             <h4 class="popularRecipes__username">Sofia Kiria</h4>
                             <div class="popularRecipes__notation">
                                 <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
@@ -249,10 +194,7 @@
 
         </div>
 
-        <div class="ads">
-            <img src="{{ asset('assets/img/_PUB1.png') }}" alt="">
-            <img src="{{ asset('assets/img/_PUB2.png') }}" alt="">
-        </div>
+        {% include 'frontend/components/ads.html.twig' %}
 
     </div>
 
