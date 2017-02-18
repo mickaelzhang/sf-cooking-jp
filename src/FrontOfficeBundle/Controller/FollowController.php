@@ -36,7 +36,5 @@ class FollowController extends Controller
         return $this->render('@frontend/follow/list.html.twig', array(
            'follows' => $follows
         ));
-
     }
-
 }
