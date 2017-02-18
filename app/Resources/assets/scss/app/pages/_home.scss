@@ -1,4 +1,14 @@
 .homePageContainer {
+    width: 970px;
     display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
     margin-top: 33px;
+}
+
+.mainContent {
+    width: 660px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }

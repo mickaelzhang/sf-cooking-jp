@@ -1,9 +1,14 @@
 // Default
 @import 'general/defaultTemplate';
 
+// Components reusables
+@import 'components/ads';
+
 // Layouts scss
 @import 'layouts/defaultHeader',
         'layouts/popularRecipes',
+        'layouts/lastRecipes',
+        'layouts/categories',
         'layouts/searchByCol';
 
 // Pages
