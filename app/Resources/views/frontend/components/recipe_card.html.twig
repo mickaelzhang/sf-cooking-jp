@@ -8,8 +8,19 @@
                 </div>
                 <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
             </div>
-            <div class="addToFavorite">
-                <div class="addToFavorite__text">Ajouter au favoris</div>
+            <div class="addToFavorite favoriteButton">
+                <div class="addToFavorite__text">
+                    {% if favorite is null %}
+                        Ajouter aux favoris
+                    {% else %}
+                        Retirer des favoris
+                    {% endif %}
+                    <input type="hidden" class="app_favorite_token"
+                           data-href="{{ url('api_favorite_add')}}"
+                           data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                           value="{{ favoriteToken.value }}"
+                    >
+                </div>
                 <img class="addToFavorite__icon" src="/assets/img/favorite.png" />
             </div>
         </div>
@@ -50,6 +61,10 @@
 
     <div class="recipeInstruction">
         {{ recipe.instructions }}
+    </div>
+
+    <div class="comments">
+        <div class="comments__more">Voir les commentaires</div>
     </div>
 
 </div>
