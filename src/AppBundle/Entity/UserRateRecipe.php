@@ -58,6 +58,11 @@ class UserRateRecipe
      */
     private $user;
 
+    function __construct()
+    {
+        $this->ratedAt = new \DateTime('now');
+    }
+
     /**
      * Get hasRatedId
      *

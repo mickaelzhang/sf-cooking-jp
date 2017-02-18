@@ -123,7 +123,6 @@ class RecipeController extends Controller
      */
     public function showAction(Recipe $recipe, Request $request)
     {
-
         $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $recipeId = $recipe->getRecipeId();
@@ -158,7 +157,6 @@ class RecipeController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $userRating->setUser($user);
             $userRating->setRecipe($recipe);
-            $userRating->setRatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($userRating);
@@ -176,7 +174,6 @@ class RecipeController extends Controller
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $userComment->setUser($user);
             $userComment->setRecipe($recipe);
-            $userComment->setPublishedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($userComment);

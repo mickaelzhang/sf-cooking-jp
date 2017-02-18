@@ -52,6 +52,10 @@ class UserFavoriteRecipe
      */
     private $addedDate;
 
+    function __construct()
+    {
+        $this->addedDate = new \DateTime('now');
+    }
 
 
     /**
