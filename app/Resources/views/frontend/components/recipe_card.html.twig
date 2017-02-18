@@ -3,9 +3,8 @@
     <div class="wrapper">
         <div class="recipeCardHeader">
             <div class="recipeAuthor">
-                <div class="recipeAuthor__img"/>
-                    <img src="{{ recipe.author.image }}" />
-                </div>
+                <div class="recipeAuthor__img">
+                    <img src="{{ recipe.author.image }}" /></div>
                 <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
             </div>
             <div class="addToFavorite favoriteButton">
@@ -25,46 +24,46 @@
             </div>
         </div>
 
-    <div class="recipeInfos">
-        <img class="recipeImage" src="{{ recipe.image }}" />
-        <div class="recipeInfosContainer">
-            <h2>{{ recipe.name }}</h2>
-            <ul class="recipesInfosContainer__indications">
-                <li>
-                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                    Facile
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                    8-10€
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                    20 min
-                </li>
-                <li>
-                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                    12 min
-                </li>
-            </ul>
-
-            <div class="recipesInfosContainer__ingredients">
-                <h3>Ingrédients</h3>
-                <ul>
-                    <li>- 4 belles escalopes de poulets</li>
-                    <li>- 4 belles escalopes de poulets</li>
-                    <li>- 4 belles escalopes de poulets</li>
+        <div class="recipeInfos">
+            <img class="recipeImage" src="{{ recipe.image }}" />
+            <div class="recipeInfosContainer">
+                <h2>{{ recipe.name }}</h2>
+                <ul class="recipesInfosContainer__indications">
+                    <li>
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        Facile
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        8-10€
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        20 min
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        12 min
+                    </li>
                 </ul>
+
+                <div class="recipesInfosContainer__ingredients">
+                    <h3>Ingrédients</h3>
+                    <ul>
+                        <li>- 4 belles escalopes de poulets</li>
+                        <li>- 4 belles escalopes de poulets</li>
+                        <li>- 4 belles escalopes de poulets</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="recipeInstruction">
-        {{ recipe.instructions }}
-    </div>
+        <div class="recipeInstruction">
+            {{ recipe.instructions }}
+        </div>
 
-    <div class="comments">
-        <div class="comments__more">Voir les commentaires</div>
+        <div class="comments">
+            <div class="comments__more">Voir les commentaires</div>
+        </div>
     </div>
-
 </div>
