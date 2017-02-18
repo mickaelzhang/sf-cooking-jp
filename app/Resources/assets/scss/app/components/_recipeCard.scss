@@ -1,9 +1,7 @@
 .recipeCard {
   background-color: $white;
-  margin-top:30px;
-  margin-bottom:30px;
   border-radius:5px;
-  width:652px;
+  width:660px;
 }
 
 .recipeCardHeader {
@@ -87,6 +85,12 @@
     font-weight:600;
     color:$white-rock;
     margin-bottom:5px;
+  }
+
+  ul {
+    li {
+      margin-top:5px;
+    }
   }
 }
 
