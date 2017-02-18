@@ -7,17 +7,22 @@
     font-size: 14px;
 }
 
+.wrapper {
+    padding:0 10px;
+    height:100%;
+}
+
 .defaultContainer {
     width: 970px;
     display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	  flex-direction: row;
+	  flex-wrap: wrap;
     margin-top: 33px;
 }
 
 .mainContent {
     width: 660px;
     display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	  flex-direction: row;
+	  flex-wrap: wrap;
 }
