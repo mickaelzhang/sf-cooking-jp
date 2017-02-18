@@ -44,10 +44,17 @@
     vertical-align: top;
 }
 
+.popularRecipes__userImgContainer {
+    overflow: hidden;
+    width: 35px;
+    height: 35px;
+    margin: -5px auto 5px auto;
+}
+
 .popularRecipes__userImg {
-    clip-path: circle(13px at center);
+    clip-path: circle(13px at 17px 13px);
     display: block;
-    margin: -5px auto;
+    width: 35px;
 }
 
 .popularRecipes__username {
