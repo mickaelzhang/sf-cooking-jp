@@ -8,65 +8,154 @@
 
 {% block content %}
 
-    <div class="searchByCol">
-        <div class="searchByCol__title">
-            <h4>Recherche par popularité</h4>
+    <div class="homePageContainer">
+
+        <div class="searchByCol">
+            <div class="searchByCol__title">
+                <h4>Recherche par popularité</h4>
+            </div>
+            <div class="searchByCol__list">
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Profils populaires
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Tendances
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Spécialité
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Classement
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Menu
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Région
+                </li>
+            </div>
+            <div class="searchByCol__title">
+                <h4>Recherche par plats</h4>
+            </div>
+            <ul class="searchByCol__list">
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Nouilles
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Salades
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Soupes
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Fruits de mer
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Sushis
+                </li>
+                <li>
+                    <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                    Viandes
+                </li>
+            </ul>
         </div>
-        <div class="searchByCol__list">
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Profils populaires
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Tendances
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Spécialité
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Classement
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Menu
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Région
-            </li>
+
+        <div class="popularRecipes">
+            <div class="popularRecipes__title">
+                <h2>Recettes les plus populaires</h2>
+            </div>
+
+            <div class="popularRecipes__card">
+                <img class="popularRecipes__img" src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+
+                <div class="popularRecipes__infos">
+                    <div class="popularRecipes__infosLeft">
+                        <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                        <h4 class="popularRecipes__username">Sofia Kiria</h4>
+                        <ul class="popularRecipes__notation">
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                        </ul>
+                    </div>
+
+                    <div class="popularRecipes__infosRight">
+                        <h3 class="popularRecipes__names">Wok de légumes et nouilles soba sautées</h3>
+                        <ul class="popularRecipes__indications">
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                Facile
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                8-10€
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                20 min
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                12 min
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popularRecipes__card">
+                <img class="popularRecipes__img" src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+
+                <div class="popularRecipes__infos">
+                    <div class="popularRecipes__infosLeft">
+                        <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                        <h4 class="popularRecipes__username">Sofia Kiria</h4>
+                        <div class="popularRecipes__notation">
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                            <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
+                        </div>
+                    </div>
+
+                    <div class="popularRecipes__infosRight">
+                        <h3 class="popularRecipes__names">Wok de légumes et nouilles soba sautées</h3>
+                        <ul class="popularRecipes__indications">
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                Facile
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                8-10€
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                20 min
+                            </li>
+                            <li>
+                                <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                12 min
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="searchByCol__title">
-            <h4>Recherche par plats</h4>
-        </div>
-        <ul class="searchByCol__list">
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Nouilles
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Salades
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Soupes
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Fruits de mer
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Sushis
-            </li>
-            <li>
-                <img src="{{ asset('assets/img/searchByCol_1.png') }}" alt="">
-                Viandes
-            </li>
-        </ul>
+
     </div>
 
 {% endblock %}

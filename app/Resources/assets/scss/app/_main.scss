@@ -2,8 +2,9 @@
 @import 'general/defaultTemplate';
 
 // Layouts scss
-@import 'layouts/defaultHeader';
-@import 'layouts/searchByCol';
+@import 'layouts/defaultHeader',
+        'layouts/popularRecipes',
+        'layouts/searchByCol';
 
 // Pages
 @import 'pages/home';
