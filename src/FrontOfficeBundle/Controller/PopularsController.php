@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class PopularsController extends Controller
 {
     /**
-     * Lists all user's favorites.
+     * Lists populars users.
      *
      * @Route("/", name="populars_list")
      * @Method("GET")

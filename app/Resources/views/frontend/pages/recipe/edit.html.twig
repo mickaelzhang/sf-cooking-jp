@@ -3,10 +3,21 @@
 {% block page_id %}{{ parent() }} recipeEdit{% endblock %}
 
 {% block content %}
-    <h1>Recipe edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+            {{ form_end(edit_form) }}
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
 {% endblock %}

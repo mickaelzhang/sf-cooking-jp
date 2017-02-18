@@ -1,13 +1,57 @@
 {% extends 'frontend/templates/default.html.twig' %}
+{% form_theme form 'form/checkbox_widget.html.twig' %}
 
 {% block page_id %}{{ parent() }} newRecipe{% endblock %}
 
 {% block title %}Create recipe{% endblock %}
 
 {% block content %}
-    Recipe New
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            <div class="forms">
+
+                <div class="forms__title">
+                    <img src="{{ asset('assets/img/lockGreen.png') }}" alt="">
+                    <h2>Nouvelle recette</h2>
+                </div>
+
+                <div class="forms__inputsContainer">
+                    {{ form_start(form) }}
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.description) }}
+
+                        <span class="forms__span">Difficulté : </span>
+                        {{ form_row(form.difficulty) }}
+
+                        {{ form_row(form.servingSize) }}
+
+                        {{ form_row(form.image) }}
+
+                        <div class="forms__rows">
+                            {{ form_row(form.preparationTime) }}
+                            {{ form_row(form.cookingTime) }}
+                        </div>
+
+                        {{ form_row(form.instructions) }}
+
+                        <span class="forms__span">Catégories : </span>
+                        {{ form_row(form.dishCategory) }}
+
+
+                        <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Créer</button>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
 {% endblock %}
