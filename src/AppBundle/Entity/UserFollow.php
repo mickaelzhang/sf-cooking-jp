@@ -49,6 +49,11 @@ class UserFollow
      */
     private $followedDate;
 
+    function __construct()
+    {
+        $this->followedDate = new \DateTime('now');
+    }
+
     /**
      * Get id
      *
@@ -110,7 +115,7 @@ class UserFollow
     /**
      * Get followedDate
      *
-     * @return boolean
+     * @return \DateTime
      */
     public function getFollowedDate()
     {

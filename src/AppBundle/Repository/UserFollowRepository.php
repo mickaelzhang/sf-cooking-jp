@@ -18,6 +18,8 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
             ->where('h.userFollowed = :userId')
             ->setParameter(':userId', $userId)
             ->getQuery();
+
+        return $query->getResult();
     }
 
     /**
@@ -42,7 +44,7 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
         if ($maxResults != 0) {
             $query->setMaxResults($maxResults);
         }
-      
+
         return $query->getResult();
     }
 }

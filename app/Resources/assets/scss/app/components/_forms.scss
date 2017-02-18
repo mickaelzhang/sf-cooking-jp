@@ -1,0 +1,89 @@
+.forms {
+    width: 470px;
+    margin-left: 10px;
+}
+
+.forms__title {
+    color: #59352F;
+    font-size: 17px;
+    background: #F8F6F0;
+    height: 32px;
+    line-height: 1.7;
+    border-radius: 2px;
+    padding: 5px 0 0 18.5px;
+
+    img {
+        width: 16px;
+        vertical-align: middle;
+        margin-right: 10px;
+        display: inline-block;
+    }
+
+    h2 {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.forms__inputsContainer {
+    background: #FFF;
+    padding: 24px 30px;
+}
+
+.forms__inputs {
+    display: block;
+    border: thin solid #99C900;
+    background: #F6F6F6;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 14px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    margin-bottom: 12px;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.forms__inputsFull {
+    width: 100%;
+}
+
+.forms__rows {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        width: 47%;
+    }
+}
+
+.forms__inputsHalf {
+    width: 100%;
+    display: inline-block;
+}
+
+.forms__inputsImage {
+    display: flex;
+    justify-content: center;;
+}
+
+.forms__inputsSubmit {
+    width: 70%;
+    margin: auto;
+    cursor: pointer;
+    border: thin solid #F5A623;
+    background: none;
+}
+
+.forms__labels {
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    color: #59352f;
+    margin-bottom: 5px;
+    display: block;
+}

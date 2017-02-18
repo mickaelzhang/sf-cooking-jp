@@ -11,14 +11,18 @@
 .defaultHeader__container {
     display: flex;
     flex-direction: row;
-    width: 930px;
-    margin: auto;
+    width: 950px;
+    margin: 0 10px;
+}
+
+.defaultHeader__logo {
+    margin-right: 20px;
 }
 
 .defaultHeader__menu {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
