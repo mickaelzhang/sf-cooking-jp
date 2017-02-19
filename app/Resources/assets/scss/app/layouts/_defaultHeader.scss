@@ -38,9 +38,14 @@
     height: 70px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     &:hover {
         background: rgba(245, 166, 35, 0.36);
+    }
+
+    &.noHover:hover {
+        background: none;
     }
 }
 
@@ -116,4 +121,19 @@
 
 .defaultHeader__subContent:hover {
     display: block;
+}
+
+.defaultHeader__subContentUser {
+    margin: 0px -1px;
+    width: 120px;
+    background: #FFF;
+    height: 65px;
+
+    li {
+        padding-left: 10px;
+
+        a {
+            color: #59352f;
+        }
+    }
 }

@@ -31,14 +31,23 @@
 
             <input class="defaultHeader__search" type="search" name="" value="" placeholder="Rechercher">
 
-            <div class="defaultHeader__login">
-                <img src="{{ asset('assets/img/lock.png') }}" alt="">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a class="defaultHeader__texts" href="{{ path('logout') }}">Deconnexion</a>
-                {% else %}
-                    <a class="defaultHeader__texts" href="{{ path('login') }}">Se connecter</a>
-                {% endif %}
-            </div>
+            <li class="defaultHeader__navContainer noHover defaultHeader__hasSubMenu">
+                <div class="defaultHeader__login">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <img src="{{ asset('assets/img/user.png') }}" alt="">
+                        <span class="defaultHeader__texts" href="#">{{ app.user.username }}</span>
+                        <div class="defaultHeader__subContent defaultHeader__subContentUser">
+                            <ul>
+                                <li><a href="{{ path('user_edit') }}">Paramètres</a></li>
+                                <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <img src="{{ asset('assets/img/lock.png') }}" alt="">
+                        <a class="defaultHeader__texts" href="{{ path('login') }}">Se connecter</a>
+                    {% endif %}
+                </div>
+            </li>
 
         </ul>
     </div>
