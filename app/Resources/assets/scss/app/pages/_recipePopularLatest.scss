@@ -10,6 +10,15 @@
     border:1px solid $brown-tana;
     border-bottom:0;
     box-sizing: border-box;
+
+    @include tablet {
+        margin: auto;
+    }
+
+    @include phone {
+        margin: auto;
+        width: 95vw;
+    }
 }
 
 .smallCards .smallCard:nth-child(2) {
