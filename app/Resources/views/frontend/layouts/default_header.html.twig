@@ -3,21 +3,31 @@
         <a href="{{ path('homepage') }}">
             <img class="defaultHeader__logo" src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
-        <div class="defaultHeader__menu">
-            <a class="defaultHeader__nav" href="{{ path('recipe_popular') }}">
-                <img class="defaultHeader__imgs" src="{{ asset('assets/img/food.png') }}" alt="">
-                <span class="defaultHeader__texts">Recettes</span>
-            </a>
+        <ul class="defaultHeader__menu">
 
-            <a class="defaultHeader__nav" href="#">
-                <img class="defaultHeader__imgs" src="{{ asset('assets/img/pot.png') }}" alt="">
-                <span class="defaultHeader__texts">Catégories</span>
-            </a>
+            <li class="defaultHeader__navContainer">
+                <a class="defaultHeader__nav" href="{{ path('recipe_popular') }}">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/food.png') }}" alt="">
+                    <span class="defaultHeader__texts">Recettes</span>
+                </a>
+            </li>
 
-            <a class="defaultHeader__nav" href="{{ path('recipe_new') }}">
-                <img class="defaultHeader__imgs" src="{{ asset('assets/img/write.png') }}" alt="">
-                <span class="defaultHeader__texts">Ecrire une recette</span>
-            </a>
+            <li class="defaultHeader__navContainer defaultHeader__hasSubMenu">
+                <a class="defaultHeader__nav" href="#">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/pot.png') }}" alt="">
+                    <span class="defaultHeader__texts">Catégories</span>
+                    <div class="defaultHeader__subContent">
+                        {% include 'frontend/components/dish_categories_list_images.html.twig' %}
+                    </div>
+                </a>
+            </li>
+
+            <li class="defaultHeader__navContainer">
+                <a class="defaultHeader__nav" href="{{ path('recipe_new') }}">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/write.png') }}" alt="">
+                    <span class="defaultHeader__texts">Ecrire une recette</span>
+                </a>
+            </li>
 
             <input class="defaultHeader__search" type="search" name="" value="" placeholder="Rechercher">
 
@@ -30,6 +40,6 @@
                 {% endif %}
             </div>
 
-        </div>
+        </ul>
     </div>
 </header>

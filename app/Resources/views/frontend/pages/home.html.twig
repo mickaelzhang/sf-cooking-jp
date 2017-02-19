@@ -75,70 +75,17 @@
                 </ul>
             </div>
 
-            <div class="categories">
-                <div class="categories__title">
+            <div class="categoriesCard">
+                <div class="categoriesCard__title">
                     <img src="{{ asset('assets/img/dish.png') }}" alt="">
                     <h2>Catégories</h2>
                 </div>
-                <div class="categories__subtitle">
+                <div class="categoriesCard__subtitle">
                     <p>Des recettes pour tout les goûts</p>
                 </div>
-                <ul class="categories__list">
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Nouilles</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Salades</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Soupes</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Fruits de mer</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Sushis</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/noodles.png') }}" alt="">
-                        <h5>Viandes</h5>
-                        <ul class="categories__sublist">
-                            <li><a href="#">Udon</a></li>
-                            <li><a href="#">Nouilles fries</a></li>
-                            <li><a href="#">Ramen</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+                {% include 'frontend/components/dish_categories_list_images.html.twig' %}
+
             </div>
 
         </div>
