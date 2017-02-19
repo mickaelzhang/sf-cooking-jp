@@ -1,117 +1,152 @@
 .recipeCard {
-  background-color: $white;
-  border-radius:5px;
-  width:660px;
-  height:100%;
+    background-color: $white;
+    border-radius: 5px;
+    width: 660px;
+    height: 100%;
+
+    @include tablet {
+        margin: auto;
+    }
+
+    @include phone {
+        width: 95vw;
+        margin: auto;
+    }
 }
 
 .recipeCardHeader {
-  padding-top:5px;
-  color: $orange-buttercup;
-  display:flex;
-  justify-content:space-between;
+    padding-top: 5px;
+    color: $orange-buttercup;
+    display: flex;
+    justify-content: space-between;
 }
 
 .recipeAuthor {
-  display:flex;
-  align-items:center;
+    display: flex;
+    align-items: center;
 }
 
 .recipeAuthor__img {
-  width:50px;
-  height:50px;
-  background-color:gray;
-  background-size:cover;
-  background-position:center center;
-  border-radius:50%;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
 }
 
 .recipeAuthor__username {
-  margin-left:10px;
-  text-decoration:underline;
+    margin-left: 10px;
+    text-decoration: underline;
 }
 
 .addToFavorite {
-  display:flex;
-  align-items:center;
-  cursor:pointer;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .addToFavorite__text {
-  margin-right:10px;
+    margin-right: 10px;
+
+    @include phone {
+        display: none;
+    }
 }
 
 .addToFavorite__icon {
-  width:23px;
+    width: 23px;
 }
 
 .recipeInfos {
-  display:flex;
-  margin-top:10px;
+    display: flex;
+    margin-top: 10px;
+    @include phone {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.recipeImageContainer {
+    max-height: 300px;
+    min-height: 150px;
+    width: 265px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 15px;
 }
 
 .recipeImage {
-  height:300px;
-  width:265px;
-  background-color:$gray;
-  margin-right:15px;
+    height: auto;
+    width: 265px;
+    background-color: $gray;
+    @include phone {
+        margin-right: 0;
+    }
 }
 
 .recipeInfosContainer {
-  flex:1;
+    flex: 1;
 
-  h2 {
-    font-size:24px;
-    color:$green-limeade;
-    font-weight:500;
-  }
+    h2 {
+        font-size: 24px;
+        color: $green-limeade;
+        font-weight: 500;
+    }
+    @include phone {
+        margin: 10px 0;
+    }
 }
 
 .recipesInfosContainer__indications {
-  display: flex;
+    display: flex;
+    @include phone {
+        justify-content: center;
+        margin: 10px 0;
+    }
 }
 
 .recipesInfosContainer__indications li {
-  margin-right: 15px;
+    margin-right: 15px;
 
-  img {
-    width: 15px;
-  }
+    img {
+        width: 15px;
+    }
 }
 
-
 .recipesInfosContainer__ingredients {
-  margin-top:15px;
+    margin-top: 15px;
 
-  h3 {
-    font-size:21px;
-    font-weight:600;
-    color:$white-rock;
-    margin-bottom:5px;
-  }
-
-  ul {
-    li {
-      margin-top:5px;
+    h3 {
+        font-size: 21px;
+        font-weight: 600;
+        color: $white-rock;
+        margin-bottom: 5px;
     }
-  }
+
+    ul {
+        li {
+            margin-top: 5px;
+        }
+    }
 }
 
 .recipeInstruction {
-  margin-top:45px;
-  margin-bottom:45px;
+    margin-top: 45px;
+    margin-bottom: 45px;
 }
 
 .comments {
-  margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .comments__more {
-  width:100%;
-  height:30px;
-  color:$white;
-  background-color:$orange-buttercup;
-  text-align:center;
-  line-height:30px;
-  font-weight:600;
+    width: 100%;
+    height: 30px;
+    color: $white;
+    background-color: $orange-buttercup;
+    text-align: center;
+    line-height: 30px;
+    font-weight: 600;
 }

@@ -103,6 +103,10 @@
     margin: 40px 0;
     text-align: center;
     width: 100px;
+
+    @include phone {
+        margin: 25px 0;
+    }
 }
 
 .forms__span {

@@ -37,7 +37,7 @@
     flex-wrap: wrap;
 
     &.profileContent {
-        height: 810px;
+        height: auto;
     }
 
     @include tablet {
