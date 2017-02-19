@@ -45,10 +45,13 @@
 }
 
 .popularRecipes__userImgContainer {
-    overflow: hidden;
     width: 35px;
     height: 35px;
     margin: -5px auto 5px auto;
+    background-color:$gray;
+    background-size:cover;
+    background-position:center center;
+    border-radius:50%;
 }
 
 .popularRecipes__userImg {

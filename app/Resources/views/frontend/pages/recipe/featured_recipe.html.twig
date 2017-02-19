@@ -2,16 +2,16 @@
 
 {% block page_id %}{{ parent() }} mostPopularRecipeList{% endblock %}
 
-{% block title %}Délice du Japon | Recettes populaires{% endblock %}
+{% block title %}Délice du Japon | Recettes {{ pageType }}{% endblock %}
 
 {% block content %}
 
     <div class="defaultContainer">
 
         <div class="smallCards">
-            <div class="pageTitle">Recettes les plus populaires</div>
+            <div class="pageTitle">Recettes les plus {{ pageType }}</div>
 
-            {% for recipe in favorites  %}
+            {% for recipe in recipes  %}
 
                 {% include 'frontend/components/recipe_small_card.html.twig' with {'recipe': recipe} %}
 

@@ -53,7 +53,8 @@ class RecipeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $recipes = $em->getRepository('AppBundle:Recipe')->orderByPublishedDate();
 
-        return $this->render('@frontend/recipe/latest_list.html.twig', array(
+        return $this->render('@frontend/recipe/featured_recipe.html.twig', array(
+            'pageType' => 'récentes',
             'recipes' => $recipes
         ));
     }
@@ -71,8 +72,9 @@ class RecipeController extends Controller
         $recipes = $em->getRepository('AppBundle:Recipe')->lastVerifiedRecipes();
         $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->mostPopular(0);
 
-        return $this->render('@frontend/recipe/popular.html.twig', array(
-            'favorites' => $favorites
+        return $this->render('@frontend/recipe/featured_recipe.html.twig', array(
+            'pageType' => 'populaires',
+            'recipes' => $favorites
         ));
     }
 

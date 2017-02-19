@@ -2,6 +2,7 @@
   background-color: $white;
   border-radius:5px;
   width:660px;
+  height:100%;
 }
 
 .recipeCardHeader {
@@ -20,6 +21,8 @@
   width:50px;
   height:50px;
   background-color:gray;
+  background-size:cover;
+  background-position:center center;
   border-radius:50%;
 }
 

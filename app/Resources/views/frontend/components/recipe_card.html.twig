@@ -3,9 +3,8 @@
     <div class="wrapper">
         <div class="recipeCardHeader">
             <div class="recipeAuthor">
-                <div class="recipeAuthor__img">
-                    <img src="{{ recipe.author.image }}" />
-                </div>
+                <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+
                 <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
             </div>
             {% if app.user %}
@@ -28,17 +27,13 @@
         </div>
 
         <div class="recipeInfos">
-            <img class="recipeImage" src="{{ recipe.image }}" />
+            <img class="recipeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
             <div class="recipeInfosContainer">
                 <h2>{{ recipe.name }}</h2>
                 <ul class="recipesInfosContainer__indications">
                     <li>
                         <img src="{{ asset('assets/img/chef.png') }}" alt="">
                         Facile
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                        8-10€
                     </li>
                     <li>
                         <img src="{{ asset('assets/img/chef.png') }}" alt="">
