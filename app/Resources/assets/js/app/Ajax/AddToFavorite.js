@@ -4,9 +4,11 @@ export default class AddToFavorite {
   constructor() {
     this.button = $('.favoriteButton')
     this.hiddenInput = this.button.find('.app_favorite_token')
-    console.log(this.hiddenInput)
+
     // URL for AJAX call
     this.ajaxUrl = this.hiddenInput.attr('data-href')
+
+    console.log(this.ajaxUrl)
 
     // Get data from the hidden input and split it into relevant data
     this.content = this.hiddenInput.attr('data-content').split("_")

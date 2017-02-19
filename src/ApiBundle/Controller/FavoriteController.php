@@ -22,11 +22,19 @@ class FavoriteController extends Controller
      *
      * @Route("/", name="api_favorite_add")
      * @Method("POST")
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function addToFavoriteAction(Request $request) {
+    public function addToFavoriteAction(Request $request)
+    {
         // Make sure the request is from ajax
         if (!$request->isXmlHttpRequest()) {
-            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+            return new JsonResponse(array(
+                'status' => 'Not Acceptable',
+                'status_code' => 406,
+                'message' => 'You can access this only using Ajax!'
+            ), 406);
         }
 
         // Data from request
@@ -39,7 +47,11 @@ class FavoriteController extends Controller
         $tokenId = 'favorite_recipe'.$recipeId.'_user'.$userId;
 
         if (!$this->isCsrfTokenValid($tokenId, $submittedToken)) {
-            return new JsonResponse(array('message' => 'Invalid Token.'), 400);
+            return new JsonResponse(array(
+                'status' => 'Unauthorized',
+                'status_code' => 401,
+                'message' => 'Invalid Token.'
+            ), 401);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -62,12 +74,20 @@ class FavoriteController extends Controller
             $em->persist($userFavoriteRecipe);
             $em->flush();
 
-            return new JsonResponse(array('message' => 'The user now has this recipe in his favorite.'), 200);
+            return new JsonResponse(array(
+                'status' => 'Created',
+                'status_code' => 201,
+                'message' => 'The user now has this recipe in his favorite.'
+            ), 201);
         } else {
             $em->remove($userFavoriteRecipe);
             $em->flush();
 
-            return new JsonResponse(array('message' => 'The user removed this recipe from his favorite.'), 200);
+            return new JsonResponse(array(
+                'status' => 'OK',
+                'status_code' => 200,
+                'message' => 'The user removed this recipe from his favorite.'
+            ), 200);
         }
     }
 }
