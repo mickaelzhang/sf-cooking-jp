@@ -17,7 +17,7 @@
                     <img class="defaultHeader__imgs" src="{{ asset('assets/img/pot.png') }}" alt="">
                     <span class="defaultHeader__texts">Catégories</span>
                     <div class="defaultHeader__subContent">
-                        {% include 'frontend/components/dish_categories_list_images.html.twig' %}
+                        {{ render(controller('FrontOfficeBundle:Default:listDishCategoryImages')) }}
                     </div>
                 </a>
             </li>

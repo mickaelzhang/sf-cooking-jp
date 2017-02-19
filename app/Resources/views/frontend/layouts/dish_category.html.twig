@@ -2,11 +2,14 @@
 <div class="searchByCol__title">
     <h4>Recherche par catégories</h4>
 </div>
+
 <ul class="searchByCol__list">
     {% for dishCategory in dishCategories %}
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            {{ dishCategory.name }}
+            <a href="{{ path('dish_category_list', {'categoryId': dishCategory.categoryId}) }}">
+                {{ dishCategory.name }}
+            </a>
         </li>
     {% endfor %}
 </ul>

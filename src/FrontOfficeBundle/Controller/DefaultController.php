@@ -33,4 +33,16 @@ class DefaultController extends Controller
             'dishCategories' => $dishCategories
         ));
     }
+
+    public function listDishCategoryImagesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dishCategories = $em->getRepository('AppBundle:DishCategory')->findBy(
+            array( 'parent' => null )
+        );
+
+        return $this->render('@frontend_layouts/dish_categories_list_images.html.twig', array(
+            'dishCategories' => $dishCategories
+        ));
+    }
 }

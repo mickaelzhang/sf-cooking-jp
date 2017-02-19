@@ -84,7 +84,7 @@
                     <p>Des recettes pour tout les goûts</p>
                 </div>
 
-                {% include 'frontend/components/dish_categories_list_images.html.twig' %}
+                {{ render(controller('FrontOfficeBundle:Default:listDishCategoryImages')) }}
 
             </div>
 
