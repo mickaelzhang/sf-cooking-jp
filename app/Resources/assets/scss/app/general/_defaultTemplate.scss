@@ -22,13 +22,11 @@
     @include tablet {
         flex-direction: column;
         width: 100vw;
-        margin-top: 90px;
     }
 
     @include phone {
         flex-direction: column;
         width: 100vw;
-        margin-top: 90px;
     }
 }
 

@@ -93,6 +93,10 @@
             margin: 10px 0 0;
         }
     }
+
+    &:nth-child(3) {
+        border-bottom: none;
+    }
 }
 
 .hamburgerMenu__imgs {

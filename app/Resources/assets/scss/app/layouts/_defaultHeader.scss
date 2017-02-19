@@ -137,3 +137,13 @@
         }
     }
 }
+
+.headerLogoMobile {
+    display: block;
+    width: 152px;
+    margin: 30px auto;
+
+    @include desktop {
+        display: none;
+    }
+}
