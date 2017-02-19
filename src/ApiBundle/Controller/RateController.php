@@ -23,10 +23,15 @@ class RateController extends Controller
      * @Route("/", name="api_rate_recipe")
      * @Method("POST")
      */
-    public function newCommentAction(Request $request) {
+    public function newCommentAction(Request $request)
+    {
         // Make sure the request is from ajax
         if (!$request->isXmlHttpRequest()) {
-            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+            return new JsonResponse(array(
+                'status' => 'Not Acceptable',
+                'status_code' => 406,
+                'message' => 'You can access this only using Ajax!'
+            ), 406);
         }
 
         // Data from request
@@ -39,7 +44,11 @@ class RateController extends Controller
         $tokenId = 'rate_user'.$userId.'_recipe'.$recipeId;
 
         if (!$this->isCsrfTokenValid($tokenId, $submittedToken)) {
-            return new JsonResponse(array('message' => 'Invalid Token.'), 400);
+            return new JsonResponse(array(
+                'status' => 'Unauthorized',
+                'status_code' => 401,
+                'message' => 'Invalid Token.'
+            ), 401);
         }
 
         $em = $this->getDoctrine()->getManager();

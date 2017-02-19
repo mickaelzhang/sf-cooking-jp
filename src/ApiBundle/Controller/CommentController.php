@@ -13,7 +13,7 @@ use AppBundle\Entity\UserCommentOnRecipe;
  * Class CommentController
  *
  * @package ApiBundle\Controller
- * @Route("favorite")
+ * @Route("comment")
  */
 class CommentController extends Controller
 {
@@ -26,7 +26,11 @@ class CommentController extends Controller
     public function newCommentAction(Request $request) {
         // Make sure the request is from ajax
         if (!$request->isXmlHttpRequest()) {
-            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+            return new JsonResponse(array(
+                'status' => 'Not Acceptable',
+                'status_code' => 406,
+                'message' => 'You can access this only using Ajax!'
+            ), 406);
         }
 
         // Data from request
@@ -39,7 +43,11 @@ class CommentController extends Controller
         $tokenId = 'comment_user'.$userId.'_recipe'.$recipeId;
 
         if (!$this->isCsrfTokenValid($tokenId, $submittedToken)) {
-            return new JsonResponse(array('message' => 'Invalid Token.'), 400);
+            return new JsonResponse(array(
+                'status' => 'Unauthorized',
+                'status_code' => 401,
+                'message' => 'Invalid Token.'
+            ), 401);
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -54,6 +62,10 @@ class CommentController extends Controller
         $em->persist($userComment);
         $em->flush();
 
-        return new JsonResponse(array('message' => 'The user now has this recipe in his favorite.'), 200);
+        return new JsonResponse(array(
+            'status' => 'Created',
+            'status_code' => 201,
+            'message' => 'Comment successfully posted'
+        ), 201);
     }
 }
