@@ -15,18 +15,17 @@
                 <div class="categories__nav">
                     <h4 class="categories__subLabel">Sous-catégories</h4>
                     <ul class="categories__sublist">
-                        <li><a href="#">Boeuf</a></li>
-                        <li><a href="#">Porc</a></li>
-                        <li><a href="#">Poulet</a></li>
-                        <li><a href="#">Saucisse</a></li>
-                        <li><a href="#">Jambon</a></li>
-                        <li><a href="#">Motomi</a></li>
+                        {% for category in categories %}
+                            {% if category.categoryId != parentCategory.categoryId %}
+                                <li>{{ category.name }}</li>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
 
                 <div class="categories__recipes">
 
-                    <h2 class="categories__catName">Viandes</h2>
+                    <h2 class="categories__catName">{{ parentCategory.name }}</h2>
 
                     <ul class="categories__recipesList">
                         {% for recipe in recipes %}

@@ -38,6 +38,8 @@ class DishCategoryController extends Controller
         $recipes = $em->getRepository('AppBundle:Recipe')->getByCategoryId($categoriesIdList);
 
         return $this->render('@frontend/dish_category/list.html.twig', array(
+            'categories' => $categoriesId,
+            'parentCategory' => $dishCategory,
             'recipes' => $recipes,
         ));
     }
