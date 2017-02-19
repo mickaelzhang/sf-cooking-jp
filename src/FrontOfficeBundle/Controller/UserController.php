@@ -39,6 +39,8 @@ class UserController extends Controller
      */
     public function showAction(User $user)
     {
+        $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
+
         $em = $this->getDoctrine()->getManager();
         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
             array( 'author' => $user->getUserId() )
@@ -50,11 +52,14 @@ class UserController extends Controller
             array( 'user' => $user->getUserId())
         );
 
-        $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
+        $token = null;
+        if ($auth_checker) {
+            $connectedUser = $this->get('security.token_storage')->getToken()->getUser();
 
-        // Generate Token for Follow Ajax
-        $tokenId = 'follow_follower'.$connectedUser->getUserId().'_followed'.$user->getUserId();
-        $token = $this->get('security.csrf.token_manager')->refreshToken($tokenId);
+            // Generate Token for Follow Ajax
+            $tokenId = 'follow_follower'.$connectedUser->getUserId().'_followed'.$user->getUserId();
+            $token = $this->get('security.csrf.token_manager')->refreshToken($tokenId);
+        }
 
         return $this->render('@frontend/user/show.html.twig', array(
             'user' => $user,
