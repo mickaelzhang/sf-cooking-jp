@@ -38,6 +38,10 @@
     height: 70px;
     display: flex;
     align-items: center;
+
+    &:hover {
+        background: rgba(245, 166, 35, 0.36);
+    }
 }
 
 .defaultHeader__nav {
@@ -108,10 +112,6 @@
 
 .defaultHeader__hasSubMenu:hover .defaultHeader__subContent {
     display: block;
-}
-
-.defaultHeader__hasSubMenu:hover {
-    background: #f5a623;
 }
 
 .defaultHeader__subContent:hover {
