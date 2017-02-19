@@ -19,87 +19,38 @@
                     <h2>Recettes les plus populaires</h2>
                 </div>
 
-                <div class="popularRecipes__card">
-                    <img class="popularRecipes__img" src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
+                {% for favorite in favorites %}
+                    <div class="popularRecipes__card">
+                        <img class="popularRecipes__img" src="{{ asset('uploads/recipe/') }}{{ favorite.image }}" alt="">
 
-                    <div class="popularRecipes__infos">
-                        <div class="popularRecipes__infosLeft">
-                            <div class="popularRecipes__userImgContainer">
-                                <img src="{{ asset('assets/img/profileExample.png') }}" alt="" class="popularRecipes__userImg">
+                        <div class="popularRecipes__infos">
+                            <div class="popularRecipes__infosLeft">
+                                <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('uploads/user/') }}{{ favorite.author_image }}')"></div>
+                                <h4 class="popularRecipes__username">{{ favorite.username }}</h4>
                             </div>
-                            <h4 class="popularRecipes__username">Sofia Kiria</h4>
-                            <ul class="popularRecipes__notation">
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                            </ul>
-                        </div>
 
-                        <div class="popularRecipes__infosRight">
-                            <h3 class="popularRecipes__names">Wok de légumes et nouilles soba sautées</h3>
-                            <ul class="popularRecipes__indications">
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    Facile
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    8-10€
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    20 min
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    12 min
-                                </li>
-                            </ul>
+                            <div class="popularRecipes__infosRight">
+                                <a href="{{ path('recipe_show', {'recipeId': favorite.recipeId}) }}">
+                                    <h3 class="popularRecipes__names">{{ favorite.name }}</h3>
+                                </a>
+                                <ul class="popularRecipes__indications">
+                                    <li>
+                                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                        Facile
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                        {{ favorite.cookingTime|date('i') }} min
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                        {{ favorite.preparationTime|date('i') }} min
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="popularRecipes__card">
-                    <img class="popularRecipes__img" src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-
-                    <div class="popularRecipes__infos">
-                        <div class="popularRecipes__infosLeft">
-                            <div class="popularRecipes__userImgContainer">
-                                <img src="{{ asset('assets/img/profileExampleBigger.png') }}" alt="" class="popularRecipes__userImg">
-                            </div>
-                            <h4 class="popularRecipes__username">Sofia Kiria</h4>
-                            <div class="popularRecipes__notation">
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/img/fork.png') }}" alt=""></li>
-                            </div>
-                        </div>
-
-                        <div class="popularRecipes__infosRight">
-                            <h3 class="popularRecipes__names">Wok de légumes et nouilles soba sautées</h3>
-                            <ul class="popularRecipes__indications">
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    Facile
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    8-10€
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    20 min
-                                </li>
-                                <li>
-                                    <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                    12 min
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <div class="lastRecipes">
@@ -111,18 +62,14 @@
                     <p>Les recettes récentes des internautes</p>
                 </div>
                 <ul class="lastRecipes__list">
-                    <li>
-                        <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                        <h4>Porc à la japonnaise</h4>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                        <h4>Croquette de riz au poulet yakitori</h4>
-                    </li>
-                    <li>
-                        <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="">
-                        <h4>Porc à la japonnaise</h4>
-                    </li>
+                    {% for recipe in recipes %}
+                        <li>
+                            <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}">
+                            <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
+                                <h4>{{ recipe.name }}</h4>
+                            </a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
 

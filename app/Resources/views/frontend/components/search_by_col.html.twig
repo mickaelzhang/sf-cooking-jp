@@ -28,33 +28,5 @@
             Région
         </li>
     </div>
-    <div class="searchByCol__title">
-        <h4>Recherche par plats</h4>
-    </div>
-    <ul class="searchByCol__list">
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Nouilles
-        </li>
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Salades
-        </li>
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Soupes
-        </li>
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Fruits de mer
-        </li>
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Sushis
-        </li>
-        <li>
-            <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Viandes
-        </li>
-    </ul>
+    {{ render(controller('FrontOfficeBundle:Default:listDishCategory')) }}
 </div>
