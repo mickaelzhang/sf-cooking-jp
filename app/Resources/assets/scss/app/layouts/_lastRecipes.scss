@@ -2,6 +2,7 @@
     width: 655px;
     position: relative;
     border-radius: 3px;
+    margin-top: 10px;
 
     &:before {
         position: absolute;
@@ -10,6 +11,10 @@
         height: 12px;
         background: #f5a623;
         border-radius: 3px 3px 0 0;
+    }
+
+    @include phone {
+        width: 95vw;
     }
 }
 
@@ -50,17 +55,30 @@
     height: 215px;
     display: flex;
     background: #FFF;
-    justify-content: center;
+    justify-content: flex-start;
+
+    @include phone {
+        flex-flow: row wrap;
+        height: auto;
+    }
 
     li {
         width: 190px;
-        margin: 0 10px;
+        margin: 25px 14px;
         text-align: center;
-        margin-top: 25px;
+
+        @include phone {
+            width: 100%;
+        }
+
+
+        .lastRecipes__imgContainer {
+            overflow: hidden;
+            max-height: 100px;
+        }
 
         img {
             width: 190px;
-            clip-path: inset(0% 10% 0% 10%);
         }
 
         h4 {

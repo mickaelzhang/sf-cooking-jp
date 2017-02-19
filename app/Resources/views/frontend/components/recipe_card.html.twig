@@ -27,7 +27,9 @@
         </div>
 
         <div class="recipeInfos">
-            <img class="recipeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
+            <div class="recipeImageContainer">
+                <img class="recipeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
+            </div>
             <div class="recipeInfosContainer">
                 <h2>{{ recipe.name }}</h2>
                 <ul class="recipesInfosContainer__indications">

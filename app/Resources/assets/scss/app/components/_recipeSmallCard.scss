@@ -4,17 +4,34 @@
     border:1px solid $brown-tana;
     box-sizing: border-box;
     border-radius:2.5px;
+    width: 650px;
+
+    @include tablet {
+        margin: auto;
+    }
+
+    @include phone {
+        margin: auto;
+        width: 95vw;
+    }
 }
 
 .smallCard__container {
     display:flex;
     padding-top:10px;
+    overflow: hidden;
+    max-height: 260px;
 }
 
 .largeImage {
     background-color:$gray;
-    width:440px;
-    height:250px;
+    width:450px;
+    max-width: 450px;
+    height: 100%;
+
+    @include phone {
+        width: 75%;
+    }
 }
 
 .smallCardInfos {
