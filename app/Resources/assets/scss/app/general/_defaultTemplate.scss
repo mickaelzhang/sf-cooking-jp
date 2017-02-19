@@ -18,6 +18,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-top: 33px;
+
+    @include tablet {
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    @include phone {
+        flex-direction: column;
+        width: 100vw;
+    }
 }
 
 .mainContent {
@@ -28,6 +38,16 @@
 
     &.profileContent {
         height: 810px;
+    }
+
+    @include tablet {
+        width: 100vw;
+        justify-content: center;
+    }
+
+    @include phone {
+        width: 100vw;
+        justify-content: center;
     }
 }
 

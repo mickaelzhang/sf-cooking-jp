@@ -14,7 +14,7 @@
 
             {% include 'frontend/components/search_by_col.html.twig' %}
 
-            <div class="popularRecipes">
+            <div class="popularRecipes midCol">
                 <div class="popularRecipes__title">
                     <h2>Recettes les plus populaires</h2>
                 </div>
@@ -64,7 +64,9 @@
                 <ul class="lastRecipes__list">
                     {% for recipe in recipes %}
                         <li>
-                            <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}">
+                            <div class="lastRecipes__imgContainer">
+                                <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}">
+                            </div>
                             <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
                                 <h4>{{ recipe.name }}</h4>
                             </a>

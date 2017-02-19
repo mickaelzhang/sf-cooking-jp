@@ -12,6 +12,10 @@
         background: #99c900;
         border-radius: 3px 3px 0 0;
     }
+
+    @include phone {
+        width: 95vw;
+    }
 }
 
 .categories__title {
@@ -52,6 +56,13 @@
     justify-content: space-around;
     background: #FFF;
     height: 180px;
+
+    @include phone {
+        height: auto;
+        flex-flow: row wrap;
+        padding: 0 210px 0 0;
+        padding: 0 15%;
+    }
 }
 
 .categories__list li {
@@ -87,5 +98,9 @@
             text-decoration: none;
             color: #59352f;
         }
+    }
+
+    @include phone {
+        display: none;
     }
 }

@@ -9,4 +9,12 @@
             margin-top: 10px;
         }
     }
+
+    @include tablet {
+        display: none;
+    }
+
+    @include phone {
+        margin: 10px auto;
+    }
 }

@@ -4,6 +4,10 @@
     background: #FFF;
     border-radius: 3px;
     height: 755px;
+
+    @include phone {
+        display: none;
+    }
 }
 
 .searchByCol__title {

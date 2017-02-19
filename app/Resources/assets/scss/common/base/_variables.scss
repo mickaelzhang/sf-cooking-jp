@@ -13,3 +13,24 @@ $brown-tana: #DED5BF;
 $green-limeade: #849907;
 $white-rock: #E6E0CD;
 $white-springwood: #F8F6F0;
+
+$tablet-width: 650px;
+$desktop-width: 970px;
+
+@mixin phone {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
