@@ -24,13 +24,19 @@
 }
 
 .defaultHeader__logo {
-    margin-right: 20px;
+    margin: 15px 20px;
 }
 
 .defaultHeader__menu {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.defaultHeader__navContainer {
+    height: 70px;
+    display: flex;
     align-items: center;
 }
 
@@ -89,4 +95,25 @@
         vertical-align: middle;
         margin-right: 5px;
     }
+}
+
+// Content for submenus
+.defaultHeader__subContent {
+    z-index: 100;
+    position: absolute;
+    margin-top: 125px;
+    border: thin solid #f5a623;
+    display: none;
+}
+
+.defaultHeader__hasSubMenu:hover .defaultHeader__subContent {
+    display: block;
+}
+
+.defaultHeader__hasSubMenu:hover {
+    background: #f5a623;
+}
+
+.defaultHeader__subContent:hover {
+    display: block;
 }
