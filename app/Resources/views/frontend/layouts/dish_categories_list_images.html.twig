@@ -1,4 +1,5 @@
 <!-- Categories listed with images -->
+{{ dump(dishCategories) }}
 <ul class="dishCategoriesList">
     {% for dishCategory in dishCategories %}
         <li>
@@ -7,9 +8,13 @@
                 <h5>{{ dishCategory.name }}</h5>
             </a>
             <ul class="dishCategoriesList__sublist">
-                <li><a href="#">Udon</a></li>
-                <li><a href="#">Nouilles fries</a></li>
-                <li><a href="#">Ramen</a></li>
+                {% for dishCategoryAll in allDishCategories %}
+                    {% if dishCategoryAll.parent is not null %}
+                        {% if dishCategoryAll.parent.categoryId == dishCategory.categoryId %}
+                            <li><a href="{{ path('dish_category_list', {'categoryId': dishCategoryAll.parent.categoryId}) }}">{{ dishCategoryAll.name }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             </ul>
         </li>
     {% endfor %}
