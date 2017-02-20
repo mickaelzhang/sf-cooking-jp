@@ -50,4 +50,14 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $query->getResult();
     }
+
+    public function searchRecipeByName($searchString)
+    {
+        $query = $this->createQueryBuilder('r')
+            ->where('r.name LIKE :name')
+            ->setParameter('name', "%$searchString%")
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }
