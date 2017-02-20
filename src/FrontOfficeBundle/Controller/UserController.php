@@ -18,16 +18,32 @@ class UserController extends Controller
     /**
      * List users
      *
-     * @Route("/populaire", name="users_list")
+     * @Route("/", name="users_list")
      * @Method("GET")
      */
-    public function listAction()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
 
         return $this->render('@frontend/user/list.html.twig', array(
             'users' => $users
+        ));
+    }
+
+    /**
+     * Lists populars users.
+     *
+     * @Route("/populaires", name="populars_list")
+     * @Method("GET")
+     */
+    public function popularListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $populars = $em->getRepository('AppBundle:UserFollow')->getPopularsProfiles(0);
+
+        return $this->render('@frontend/user/featured_users.html.twig', array(
+            'populars' => $populars,
         ));
     }
 

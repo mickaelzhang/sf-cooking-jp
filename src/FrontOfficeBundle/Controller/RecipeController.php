@@ -62,7 +62,7 @@ class RecipeController extends Controller
     /**
      * List most popular recipes of the week
      *
-     * @Route("/populaire", name="recipe_popular")
+     * @Route("/populaires", name="recipe_popular")
      * @Method("GET")
      *
      */

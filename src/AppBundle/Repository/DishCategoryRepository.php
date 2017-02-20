@@ -13,7 +13,7 @@ class DishCategoryRepository extends \Doctrine\ORM\EntityRepository
     public function getChildCategoryId($categoryId)
     {
         $query = $this->createQueryBuilder('h')
-            ->select('h.categoryId')
+            ->select('h.categoryId', 'h.name')
             ->where('h.categoryId = :categoryId')
             ->orWhere('h.parent = :categoryId')
             ->setParameter('categoryId', $categoryId)
