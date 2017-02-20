@@ -5,27 +5,27 @@
     <div class="searchByCol__list">
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Profils populaires
+            <a href="{{ path('populars_list') }}">Profils populaires</a>
         </li>
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Tendances
+            <a href="{{ path('recipe_popular') }}">Tendances</a>
         </li>
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Spécialité
+            <a href="{{ path('recipe_latest_list') }}">Récentes</a>
         </li>
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Classement
+            ??
         </li>
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Menu
+            ??
         </li>
         <li>
             <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-            Région
+            ??
         </li>
     </div>
     {{ render(controller('FrontOfficeBundle:Default:listDishCategory')) }}
