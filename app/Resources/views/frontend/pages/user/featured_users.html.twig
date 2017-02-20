@@ -28,11 +28,21 @@
                             <img src="{{ asset('uploads/user/') }}{{ popular.image }}" class="popularProfiles__imgs">
                         </div>
                         <div class="popularProfiles__infos">
-                            <h5 class="popularProfiles__names">{{ popular.username }}</h5>
-                            <p class="popularProfiles__recipes">219 recettes</p>
+                            <a href="{{ path('user_show', {'id':popular.userId}) }}">
+                                <h5 class="popularProfiles__names">{{ popular.username }}</h5>
+                            </a>
+                            {% if popular.recipes|length == 1 %}
+                                <p class="popularProfiles__recipes">{{ popular.recipes|length }} recette</p>
+                            {% else %}
+                                <p class="popularProfiles__recipes">{{ popular.recipes|length }} recettes</p>
+                            {% endif %}
                         </div>
                         <div class="popularProfiles__followers">
-                            <p>{{ popular.total_follows }} followers</p>
+                            {% if popular.total_follows == 1 %}
+                                <p>{{ popular.total_follows }} follower</p>
+                            {% else %}
+                                <p>{{ popular.total_follows }} followers</p>
+                            {% endif %}
                         </div>
                     </li>
 

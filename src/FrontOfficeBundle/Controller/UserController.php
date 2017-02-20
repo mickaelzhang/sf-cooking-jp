@@ -42,8 +42,14 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $populars = $em->getRepository('AppBundle:UserFollow')->getPopularsProfiles(0);
 
+        foreach($populars as $key => $popular) {
+            $populars[$key]['recipes'] = $em->getRepository('AppBundle:Recipe')->findBy(
+                array( 'author' => $popular['userId'])
+            );
+        }
+
         return $this->render('@frontend/user/featured_users.html.twig', array(
-            'populars' => $populars,
+            'populars' => $populars
         ));
     }
 
@@ -58,9 +64,11 @@ class UserController extends Controller
         $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
 
         $em = $this->getDoctrine()->getManager();
+
         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
-            array( 'author' => $user->getUserId() )
+            array( 'author' => $user->getUserId())
         );
+
         $followers = $em->getRepository('AppBundle:UserFollow')->findBy(
             array( 'userFollowed' => $user->getUserId())
         );
