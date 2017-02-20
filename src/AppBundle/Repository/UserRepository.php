@@ -10,12 +10,22 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getGeneralInfo($userId) {
-
+    public function getGeneralInfo($userId)
+    {
         $query = $this->createQueryBuilder('h')
             ->select("h.username", "h.email", "h.registeredDate")
             ->where('h.userId = :userId')
             ->setParameter(':userId', $userId)
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function searchUserByUsername($searchString)
+    {
+        $query = $this->createQueryBuilder('u')
+            ->where('u.username LIKE :username')
+            ->setParameter('username', "%$searchString%")
             ->getQuery();
 
         return $query->getResult();
