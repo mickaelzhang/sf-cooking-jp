@@ -118,7 +118,7 @@ class UserCommentOnRecipe
      */
     public function getPublishedAt()
     {
-        return $this->message;
+        return $this->publishedAt;
     }
 
     /**

@@ -63,7 +63,25 @@
         </div>
 
         <div class="comments">
-            <div class="comments__more">Voir les commentaires</div>
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {{ form_start(commentForm) }}
+                    {{ form_widget(commentForm) }}
+                    <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Envoyer</button>
+                {{ form_end(commentForm) }}
+
+                <div class="comments__more">Commentaires</div>
+
+                {% for comment in comments %}
+                    <div class="comments__single">
+                        <span class="comments__usernames">{{ comment.user.username }}</span>
+                        <span class="comments__dates">le {{ comment.publishedAt.date|date('d/m/Y à g:i') }}</span>
+                        <p class="comments__messages">{{ comment.message }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="comments__more"><a href="{{ path('login') }}">Connectez-vous pour commenter</a></div>
+            {% endif %}
         </div>
     </div>
 </div>

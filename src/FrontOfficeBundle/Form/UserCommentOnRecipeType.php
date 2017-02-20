@@ -5,6 +5,7 @@ namespace FrontOfficeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class UserCommentOnRecipeType extends AbstractType
 {
@@ -13,7 +14,14 @@ class UserCommentOnRecipeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('message');
+        $builder->add('message', TextareaType::class, array(
+            'label' => ' ',
+            'attr' => array(
+                'placeholder' => 'Votre commentaire*',
+                'class' => 'forms__inputs forms__inputsFull forms__inputsComm',
+                'rows' => '5',
+            ),
+        ));
     }
 
     /**
