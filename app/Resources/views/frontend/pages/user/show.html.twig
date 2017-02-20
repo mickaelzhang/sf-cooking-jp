@@ -18,7 +18,12 @@
             <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
             <div class="profile__infos">
                 <h4 class="profile__name">{{ user.username }}</h4>
-                <p class="profile__recipes">{{ recipes|length }} recettes</p>
+                {% if recipes|length == 1 %}
+                    <p class="profile__recipes">{{ recipes|length }} recette</p>
+                {% else %}
+                    <p class="profile__recipes">{{ recipes|length }} recettes</p>
+                {% endif %}
+
                 {% if app.user is not null %}
                     <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles">
                          Suivre
@@ -31,7 +36,11 @@
                 {% endif %}
             </div>
             <div class="profile__followers">
-                <p>{{ followers|length }} followers</p>
+                {% if followers|length == 1 %}
+                    <p>{{ followers|length }} follower</p>
+                {% else %}
+                    <p>{{ followers|length }} followers</p>
+                {% endif %}
             </div>
         </div>
 

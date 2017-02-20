@@ -36,7 +36,7 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
             ->where('h.followedDate > :date')
             ->setParameter(':date', $date)
             ->join('h.userFollowed', 'f')
-            ->select('COUNT(h.userFollowed) AS total_follows', 'f.username')
+            ->addSelect('COUNT(h.userFollowed) AS total_follows', 'f.username', 'f.image')
             ->groupBy('h.userFollowed')
             ->orderBy('total_follows','DESC')
             ->getQuery();
