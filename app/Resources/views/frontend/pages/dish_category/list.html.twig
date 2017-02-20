@@ -33,9 +33,9 @@
                         {% for recipe in recipes %}
                         <li>
                             <div class="categories__imagesContainers">
-                                <img src="{{ asset('assets/img/popularRecipeExample.png') }}" alt="" class="categories__recipesImages">
+                                <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}" alt="" class="categories__recipesImages">
                             </div>
-                            <h6 class="categories__recipesAuthors">{{ recipe.author.username }}</h6>
+                            <h6 class="categories__recipesAuthors">{{ recipe.username }}</h6>
                             <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
                                 <h4 class="categories__recipesNames">{{ recipe.name }}</h4>
                             </a>

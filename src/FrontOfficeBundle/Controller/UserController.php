@@ -66,14 +66,18 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
-            array( 'author' => $user->getUserId())
+            array( 'author' => $user->getUserId()),
+            null,
+            3
         );
 
         $followers = $em->getRepository('AppBundle:UserFollow')->findBy(
             array( 'userFollowed' => $user->getUserId())
         );
         $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findBy(
-            array( 'user' => $user->getUserId())
+            array( 'user' => $user->getUserId()),
+            null,
+            3
         );
 
         $token = null;

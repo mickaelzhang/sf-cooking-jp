@@ -13,6 +13,7 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     public function lastVerifiedRecipes()
     {
         $query = $this->createQueryBuilder('h')
+            ->select('h.name', 'h.recipeId', 'h.image')
             ->join('h.author', 'd')
             ->where('d.isVerified = :isVerified')
             ->setParameter('isVerified', 1)
@@ -34,7 +35,9 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
 
     public function getByCategoryId($categoriesIdList) {
         $query = $this->createQueryBuilder('h')
-            ->innerJoin('h.dishCategories', 's')
+            ->join('h.author', 'u')
+            ->select('h.image', 'h.name', 'h.recipeId', 'u.username')
+            ->join('h.dishCategories', 's')
             ->where('s.categoryId IN (:categoriesIdList)')
             ->setParameter('categoriesIdList', $categoriesIdList)
             ->getQuery();

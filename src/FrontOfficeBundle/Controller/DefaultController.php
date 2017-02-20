@@ -41,8 +41,11 @@ class DefaultController extends Controller
             array( 'parent' => null )
         );
 
+        $allDishCategories = $em->getRepository('AppBundle:DishCategory')->findAll();
+
         return $this->render('@frontend_layouts/dish_categories_list_images.html.twig', array(
-            'dishCategories' => $dishCategories
+            'dishCategories' => $dishCategories,
+            'allDishCategories' => $allDishCategories
         ));
     }
 }
