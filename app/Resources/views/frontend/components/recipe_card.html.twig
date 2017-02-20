@@ -74,7 +74,7 @@
 
                 {% for comment in comments %}
                     <div class="comments__single">
-                        <span class="comments__usernames">{{ comment.user.username }}</span>
+                        <span class="comments__usernames">{{ comment.username }}</span>
                         <span class="comments__dates">le {{ comment.publishedAt.date|date('d/m/Y à g:i') }}</span>
                         <p class="comments__messages">{{ comment.message }}</p>
                     </div>
