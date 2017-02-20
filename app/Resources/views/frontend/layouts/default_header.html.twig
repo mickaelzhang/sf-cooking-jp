@@ -2,10 +2,6 @@
     <img src="{{ asset('assets/img/logo.png') }}" alt="">
 </a>
 
-{{ render(controller(
-    'FrontOfficeBundle:Search:searchBar'
-)) }}
-
 <header class="defaultHeader">
     <div class="defaultHeader__container">
         <a href="{{ path('homepage') }}">
@@ -37,7 +33,10 @@
                 </a>
             </li>
 
-            <input class="defaultHeader__search" type="search" name="" value="" placeholder="Rechercher">
+            {# SEARCH BAR #}
+            {{ render(controller(
+                'FrontOfficeBundle:Search:searchBar'
+            )) }}
 
             <li class="defaultHeader__navContainer noHover defaultHeader__hasSubMenu">
                 <div class="defaultHeader__login">

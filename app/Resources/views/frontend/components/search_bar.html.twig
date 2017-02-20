@@ -1,3 +1,10 @@
-{{ form_start(searchBar) }}
-    {{ form_widget(searchBar) }}
+{{ form_start(searchBar,{'attr': {
+    class: 'defaultHeader__searchBar'
+}}) }}
+    {{ form_widget(searchBar.entityChoice, {'attr': {
+        class: 'defaultHeader__searchSelect'
+    }}) }}
+    {{ form_widget(searchBar.searchInput, {'attr': {
+        class: 'defaultHeader__searchInput'
+    }}) }}
 {{ form_end(searchBar) }}
