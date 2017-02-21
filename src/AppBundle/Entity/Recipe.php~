@@ -413,14 +413,4 @@ class Recipe
 
         return $this;
     }
-
-    /**
-     * Get dishCategories
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDishCategories()
-    {
-        return $this->dishCategories;
-    }
 }

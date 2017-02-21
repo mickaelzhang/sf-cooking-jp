@@ -20,30 +20,6 @@ use Symfony\Component\HttpFoundation\File\File;
 class AccountController extends Controller
 {
     /**
-     * User's overview.
-     *
-     * @Route("/overview", name="user_overview")
-     * @Method("GET")
-     * @Security("has_role('ROLE_USER')")
-     */
-    public function overviewAction()
-    {
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $userId = $user->getUserId();
-
-        $em = $this->getDoctrine()->getManager();
-        $followers = $em->getRepository('AppBundle:UserFollow')->getTotalFollowers($userId);
-        $recipesCount = $em->getRepository('AppBundle:Recipe')->getRecipesCountById($userId);
-        $generalInfo = $em->getRepository('AppBundle:User')->getGeneralInfo($userId);
-
-        return $this->render('@frontend/account/overview.html.twig', array(
-            'followers' => $followers,
-            'recipesCount' => $recipesCount,
-            'userInfo' => $generalInfo
-        ));
-    }
-
-    /**
      * Lists all user's favorites.
      *
      * @Route("/favoris", name="favorite_list")
@@ -53,14 +29,14 @@ class AccountController extends Controller
     public function favoriteAction()
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->getUserId();
 
         $em = $this->getDoctrine()->getManager();
-        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findBy(
-            array('user' => $user->getUserId())
-        );
+        $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findUserFavoriteByRecipe($userId);
 
-        return $this->render('@frontend/account/favorite_list.html.twig', array(
-            'favorites' => $favorites
+        return $this->render('@frontend/recipe/featured_recipe.html.twig', array(
+            'recipes' => $favorites,
+            'pageType' => 'favorites'
         ));
     }
 

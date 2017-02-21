@@ -8,8 +8,18 @@ namespace AppBundle\Repository;
  */
 class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findUserFavoriteByRecipe()
+    public function findUserFavoriteByRecipe($userId)
     {
+        $query = $this->createQueryBuilder('h')
+            ->where('h.user = :userId')
+            ->setParameter(':userId', $userId)
+            ->join('h.user', 's')
+            ->select('s.username', 's.image AS author_image')
+            ->join('h.recipe', 'r')
+            ->addSelect('r.recipeId', 'r.image', 'r.name', 'r.difficulty', 'r.cookingTime', 'r.preparationTime')
+            ->getQuery();
+
+        return $query->getResult();
     }
 
     public function mostPopular($maxResults)
