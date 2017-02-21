@@ -10,7 +10,12 @@ namespace AppBundle\Repository;
  */
 class UserFollowRepository extends \Doctrine\ORM\EntityRepository
 {
-
+    /**
+     * Get number of followers for a user
+     *
+     * @param int $userId
+     * @return array
+     */
     public function getTotalFollowers($userId)
     {
         $query = $this->createQueryBuilder('h')
@@ -23,9 +28,10 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Get all follows since 7 days and sort them by group of users
+     * Get and order in a descending order popular users.
      *
-     * @return
+     * @param int $maxResults
+     * @return array
      */
     public function getPopularsProfiles($maxResults)
     {

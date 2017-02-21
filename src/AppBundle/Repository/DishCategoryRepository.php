@@ -10,6 +10,13 @@ namespace AppBundle\Repository;
  */
 class DishCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Get all child categories of a DishCategory
+     *
+     * @param int $categoryId
+     * @return array
+     */
     public function getChildCategoryId($categoryId)
     {
         $query = $this->createQueryBuilder('h')

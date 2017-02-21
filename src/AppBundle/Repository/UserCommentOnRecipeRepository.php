@@ -8,6 +8,12 @@ namespace AppBundle\Repository;
  */
 class UserCommentOnRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get and order by published date comments for a recipe
+     *
+     * @param int $recipeId
+     * @return array
+     */
     public function orderByPublishedAt($recipeId)
     {
         $query = $this->createQueryBuilder('h')

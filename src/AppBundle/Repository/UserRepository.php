@@ -10,6 +10,12 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get general info for a user (username, email and registered_date)
+     *
+     * @param String $userId
+     * @return array
+     */
     public function getGeneralInfo($userId)
     {
         $query = $this->createQueryBuilder('h')
@@ -21,6 +27,12 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Search for related users
+     *
+     * @param String $searchString
+     * @return array
+     */
     public function searchUserByUsername($searchString)
     {
         $query = $this->createQueryBuilder('u')

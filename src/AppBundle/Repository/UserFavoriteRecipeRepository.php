@@ -8,6 +8,12 @@ namespace AppBundle\Repository;
  */
 class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Find all favorites recipe of an user
+     *
+     * @param int $userId
+     * @return array
+     */
     public function findUserFavoriteByRecipe($userId)
     {
         $query = $this->createQueryBuilder('h')
@@ -22,6 +28,12 @@ class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get and order by descending order popular recipes
+     *
+     * @param String $maxResults
+     * @return array
+     */
     public function mostPopular($maxResults)
     {
         $date = new \DateTime();

@@ -10,6 +10,11 @@ namespace AppBundle\Repository;
  */
 class RecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Get 3 last verified recipes
+     *
+     * @return array
+     */
     public function lastVerifiedRecipes()
     {
         $query = $this->createQueryBuilder('h')
@@ -23,6 +28,11 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get all recipes order by published date
+     *
+     * @return array
+     */
     public function orderByPublishedDate()
     {
         $query = $this->createQueryBuilder('h')
@@ -33,6 +43,12 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get all recipes for a list of categories
+     *
+     * @param array $categoriesIdList
+     * @return array
+     */
     public function getByCategoryId($categoriesIdList) {
         $query = $this->createQueryBuilder('h')
             ->join('h.author', 'u')
@@ -44,6 +60,12 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get number of recipes of an user
+     *
+     * @param int $userId
+     * @return array
+     */
     public function getRecipesCountById($userId)
     {
         $query = $this->createQueryBuilder('h')
@@ -54,6 +76,12 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Search for related
+     *
+     * @param String $searchString
+     * @return array
+     */
     public function searchRecipeByName($searchString)
     {
         $query = $this->createQueryBuilder('r')

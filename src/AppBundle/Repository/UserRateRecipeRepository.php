@@ -10,6 +10,12 @@ namespace AppBundle\Repository;
  */
 class UserRateRecipeRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Find and return average rating for a recipe
+     *
+     * @param int $recipeId
+     * @return array
+     */
     public function findRecipeAverageRating($recipeId)
     {
         $query = $this->createQueryBuilder('h')
