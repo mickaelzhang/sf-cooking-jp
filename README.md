@@ -12,6 +12,7 @@ Symfony project
 ## Table of contents
 * [Commit - Tag](#commit-tags)
 * [CLI Command](#cli-command)
+* [Getting started](#getting-started)
 * [Project view structure](#twig-structure)
 * [View namespace](#view-namespace)
 
@@ -24,6 +25,29 @@ Symfony project
 ## <a name="cli-command">CLI Command</a>
 - `composer regenerate-db`: Regenerate database with false data
 - `npm run start`: Start Gulp tasks
+
+## <a name="getting-started">Getting started</a>
+In order to setup the project, please follow these few steps.
+
+#### Requirement
+
+- [Composer](https://getcomposer.org/)
+- [NPM](https://docs.npmjs.com/getting-started/installing-node)
+- A MySQL server
+
+#### Setup
+
+You will need to write these commands in your terminal.
+Don't forge to be in project's root directory.
+
+```
+$ composer install
+$ composer regenerate-db
+$ npm install
+$ gulp build
+$ php bin/console server:run
+```
+
 
 ## <a name="twig-structure">Project view structure</a>
 The project view is located in `app/Resources/views`.
