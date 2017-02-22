@@ -206,7 +206,7 @@ class RecipeController extends Controller
      *
      * @Route("/{id}/editer", name="recipe_edit")
      * @Method({"GET", "POST"})
-     * @Security("recipe.isAuthor(user)")
+     * @Security("recipe.isAuthor(user) or has_role('ROLE_ADMIN')")
      *
      * @param Request $request
      * @param Recipe $recipe

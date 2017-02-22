@@ -1,16 +1,26 @@
 {% extends 'admin/templates/default.html.twig' %}
 
 {% block content %}
-    <h1>Edit utilisateur</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+    <div class="defaultContainer">
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_user_list') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="mainContent admin">
+
+            <a href="{{ path('admin_user_list') }}">Retourner à la liste</a>
+
+            <div class="forms admin">
+                <div class="forms__title">
+                    <h1>Editer l'utilisateur</h1>
+                </div>
+                <div class="forms__inputsContainer">
+                    {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit" value="Editer" />
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 {% endblock %}

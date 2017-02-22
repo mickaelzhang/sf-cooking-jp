@@ -16,12 +16,39 @@ class UserAdminType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
-            ->add('username', TextType::class)
+            ->add('email', EmailType::class, array(
+                'label' => ' ',
+                'attr' => array(
+                    'placeholder' => 'Email*',
+                    'class' => 'forms__inputs forms__inputsFull',
+                ),
+            ))
+            ->add('firstname', TextType::class, array(
+                'label' => ' ',
+                'attr' => array(
+                    'placeholder' => 'Prénom*',
+                    'class' => 'forms__inputs forms__inputsFull',
+                ),
+            ))
+            ->add('lastname', TextType::class,  array(
+                'label' => ' ',
+                'attr' => array(
+                    'placeholder' => 'Nom*',
+                    'class' => 'forms__inputs forms__inputsFull',
+                ),
+            ))
+            ->add('username', TextType::class,  array(
+                'label' => ' ',
+                'attr' => array(
+                    'placeholder' => 'Pseudo*',
+                    'class' => 'forms__inputs forms__inputsFull',
+                ),
+            ))
             ->add('image', FileType::class, array(
-                'label' => 'Image de profil'
+                'label' => ' ',
+                'attr' => array(
+                    'class' => 'forms__inputs forms__inputsFull forms__inputsImage',
+                ),
             ))
         ;
     }

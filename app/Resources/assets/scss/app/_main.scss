@@ -4,7 +4,6 @@
 // Components reusables
 @import 'components/ads',
         'components/recipeCard',
-        'components/forms',
         'components/profileCards',
         'components/midCol',
         'components/hamburgerMenu',
@@ -13,8 +12,7 @@
         'components/recipeSmallCard';
 
 // Layouts scss
-@import 'layouts/defaultHeader',
-        'layouts/defaultFooter',
+@import 'layouts/defaultFooter',
         'layouts/popularRecipes',
         'layouts/popularProfiles',
         'layouts/lastRecipes',
