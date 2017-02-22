@@ -2,7 +2,7 @@
 <ul class="dishCategoriesList">
     {% for dishCategory in dishCategories %}
         <li>
-            <img src="{{ asset('assets/img/noodles.png') }}" alt="">
+            <img src="{{ asset('assets/img/cat' ~ loop.index ~ '.png') }}" alt="">
             <a href="{{ path('dish_category_list', {'categoryId': dishCategory.categoryId}) }}">
                 <h5>{{ dishCategory.name }}</h5>
             </a>

@@ -39,6 +39,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding-right: 10px;
 
     &:hover {
         background: rgba(245, 166, 35, 0.36);
@@ -62,7 +63,7 @@
 .defaultHeader__imgs {
     width: 35px;
     vertical-align: middle;
-    margin-left: 10px;
+    margin: 0 5px;
 }
 
 .defaultHeader__texts {

@@ -11,21 +11,21 @@
 
             <li class="defaultHeader__navContainer">
                 <a class="defaultHeader__nav" href="{{ path('dashboard') }}">
-                    <img class="defaultHeader__imgs" src="#" alt="">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/dashboard.png') }}" alt="">
                     <span class="defaultHeader__texts">Dashboard</span>
                 </a>
             </li>
 
             <li class="defaultHeader__navContainer defaultHeader__hasSubMenu">
                 <a class="defaultHeader__nav" href="{{ path('admin_user_list') }}">
-                    <img class="defaultHeader__imgs" src="#" alt="">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/userAdmin.png') }}" alt="">
                     <span class="defaultHeader__texts">Utilisateurs</span>
                 </a>
             </li>
 
             <li class="defaultHeader__navContainer">
                 <a class="defaultHeader__nav" href="{{ path('admin_recipe_list') }}">
-                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/write.png') }}" alt="">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/recipesAdmin.png') }}" alt="">
                     <span class="defaultHeader__texts">Recettes</span>
                 </a>
             </li>
