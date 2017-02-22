@@ -11,7 +11,7 @@
 }
 
 .searchByCol__title {
-    height: 33px;
+    height: 20px;
     background: #F8F6F0;
     padding: 5px 0 0 12px;
 
@@ -24,7 +24,7 @@
 }
 
 .searchByCol__list {
-    height: 260px;
+    height: 140px;
 }
 
 .searchByCol__list li{
@@ -39,8 +39,12 @@
         vertical-align: middle;
     }
 
-    &:hover {
+    a {
+        color: $brown-buccaneer;
 
+        &:hover {
+            color: $green-limeade;
+        }
     }
 
 }
