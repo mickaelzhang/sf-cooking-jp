@@ -1,6 +1,10 @@
 .forms {
     width: 470px;
     margin-left: 10px;
+
+    &.admin {
+        margin: 10px 0;
+    }
 }
 
 .forms__title {
