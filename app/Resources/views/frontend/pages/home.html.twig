@@ -34,7 +34,9 @@
                                 {% else %}
                                     <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('assets/img/default_users.png') }}')"></div>
                                 {% endif %}
-                                <h4 class="popularRecipes__username">{{ favorite.username }}</h4>
+                                <a href="{{ path('user_show', {'id': favorite.userId}) }}">
+                                    <h4 class="popularRecipes__username">{{ favorite.username }}</h4>
+                                </a>
                             </div>
 
                             <div class="popularRecipes__infosRight">

@@ -63,23 +63,33 @@ class UserController extends Controller
     public function showAction(User $user)
     {
         $auth_checker = $this->get('security.authorization_checker')->isGranted('ROLE_USER');
+        $userId = $user->getUserId();
 
         $em = $this->getDoctrine()->getManager();
 
         $recipes = $em->getRepository('AppBundle:Recipe')->findBy(
-            array( 'author' => $user->getUserId()),
+            array( 'author' => $userId),
             null,
             3
         );
 
         $followers = $em->getRepository('AppBundle:UserFollow')->findBy(
-            array( 'userFollowed' => $user->getUserId())
+            array( 'userFollowed' => $userId)
         );
         $favorites = $em->getRepository('AppBundle:UserFavoriteRecipe')->findBy(
-            array( 'user' => $user->getUserId()),
+            array( 'user' => $userId),
             null,
             3
         );
+
+        $checkIfFollow = null;
+
+        if($auth_checker) {
+            $userLogged = $this->get('security.token_storage')->getToken()->getUser();
+            $userLoggedId = $userLogged->getUserId();
+
+            $checkIfFollow = $em->getRepository('AppBundle:UserFollow')->checkIfFollowed($userLoggedId, $userId);
+        }
 
         $token = null;
         if ($auth_checker) {
@@ -96,6 +106,7 @@ class UserController extends Controller
             'followToken' => $token,
             'followers' => $followers,
             'favorites' => $favorites,
+            'checkIfFollow' => $checkIfFollow
         ));
     }
 }

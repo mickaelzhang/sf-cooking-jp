@@ -15,19 +15,20 @@
             </div>
             {% if app.user %}
                 <div class="addToFavorite favoriteButton">
-                    <div class="addToFavorite__text">
-                        {% if favorite is null %}
-                            Ajouter aux favoris
-                        {% else %}
-                            Retirer des favoris
-                        {% endif %}
-                        <input type="hidden" class="app_favorite_token"
-                               data-href="{{ url('api_favorite_add')}}"
-                               data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
-                               value="{{ favoriteToken.value }}"
-                        >
-                    </div>
-                    <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
+                    {% if favorite is null %}
+                        <div class="addToFavorite__text" data-text="0">
+                        Ajouter aux favoris
+                    {% else %}
+                        <div class="addToFavorite__text" data-text="1">
+                        Retirer des favoris
+                    {% endif %}
+                    <input type="hidden" class="app_favorite_token"
+                           data-href="{{ url('api_favorite_add')}}"
+                           data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                           value="{{ favoriteToken.value }}"
+                    >
+                        </div>
+                        <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
                 </div>
             {% endif %}
         </div>

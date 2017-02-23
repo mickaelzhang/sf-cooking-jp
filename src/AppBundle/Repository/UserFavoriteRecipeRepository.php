@@ -44,7 +44,7 @@ class UserFavoriteRecipeRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter(':date', $date)
             ->join('h.recipe', 't')
             ->join('t.author', 'u')
-            ->select('COUNT(h.recipe) AS total_favorites', 't.recipeId', 't.name','t.publishedDate', 't.image', 't.difficulty', 't.cookingTime', 't.preparationTime', 'u.username', 'u.image AS author_image')
+            ->select('COUNT(h.recipe) AS total_favorites', 't.recipeId', 't.name','t.publishedDate', 't.image', 't.difficulty', 't.cookingTime', 't.preparationTime', 'u.username', 'u.image AS author_image', 'u.userId')
             ->groupBy('h.recipe')
             ->orderBy('total_favorites','DESC')
             ->getQuery();

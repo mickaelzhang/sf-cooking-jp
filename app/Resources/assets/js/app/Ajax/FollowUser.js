@@ -3,6 +3,10 @@ import $ from 'jquery'
 export default class FollowUser {
   constructor() {
     this.button = $('.followButton')
+
+    this.buttonTextAdd = 'Suivre'
+    this.buttonTextRemove = 'Se désabonner'
+
     this.hiddenInput = this.button.find('.app_follow_token')
 
     // URL for AJAX call
@@ -28,7 +32,15 @@ export default class FollowUser {
         url: _.ajaxUrl,
         data: `follower=${_.followerId}&followed=${_.followedId}&token=${_.token}`,
         success: function(data) {
-          console.log(data)
+
+            if(_.button.data('text') == 1){
+              _.button.text(_.buttonTextRemove)
+              _.button.data('text', '0')
+            }
+            else if(_.button.data('text') == 0){
+              _.button.text(_.buttonTextAdd)
+              _.button.data('text', '1')
+            }
         }
       })
     })

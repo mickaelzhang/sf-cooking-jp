@@ -16,7 +16,7 @@
                         <div class="smallCardAuthor__image" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author_image }}')"></div>
                     {% endif %}
                     <div class="smallCardAuthor__username">
-                        {{ recipe.username }}
+                        <a href="{{ path('user_show', {'id': recipe.userId}) }}">{{ recipe.username }}</a>
                     </div>
                 </div>
 
