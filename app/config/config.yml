@@ -45,11 +45,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    exception_controller:  FrontOfficeBundle:Error:showError
     paths:
         '%kernel.root_dir%/Resources/views/admin/pages': admin
         '%kernel.root_dir%/Resources/views/frontend/pages': frontend
         '%kernel.root_dir%/Resources/views/frontend/layouts': frontend_layouts
-
 
 # Doctrine Configuration
 doctrine:
