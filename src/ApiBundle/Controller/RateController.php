@@ -63,6 +63,10 @@ class RateController extends Controller
         $em->persist($userRating);
         $em->flush();
 
-        return new JsonResponse(array('message' => 'The user now has this recipe in his favorite.'), 200);
+        return new JsonResponse(array(
+            'status' => 'Created',
+            'status_code' => 201,
+            'message' => $user->getUsername().' has rated this recipe'
+        ), 201);
     }
 }

@@ -1,15 +1,15 @@
-# Follow endpoint
+# Favorite endpoint
 
-User follow or cancel a follow.
+Add a recipe to a user's favorite.
 
-PATH: `POST - /follow`
+PATH: `POST - /rate`
 
 ### Parameters
 ___
 |     PARAM     |    REQUIRED     |   TYPE   | DESCRIPTION                              |
 | --------------| --------------- | -------- | ---------------------------------------- |
-| follower      |      true       | int      | Follower user id                         |
-| followed      |      true       | int      | Followed user id                         |
+| u             |      true       | int      | User id                                  |
+| r             |      true       | int      | Recipe id                                |
 | token         |      true       | string   | Token generated in the page's controller |
 
 ### Response format
@@ -18,7 +18,7 @@ On success, if the user follow someone, the HTTP status code in the response hea
 #### Exemple
 For this API call:
 ```
-POST - /follow
+POST - /favorite
 PARAM:
 {
 	"follower": 1,
@@ -35,6 +35,6 @@ The response will be:
 {
   "status": "Created",
   "status_code": 201,
-  "message": "Mickael Zhang follow Clément Vion"
+  "message": "Sulivan Nguyen has rated this recipe"
 }
 ```
