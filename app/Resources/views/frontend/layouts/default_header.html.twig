@@ -45,6 +45,7 @@
                         <span class="defaultHeader__texts" href="#">{{ app.user.username }}</span>
                         <div class="defaultHeader__subContent defaultHeader__subContentUser">
                             <ul>
+                                <li><a href="{{ path('my_recipes_list') }}">Mes recettes</a></li>
                                 <li><a href="{{ path('user_edit') }}">Paramètres</a></li>
                                 <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
                             </ul>
