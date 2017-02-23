@@ -37,7 +37,7 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     {
         $query = $this->createQueryBuilder('h')
             ->join('h.author', 'd')
-            ->select('d.username', 'd.image AS author_image', 'h.recipeId' ,'h.image', 'h.name', 'h.difficulty', 'h.cookingTime', 'h.preparationTime', 'h.servingSize')
+            ->select('d.userId', 'd.username', 'd.image AS author_image', 'h.recipeId' ,'h.image', 'h.name', 'h.difficulty', 'h.cookingTime', 'h.preparationTime', 'h.servingSize')
             ->addOrderBy('h.publishedDate', 'DESC')
             ->getQuery();
         return $query->getResult();
@@ -88,7 +88,7 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
             ->join('r.author', 's')
             ->where('r.name LIKE :name')
             ->setParameter('name', "%$searchString%")
-            ->select('r.recipeId', 'r.name', 'r.image' , 'r.cookingTime', 'r.preparationTime', 'r.difficulty', 's.username', 's.image AS author_image')
+            ->select('r.recipeId', 'r.name', 'r.image' , 'r.cookingTime', 'r.preparationTime', 'r.difficulty', 's.username', 's.image AS author_image', 's.userId')
             ->getQuery();
 
         return $query->getResult();

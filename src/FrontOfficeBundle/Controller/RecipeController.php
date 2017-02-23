@@ -97,10 +97,13 @@ class RecipeController extends Controller
             // $file stores the uploaded PDF file
             /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $recipe->getImage();
-            $fileName = $this->get('app_recipe.image_uploader')->upload($file);
 
-            // Update image property to store image file name instead of content
-            $recipe->setImage($fileName);
+            if ($file != null) {
+                $fileName = $this->get('app_recipe.image_uploader')->upload($file);
+
+                // Update image property to store image file name instead of content
+                $recipe->setImage($fileName);
+            }
 
             $user = $this->get('security.token_storage')->getToken()->getUser();
             $recipe->setAuthor($user);

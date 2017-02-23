@@ -87,6 +87,10 @@
             text-align: center;
             color: #f5a623;
             margin-top: 10px;
+
+            &:hover {
+                text-decoration:underline;
+            }
         }
     }
 }

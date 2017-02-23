@@ -92,7 +92,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var datetime
      *
-     * @ORM\Column(name="registered_date", type="datetime")
+     * @ORM\Column(name="registered_date", type="datetime", nullable=true)
      * @ORM\Version
      */
     private $registeredDate;
