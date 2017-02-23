@@ -42,4 +42,21 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function getLastRegisteredUsers($maxResults) {
+        $date = new \DateTime();
+        $date->modify('-7 days');
+
+        $query = $this->createQueryBuilder('u')
+            ->where('u.registeredDate > :date')
+            ->setParameter(':date', $date)
+            ->select('COUNT(u)')
+            ->getQuery();
+
+        if ($maxResults != 0) {
+            $query->setMaxResults($maxResults);
+        }
+
+        return $query->getResult();
+    }
 }
