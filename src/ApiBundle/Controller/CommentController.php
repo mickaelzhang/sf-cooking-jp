@@ -34,8 +34,10 @@ class CommentController extends Controller
         }
 
         // Data from request
-        $userId = $request->get('u');
-        $recipeId = $request->get('r');
+        $userId = $request->get('user');
+        $recipeId = $request->get('recipe');
+        $message = $request->get('message');
+
         $submittedToken = $request->get('token');
 
         // Make sure the token send is valid
@@ -58,6 +60,7 @@ class CommentController extends Controller
         $userComment = new UserCommentOnRecipe();
         $userComment->setUser($user);
         $userComment->setRecipe($recipe);
+        $userComment->setMessage($message);
 
         $em->persist($userComment);
         $em->flush();
@@ -65,7 +68,7 @@ class CommentController extends Controller
         return new JsonResponse(array(
             'status' => 'Created',
             'status_code' => 201,
-            'message' => 'Comment successfully posted'
+            'message' => 'Comment successfully posted.'
         ), 201);
     }
 }
