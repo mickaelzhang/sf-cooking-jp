@@ -36,6 +36,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     public function searchUserByUsername($searchString)
     {
         $query = $this->createQueryBuilder('u')
+            ->select('u.image', 'u.userId', 'u.username')
             ->where('u.username LIKE :username')
             ->setParameter('username', "%$searchString%")
             ->getQuery();

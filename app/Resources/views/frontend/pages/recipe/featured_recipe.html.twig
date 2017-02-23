@@ -9,7 +9,11 @@
     <div class="defaultContainer">
 
         <div class="smallCards">
-            <div class="pageTitle">Recettes les plus {{ pageType }}</div>
+            {% if pageType == 'recherche' %}
+                <div class="pageTitle">Résultats de recherche</div>
+            {% else %}
+                <div class="pageTitle">Recettes les plus {{ pageType }}</div>
+            {% endif %}
 
             {% for recipe in recipes  %}
 

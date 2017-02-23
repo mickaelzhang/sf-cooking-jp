@@ -49,7 +49,8 @@ class UserController extends Controller
         }
 
         return $this->render('@frontend/user/featured_users.html.twig', array(
-            'populars' => $populars
+            'users' => $populars,
+            'pageType' => 'populaires'
         ));
     }
 

@@ -16,34 +16,40 @@
 
             <div class="popularProfiles__title">
                 <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
-                <h2>Profils populaires</h2>
+                {% if pageType == 'recherche' %}
+                    <h2>Profils recherchés</h2>
+                {% elseif pageType == 'populaires' %}
+                    <h2>Profils populaires</h2>
+                {% endif %}
             </div>
 
             <ul class="popularProfiles__list">
 
-                {% for popular in populars %}
+                {% for user in users %}
 
                     <li>
                         <div class="popularProfiles__imgsContainer">
-                            <img src="{{ asset('uploads/user/') }}{{ popular.image }}" class="popularProfiles__imgs">
+                            <img src="{{ asset('uploads/user/') }}{{ user.image }}" class="popularProfiles__imgs">
                         </div>
                         <div class="popularProfiles__infos">
-                            <a href="{{ path('user_show', {'id':popular.userId}) }}">
-                                <h5 class="popularProfiles__names">{{ popular.username }}</h5>
+                            <a href="{{ path('user_show', {'id':user.userId}) }}">
+                                <h5 class="popularProfiles__names">{{ user.username }}</h5>
                             </a>
-                            {% if popular.recipes|length == 1 %}
-                                <p class="popularProfiles__recipes">{{ popular.recipes|length }} recette</p>
+                            {% if user.recipes|length == 1 %}
+                                <p class="popularProfiles__recipes">{{ user.recipes|length }} recette</p>
                             {% else %}
-                                <p class="popularProfiles__recipes">{{ popular.recipes|length }} recettes</p>
+                                <p class="popularProfiles__recipes">{{ user.recipes|length }} recettes</p>
                             {% endif %}
                         </div>
-                        <div class="popularProfiles__followers">
-                            {% if popular.total_follows == 1 %}
-                                <p>{{ popular.total_follows }} follower</p>
-                            {% else %}
-                                <p>{{ popular.total_follows }} followers</p>
-                            {% endif %}
-                        </div>
+                        {% if pageType == 'populaires' %}
+                            <div class="popularProfiles__followers">
+                                {% if user.total_follows == 1 %}
+                                    <p>{{ user.total_follows }} follower</p>
+                                {% else %}
+                                    <p>{{ user.total_follows }} followers</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     </li>
 
                 {% endfor %}
