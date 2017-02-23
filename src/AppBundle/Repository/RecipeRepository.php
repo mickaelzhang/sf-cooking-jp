@@ -117,7 +117,7 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
      * Get last added recipes
      *
      * @param Int max results
-     * @return string
+     * @return array
      */
     public function getLastAddedRecipes($maxResults) {
         $date = new \DateTime();
@@ -126,14 +126,14 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('r')
             ->where('r.publishedDate > :date')
             ->setParameter(':date', $date)
-            ->select('COUNT(r)')
+            ->select('r.name', 'r.recipeId')
             ->getQuery();
 
         if ($maxResults != 0) {
             $query->setMaxResults($maxResults);
         }
 
-        return $query->getSingleScalarResult();
+        return $query->getResult();
     }
 
 }
