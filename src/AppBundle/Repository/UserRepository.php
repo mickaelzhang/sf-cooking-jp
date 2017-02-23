@@ -43,6 +43,12 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get last registered users
+     *
+     * @param Int max results
+     * @return string
+     */
     public function getLastRegisteredUsers($maxResults) {
         $date = new \DateTime();
         $date->modify('-7 days');
@@ -57,6 +63,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             $query->setMaxResults($maxResults);
         }
 
-        return $query->getResult();
+        return $query->getSingleScalarResult();
     }
 }

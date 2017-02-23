@@ -15,9 +15,11 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->getLastRegisteredUsers(0);
+        $recipes = $em->getRepository('AppBundle:Recipe')->getLastAddedRecipes(0);
 
         return $this->render('@admin/dashboard.html.twig', array(
             'users' => $users,
+            'recipes' => $recipes,
         ));
     }
 }
