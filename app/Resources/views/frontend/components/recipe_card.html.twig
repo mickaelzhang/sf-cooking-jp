@@ -56,14 +56,14 @@
                 <div class="recipesInfosContainer__ingredients">
                     <h3>Ingrédients</h3>
                     <div>
-                        {{ recipe.ingredients }}
+                        {{ recipe.ingredients|nl2br }}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="recipeInstruction">
-            {{ recipe.instructions }}
+            {{ recipe.instructions|nl2br }}
         </div>
 
         <div class="comments">

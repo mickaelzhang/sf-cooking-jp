@@ -42,7 +42,7 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="ingredient", type="string", nullable=true)
+     * @ORM\Column(name="ingredient", type="string", nullable=true, length=2000)
      */
     private $ingredients;
 
@@ -91,7 +91,7 @@ class Recipe
     /**
      * @var string
      *
-     * @ORM\Column(name="instructions", type="string")
+     * @ORM\Column(name="instructions", type="string", length=2000)
      */
     private $instructions;
 
