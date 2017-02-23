@@ -40,6 +40,13 @@ class Recipe
     private $description;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ingredient", type="string", nullable=true)
+     */
+    private $ingredient;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="serving_size", type="integer", precision=3, scale=0, nullable=true)
@@ -179,6 +186,30 @@ class Recipe
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set ingredient
+     *
+     * @param string $ingredient
+     *
+     * @return Recipe
+     */
+    public function setIngredient($ingredient)
+    {
+        $this->ingredient = $ingredient;
+
+        return $this;
+    }
+
+    /**
+     * Get ingredient
+     *
+     * @return string
+     */
+    public function getIngredient()
+    {
+        return $this->ingredient;
     }
 
     /**
