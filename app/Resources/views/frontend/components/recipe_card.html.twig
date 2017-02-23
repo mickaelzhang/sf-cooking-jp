@@ -35,15 +35,21 @@
                 <ul class="recipesInfosContainer__indications">
                     <li>
                         <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                        Facile
+                        {% if recipe.difficulty == '1' %}
+                            Facile
+                        {% elseif recipe.difficulty == '2' %}
+                            Moyen
+                        {% elseif recipe.difficulty == '3' %}
+                            Difficile
+                        {% endif %}
                     </li>
                     <li>
                         <img src="{{ asset('assets/img/time.png') }}" alt="">
-                        20 min
+                        {{ recipe.preparationTime|date('i') }} min
                     </li>
                     <li>
                         <img src="{{ asset('assets/img/hotPot.png') }}" alt="">
-                        12 min
+                        {{ recipe.cookingTime|date('i') }} min
                     </li>
                 </ul>
 
