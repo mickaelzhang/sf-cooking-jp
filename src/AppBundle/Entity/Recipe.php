@@ -44,7 +44,7 @@ class Recipe
      *
      * @ORM\Column(name="ingredient", type="string", nullable=true)
      */
-    private $ingredient;
+    private $ingredients;
 
     /**
      * @var integer
@@ -189,27 +189,27 @@ class Recipe
     }
 
     /**
-     * Set ingredient
+     * Set ingredients
      *
-     * @param string $ingredient
+     * @param string $ingredients
      *
      * @return Recipe
      */
-    public function setIngredient($ingredient)
+    public function setIngredients($ingredients)
     {
-        $this->ingredient = $ingredient;
+        $this->ingredients = $ingredients;
 
         return $this;
     }
 
     /**
-     * Get ingredient
+     * Get ingredients
      *
      * @return string
      */
-    public function getIngredient()
+    public function getIngredients()
     {
-        return $this->ingredient;
+        return $this->ingredients;
     }
 
     /**

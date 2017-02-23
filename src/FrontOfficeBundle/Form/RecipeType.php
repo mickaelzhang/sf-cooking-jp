@@ -69,6 +69,14 @@ class RecipeType extends AbstractType
                     'class' => 'forms__inputs forms__inputsFull',
                 ),
             ))
+            ->add('ingredients', TextareaType::class, array(
+                'label' => ' ',
+                'attr' => array(
+                    'placeholder' => 'Ingrédients de la recette',
+                    'class' => 'forms__inputs forms__inputsFull',
+                    'rows' => '8',
+                ),
+            ))
             ->add('preparationTime', TimeType::class, array(
                 'label' => ' ',
                 'input' => 'datetime',
