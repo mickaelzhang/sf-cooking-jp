@@ -66,6 +66,7 @@ class UserType extends AbstractType
                 'attr' => array(
                     'class' => 'forms__inputs forms__inputsFull forms__inputsImage',
                 ),
+                'required' => false
             ))
         ;
     }

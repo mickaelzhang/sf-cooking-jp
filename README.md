@@ -15,6 +15,7 @@ Symfony project
 * [Getting started](#getting-started)
 * [Project view structure](#twig-structure)
 * [View namespace](#view-namespace)
+* [API documentation](docs/api/README.md)
 
 ## <a name="commit-tags">Commit - Tags</a>
 - [X] [ADD] - Add new files / dependencies

@@ -53,5 +53,30 @@ class UserFollowRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * Check if an user follow another user.
+     *
+     * @param int $followerId
+     * @param int $followedId
+     * @return array
+     */
+    public function checkIfFollowed($followerId, $followedId)
+    {
+        $query = $this->createQueryBuilder('h')
+            ->where('h.userFollowed = :followedId')
+            ->andWhere('h.follower = :followerId')
+            ->setParameter(':followedId', $followedId)
+            ->setParameter(':followerId', $followerId)
+            ->getQuery()
+            ->getResult();
+
+        if (count($query) == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
