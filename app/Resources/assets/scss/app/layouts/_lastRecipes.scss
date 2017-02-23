@@ -1,0 +1,96 @@
+.lastRecipes {
+    width: 655px;
+    position: relative;
+    border-radius: 3px;
+    margin-top: 10px;
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 12px;
+        background: #f5a623;
+        border-radius: 3px 3px 0 0;
+    }
+
+    @include phone {
+        width: 95vw;
+    }
+}
+
+.lastRecipes__title {
+    height: 40px;
+    background: #FFF;
+    margin-top: 12px;
+
+    img {
+        width: 20px;
+        vertical-align: middle;
+        display: inline-block;
+        margin: 5px 17px 5px 26px;;
+    }
+
+    h2 {
+        display: inline-block;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+        color: #f5a623;
+        font-size: 18px;
+    }
+}
+
+.lastRecipes__subtitle {
+    width: 100%;
+    height: 30px;
+    background-color: #f8f6f0;
+
+    p {
+        margin-left: 8px;
+        font-size: 14px;
+        line-height: 2;
+    }
+}
+
+.lastRecipes__list {
+    height: 215px;
+    display: flex;
+    background: #FFF;
+    justify-content: flex-start;
+
+    @include phone {
+        flex-flow: row wrap;
+        height: auto;
+    }
+
+    li {
+        width: 190px;
+        margin: 25px 14px;
+        text-align: center;
+
+        @include phone {
+            width: 100%;
+        }
+
+
+        .lastRecipes__imgContainer {
+            overflow: hidden;
+            max-height: 100px;
+        }
+
+        img {
+            width: 190px;
+        }
+
+        h4 {
+            font-size: 16px;
+            letter-spacing: 0.2px;
+            text-align: center;
+            color: #f5a623;
+            margin-top: 10px;
+
+            &:hover {
+                text-decoration:underline;
+            }
+        }
+    }
+}

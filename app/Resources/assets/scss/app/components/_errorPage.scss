@@ -1,0 +1,30 @@
+.errorPage__container {
+    background-color:$white;
+    padding:25px;
+    text-align:center;
+}
+
+.errorPage__title {
+    margin-top:15px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.errorPage__text {
+    margin-bottom:50px;
+}
+
+.errorPage__link {
+    margin-top:10px;
+    border:thin solid $orange-buttercup;
+    border-radius:5px;
+    padding:10px 30px;
+
+    &:visited {
+        color:$brown-buccaneer;
+    }
+
+    &:hover {
+        color:$orange-buttercup;
+    }
+}

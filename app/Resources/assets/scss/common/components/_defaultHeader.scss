@@ -1,0 +1,163 @@
+.defaultHeader {
+    background-color: $white;
+    border-radius: 5px;
+    margin-top: 30px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @include tablet {
+        display: none;
+    }
+
+    @include phone {
+        display: none;
+    }
+}
+
+.defaultHeader__container {
+    display: flex;
+    flex-direction: row;
+    width: 950px;
+    margin: 0 10px;
+}
+
+.defaultHeader__logo {
+    margin: 15px 20px;
+}
+
+.defaultHeader__menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.defaultHeader__navContainer {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-right: 10px;
+
+    &:hover {
+        background: rgba(245, 166, 35, 0.36);
+    }
+
+    &.noHover:hover {
+        background: none;
+    }
+}
+
+.defaultHeader__nav {
+    color: #6D453D;
+    text-decoration: none;
+
+    &:nth-child(3) .defaultHeader__imgs{
+        margin-top: -8px;
+        width: 42px;
+    }
+}
+
+.defaultHeader__imgs {
+    width: 35px;
+    vertical-align: middle;
+    margin: 0 5px;
+}
+
+.defaultHeader__texts {
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #59352F;
+}
+
+.defaultHeader__searchBar {
+    width: 208px;
+    border: solid thin #F5A623;
+    border-radius: 5px;
+
+
+    display: flex;
+}
+
+.defaultHeader__searchSelect {
+    font-size: 10px;
+    text-transform: uppercase;
+    border-radius: 0;
+    border: none;
+    border-right: grey 1px solid;
+    outline: none;
+}
+
+.defaultHeader__searchInput {
+    font-size: 14px;
+    width: 122px;
+
+    background: url('../img/search.png') no-repeat;
+    background-position: 175px 4px;
+    background-size: 25px;
+    padding: 8px;
+
+    outline: none;
+    appearance: none;
+    box-shadow: none;
+    border: none;
+}
+
+.defaultHeader__login {
+    width: 120px;
+    height: 33px;
+    line-height: 2.2;
+    border: solid thin #F5A623;
+    border-radius: 5px;
+
+    img {
+        margin: 5px;
+        width: 18px;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+
+// Content for submenus
+.defaultHeader__subContent {
+    z-index: 100;
+    position: absolute;
+    margin-top: 125px;
+    border: thin solid #f5a623;
+    display: none;
+}
+
+.defaultHeader__hasSubMenu:hover .defaultHeader__subContent {
+    display: block;
+}
+
+.defaultHeader__subContent:hover {
+    display: block;
+}
+
+.defaultHeader__subContentUser {
+    margin: 0px -1px;
+    width: 120px;
+    background: #FFF;
+
+    li {
+        padding-left: 10px;
+
+        a {
+            color: #59352f;
+        }
+    }
+}
+
+.headerLogoMobile {
+    display: block;
+    width: 152px;
+    margin: 30px auto;
+
+    @include desktop {
+        display: none;
+    }
+}

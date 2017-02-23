@@ -1,0 +1,44 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            # activate different ways to authenticate
+
+            http_basic: ~
+            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            form_login:
+                login_path: login
+                check_path: login
+            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+            pattern:    ^/
+            provider: our_db_provider
+
+            logout:
+                path:   /deconnexion
+                target: /
+
+    encoders:
+        AppBundle\Entity\User: bcrypt
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/recette/nouveau, roles: ROLE_USER }
+        - { path: ^/recette/[^/]+/favori, roles: ROLE_USER }
+
+    access_denied_url: /404

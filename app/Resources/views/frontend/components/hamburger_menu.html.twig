@@ -1,0 +1,46 @@
+<div class="hamburgerMenu__icon">
+    <div class="hamburgerMenu__iconLines"></div>
+    <div class="hamburgerMenu__iconLines"></div>
+    <div class="hamburgerMenu__iconLines"></div>
+</div>
+
+<div class="hamburgerMenu">
+
+    <div class="hamburgerMenu__top">
+        <a href="{{ path('homepage') }}">
+            <img class="hamburgerMenu__logo" src="{{ asset('assets/img/logo.png') }}" alt="">
+        </a>
+    </div>
+
+    <div class="hamburgerMenu__menu">
+        <a class="hamburgerMenu__nav" href="{{ path('recipe_popular') }}">
+            <img class="hamburgerMenu__imgs" src="{{ asset('assets/img/food.png') }}" alt="">
+            <span class="hamburgerMenu__texts">Recettes</span>
+        </a>
+
+        <a class="hamburgerMenu__nav" href="#">
+            <img class="hamburgerMenu__imgs" src="{{ asset('assets/img/pot.png') }}" alt="">
+            <span class="hamburgerMenu__texts">Catégories</span>
+        </a>
+
+        <a class="hamburgerMenu__nav" href="{{ path('recipe_new') }}">
+            <img class="hamburgerMenu__imgs" src="{{ asset('assets/img/write.png') }}" alt="">
+            <span class="hamburgerMenu__texts">Ecrire une recette</span>
+        </a>
+
+        {% include 'frontend/components/search_by_col.html.twig' %}
+
+        <input class="hamburgerMenu__search" type="search" name="" value="" placeholder="Rechercher">
+
+        <div class="hamburgerMenu__login">
+            <img src="{{ asset('assets/img/lock.png') }}" alt="">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a class="hamburgerMenu__texts" href="{{ path('logout') }}">Deconnexion</a>
+            {% else %}
+                <a class="hamburgerMenu__texts" href="{{ path('login') }}">Se connecter</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>

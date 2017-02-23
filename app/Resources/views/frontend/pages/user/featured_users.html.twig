@@ -1,0 +1,71 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} popularsList{% endblock %}
+
+{% block title %}Populars | List{% endblock %}
+
+{% block content %}
+
+<div class="defaultContainer">
+
+    <div class="mainContent">
+
+        {% include 'frontend/components/search_by_col.html.twig' %}
+
+        <div class="popularProfiles">
+
+            <div class="popularProfiles__title">
+                <img src="{{ asset('assets/img/searchByCol1.png') }}" alt="">
+                {% if pageType == 'recherche' %}
+                    <h2>Profils recherchés</h2>
+                {% elseif pageType == 'populaires' %}
+                    <h2>Profils populaires</h2>
+                {% endif %}
+            </div>
+
+            <ul class="popularProfiles__list">
+
+                {% for user in users %}
+
+                    <li>
+                        <div class="popularProfiles__imgsContainer">
+                            {% if user.image is not null %}
+                                <img src="{{ asset('uploads/user/') }}{{ user.image }}" class="popularProfiles__imgs">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_users.png') ~ user.image }}" class="popularProfiles__imgs">
+                            {% endif %}
+                        </div>
+                        <div class="popularProfiles__infos">
+                            <a href="{{ path('user_show', {'id':user.userId}) }}">
+                                <h5 class="popularProfiles__names">{{ user.username }}</h5>
+                            </a>
+                            {% if user.recipes|length == 1 %}
+                                <p class="popularProfiles__recipes">{{ user.recipes|length }} recette</p>
+                            {% else %}
+                                <p class="popularProfiles__recipes">{{ user.recipes|length }} recettes</p>
+                            {% endif %}
+                        </div>
+                        {% if pageType == 'populaires' %}
+                            <div class="popularProfiles__followers">
+                                {% if user.total_follows == 1 %}
+                                    <p>{{ user.total_follows }} follower</p>
+                                {% else %}
+                                    <p>{{ user.total_follows }} followers</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} userProfile{% endblock %}
+
+{% block title %}User | Show{% endblock %}
+
+{% block content %}
+
+<div class="defaultContainer">
+
+    <div class="mainContent profileContent">
+
+        <div class="profile profileCards">
+            <div class="profile__title profileCards__title">
+                <img src="{{ asset('assets/img/user.png') }}" alt="">
+                <h2>Profil</h2>
+            </div>
+            {% if user.image is not null %}
+                <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
+            {% else %}
+                <img class="profile__img" src="{{ asset('assets/img/default_users.png') }}" alt="">
+            {% endif %}
+            <div class="profile__infos">
+                <h4 class="profile__name">{{ user.username }}</h4>
+                {% if recipes|length == 1 %}
+                    <p class="profile__recipes">{{ recipes|length }} recette</p>
+                {% else %}
+                    <p class="profile__recipes">{{ recipes|length }} recettes</p>
+                {% endif %}
+
+                {% if app.user is not null %}
+
+                    {% if not checkIfFollow %}
+                        <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles" data-text="0">
+                        Suivre
+                    {% elseif checkIfFollow %}
+                        <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles" data-text="1">
+                        Se désabonner
+                    {% endif %}
+
+                    <input type="hidden" class="app_follow_token"
+                           data-href="{{ url('api_follow_user')}}"
+                           data-content="{{ app.user.userId }}_{{ user.userId }}"
+                           value="{{ followToken.value }}"
+                    >
+                    </div>
+                {% endif %}
+            </div>
+            <div class="profile__followers">
+                {% if followers|length == 1 %}
+                    <p>{{ followers|length }} follower</p>
+                {% else %}
+                    <p>{{ followers|length }} followers</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="profileFavorites profileCards">
+            <div class="profileFavorites__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Favoris</h2>
+            </div>
+            <ul class="profileFavorites__list profileCards__list">
+                {% for favorite in favorites %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            {% if favorite.recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_img.png') }}" alt="">
+                            {% endif %}
+                        </div>
+                        <a href="{{ path('recipe_show', {'recipeId': favorite.recipe.recipeId}) }}">
+                            <h4>{{ favorite.recipe.name }}</h4>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="profileRecipes profileCards">
+            <div class="profileRecipes__title profileCards__title">
+                <img src="{{ asset('assets/img/favorite.png') }}" alt="">
+                <h2>Recettes</h2>
+            </div>
+            <ul class="profileRecipes__list profileCards__list">
+                {% for recipe in recipes %}
+                    <li>
+                        <div class="profileCards__imgContainer">
+                            {% if recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_users.png') }}" alt="">
+                            {% endif %}
+                        </div>
+                        <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
+                        <h4>{{ recipe.name }}</h4>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+
+</div>
+
+{% endblock %}

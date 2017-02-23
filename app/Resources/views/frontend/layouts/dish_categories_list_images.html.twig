@@ -1,0 +1,20 @@
+<!-- Categories listed with images -->
+<ul class="dishCategoriesList">
+    {% for dishCategory in dishCategories %}
+        <li>
+            <img src="{{ asset('assets/img/cat' ~ loop.index ~ '.png') }}" alt="">
+            <a href="{{ path('dish_category_list', {'categoryId': dishCategory.categoryId}) }}">
+                <h5>{{ dishCategory.name }}</h5>
+            </a>
+            <ul class="dishCategoriesList__sublist">
+                {% for dishCategoryAll in allDishCategories %}
+                    {% if dishCategoryAll.parent is not null %}
+                        {% if dishCategoryAll.parent.categoryId == dishCategory.categoryId %}
+                            <li><a href="{{ path('dish_category_list', {'categoryId': dishCategoryAll.parent.categoryId}) }}">{{ dishCategoryAll.name }}</a></li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>

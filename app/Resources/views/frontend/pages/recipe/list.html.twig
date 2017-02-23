@@ -1,0 +1,10 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} recipeList{% endblock %}
+
+{% block title %}Recipe | List{% endblock %}
+
+{% block content %}
+    Recipe Index
+    {{ dump(recipes) }}
+{% endblock %}

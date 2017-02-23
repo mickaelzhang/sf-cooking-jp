@@ -1,0 +1,29 @@
+// Default
+@import 'general/defaultTemplate';
+
+// Components reusables
+@import 'components/ads',
+        'components/recipeCard',
+        'components/profileCards',
+        'components/midCol',
+        'components/hamburgerMenu',
+        'components/dishCategoriesListImages',
+        'components/comments',
+        'components/recipeSmallCard',
+        'components/errorPage';
+
+// Layouts scss
+@import 'layouts/defaultFooter',
+        'layouts/popularRecipes',
+        'layouts/popularProfiles',
+        'layouts/lastRecipes',
+        'layouts/categoriesCard',
+        'layouts/categories',
+        'layouts/profile',
+        'layouts/profileFavorites',
+        'layouts/profileRecipes',
+        'layouts/searchByCol';
+
+// Pages
+@import 'pages/home',
+        'pages/_recipePopularLatest';

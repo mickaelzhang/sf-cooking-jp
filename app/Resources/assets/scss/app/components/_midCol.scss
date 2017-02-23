@@ -1,0 +1,9 @@
+.midCol {
+    width: 470px;
+    margin-left: 10px;
+
+    @include phone {
+        width: 95vw;
+        margin-left: 0;
+    }
+}

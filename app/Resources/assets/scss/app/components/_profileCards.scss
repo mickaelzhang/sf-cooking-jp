@@ -1,0 +1,84 @@
+.profileCards {
+    width: 655px;
+    position: relative;
+    border-radius: 3px;
+    background: #FFF;
+    height: 280px;
+    margin-top: 10px;
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 12px;
+        background: #f5a623;
+        border-radius: 3px 3px 0 0;
+    }
+
+    @include phone {
+        width: 95vw;
+        margin: 10px auto;
+        height: auto;
+    }
+}
+
+.profileCards__title {
+    margin: 20px 20px 15px 20px;
+
+    h2 {
+        letter-spacing: 0.3px;
+        color: #f5a623;
+        font-size: 18px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    img {
+        width: 30px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}
+
+.profileCards__list {
+    height: 215px;
+    display: flex;
+    background: #FFF;
+    justify-content: flex-start;
+
+    @include phone {
+        flex-direction: column;
+        height: auto;
+    }
+
+    li {
+        width: 190px;
+        margin: 0 10px;
+        text-align: center;
+        margin: 12.5px 14px;
+
+        @include phone {
+            width: 100%;
+            margin: 12.5px 0;
+        }
+
+        .profileCards__imgContainer {
+            overflow: hidden;
+            height: 110px;
+        }
+
+        img {
+            width: 190px;
+            clip-path: inset(0% 10% 0% 10%);
+        }
+
+        h4 {
+            font-size: 16px;
+            letter-spacing: 0.2px;
+            text-align: center;
+            color: #f5a623;
+            margin-top: 10px;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+.dashboardCard {
+    width: 445px;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    background: #f5f5f5;
+}
+
+.dashboardCard__title {
+    background: #f7f4ee;
+    height: 30px;
+    border-radius: 5px 5px 0 0;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-left: 20px;
+        line-height: 1.5;
+    }
+}
+
+.dashboardCard__data {
+    height: 120px;
+    background: #f5f5f5;
+    font-size: 60px;
+    text-align: center;
+    line-height: 1.8;
+    color: $green-limeade;
+}
+
+.dashboardCard__list {
+
+    li {
+        padding: 10px 10px;
+        background: #FFF;
+        width: 400px;
+        margin: 10px auto;
+        border: solid thin #FFF;
+        border-radius: 5px;
+
+        a {
+            color: #000;
+        }
+    }
+}

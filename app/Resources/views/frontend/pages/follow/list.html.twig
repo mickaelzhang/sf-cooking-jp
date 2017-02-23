@@ -1,0 +1,10 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} favoriteList{% endblock %}
+
+{% block title %}Follow | List{% endblock %}
+
+{% block content %}
+    Follow Index
+    {{ dump(follows) }}
+{% endblock %}

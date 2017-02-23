@@ -1,0 +1,28 @@
+{% extends 'frontend/bases/default.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block page_id %}{{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="globalContentContainer">
+        {% block header %}
+            {% include 'frontend/layouts/default_header.html.twig' %}
+            {% include 'frontend/components/hamburger_menu.html.twig' %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+            {% include 'frontend/layouts/default_footer.html.twig' %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}

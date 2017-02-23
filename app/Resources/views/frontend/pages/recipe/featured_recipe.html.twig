@@ -1,0 +1,34 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} mostPopularRecipeList{% endblock %}
+
+{% block title %}Délice du Japon | Recettes {{ pageType }}{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="smallCards">
+            {% if pageType == 'recherche' %}
+                <div class="pageTitle">Résultats de recherche</div>
+            {% elseif pageType == 'mes-recettes' %}
+                <div class="pageTitle">Mes recettes</div>
+            {% else %}
+                <div class="pageTitle">Recettes les plus {{ pageType }}</div>
+            {% endif %}
+
+            {% for recipe in recipes  %}
+
+                {% include 'frontend/components/recipe_small_card.html.twig' with {'recipe': recipe} %}
+
+            {% endfor %}
+
+        </div>
+
+        <div class="ads">
+            <img src="{{ asset('assets/img/_PUB1.png') }}" alt="">
+            <img src="{{ asset('assets/img/_PUB2.png') }}" alt="">
+        </div>
+    </div>
+
+{% endblock %}

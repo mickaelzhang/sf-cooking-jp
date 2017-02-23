@@ -1,0 +1,48 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} login{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            <div class="forms">
+
+                <div class="forms__title">
+                    <img src="{{ asset('assets/img/lockGreen.png') }}" alt="">
+                    <h2>Connexion</h2>
+                </div>
+
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <form action="{{ path('login') }}" method="post">
+
+                    <div class="forms__inputsContainer">
+                        <label for="username" class="forms__labels">Mon pseudo</label>
+                        <input class="forms__inputs forms__inputsFull" type="text" id="username" name="_username" value="{{ last_username }}" />
+
+                        <label for="username" class="forms__labels">Mon mot de passe</label>
+                        <input class="forms__inputs forms__inputsFull" type="password" id="password" name="_password" />
+
+                        <p class="forms__noAccount">Vous n'avez pas de compte ? <a href="{{ path('user_registration') }}">Créer un compte</a></p>
+
+                        <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Connexion</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
+{% endblock %}

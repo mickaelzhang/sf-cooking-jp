@@ -1,0 +1,16 @@
+logout:
+    path: /deconnexion
+
+front_office:
+    resource: "@FrontOfficeBundle/Controller/"
+    type:     annotation
+
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+api:
+    resource: "@ApiBundle/Controller/"
+    type:     annotation
+    prefix:   /api

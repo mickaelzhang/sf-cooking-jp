@@ -1,0 +1,48 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} register{% endblock %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            <div class="forms">
+
+                <div class="forms__title">
+                    <img src="{{ asset('assets/img/lockGreen.png') }}" alt="">
+                    <h2>Inscription</h2>
+                </div>
+
+                <div class="forms__inputsContainer">
+                    {{ form_start(form) }}
+                        {{ form_row(form.username) }}
+                        {{ form_row(form.email) }}
+
+                        <div class="forms__rows">
+                            {{ form_row(form.firstname) }}
+                            {{ form_row(form.lastname) }}
+                        </div>
+
+                        <div class="forms__rows">
+                            {{ form_row(form.plainPassword.first) }}
+                            {{ form_row(form.plainPassword.second) }}
+                        </div>
+                        {{ form_row(form.image) }}
+
+                        <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Je m'inscris</button>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+{% endblock %}

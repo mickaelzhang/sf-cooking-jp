@@ -1,0 +1,10 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} favoriteList{% endblock %}
+
+{% block title %}Favorite | List{% endblock %}
+
+{% block content %}
+    Favorite Index
+    {{ dump(favorites) }}
+{% endblock %}

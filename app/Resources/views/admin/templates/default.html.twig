@@ -1,0 +1,26 @@
+{% extends 'admin/bases/default.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block body %}
+    <div class="globalContentContainer">
+        {% block header %}
+            {% include 'admin/layouts/default_header.html.twig' %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_id %}{{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}

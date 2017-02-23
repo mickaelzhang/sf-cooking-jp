@@ -1,0 +1,15 @@
+<!-- Categories listed in the searchByCol component -->
+<div class="searchByCol__title">
+    <h4>Catégories</h4>
+</div>
+
+<ul class="searchByCol__list">
+    {% for dishCategory in dishCategories %}
+        <li>
+            <img src="{{ asset('assets/img/cat' ~ loop.index ~ '.png') }}" alt="">
+            <a href="{{ path('dish_category_list', {'categoryId': dishCategory.categoryId}) }}">
+                {{ dishCategory.name }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

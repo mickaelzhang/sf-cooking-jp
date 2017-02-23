@@ -1,0 +1,28 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} userEdit{% endblock %}
+
+{% block content %}
+
+<div class="defaultContainer">
+
+    <div class="mainContent">
+
+        {% include 'frontend/components/search_by_col.html.twig' %}
+
+        <div class="forms">
+            <div class="forms__title">
+                <h1>Paramètres du profil</h1>
+            </div>
+            <div class="forms__inputsContainer">
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <input class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit" value="Editer" />
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+    </div>
+
+    {% include 'frontend/components/ads.html.twig' %}
+</div>
+{% endblock %}

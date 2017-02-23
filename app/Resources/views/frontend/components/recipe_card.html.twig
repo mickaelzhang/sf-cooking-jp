@@ -1,0 +1,102 @@
+<div class="recipeCard">
+
+    <div class="wrapper">
+        <div class="recipeCardHeader">
+            <div class="recipeAuthor">
+                {% if recipe.author.image is not null %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+                {% else %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author.image }}')"></div>
+                {% endif %}
+
+                <div class="recipeAuthor__username">
+                    <a class="recipeAuthor__link" href="{{ path('user_show', {'id': recipe.author.userId}) }}">{{ recipe.author.username }}</a>
+                </div>
+            </div>
+            {% if app.user %}
+                <div class="addToFavorite favoriteButton">
+                    {% if favorite is null %}
+                        <div class="addToFavorite__text" data-text="0">
+                        Ajouter aux favoris
+                    {% else %}
+                        <div class="addToFavorite__text" data-text="1">
+                        Retirer des favoris
+                    {% endif %}
+                    <input type="hidden" class="app_favorite_token"
+                           data-href="{{ url('api_favorite_add')}}"
+                           data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                           value="{{ favoriteToken.value }}"
+                    >
+                        </div>
+                        <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="recipeInfos">
+            <div class="recipeImageContainer">
+                {% if recipe.image is not null %}
+                    <img class="recipeImage" src="{{ asset("uploads/recipe/") ~ recipe.image }}" />
+                {% else %}
+                    <img class="recipeImage" src="{{ asset("assets/img/default_img.png") }}" />
+                {% endif %}
+            </div>
+            <div class="recipeInfosContainer">
+                <h2>{{ recipe.name }}</h2>
+                <ul class="recipesInfosContainer__indications">
+                    <li>
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        {% if recipe.difficulty == '1' %}
+                            Facile
+                        {% elseif recipe.difficulty == '2' %}
+                            Moyen
+                        {% elseif recipe.difficulty == '3' %}
+                            Difficile
+                        {% endif %}
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/time.png') }}" alt="">
+                        {{ recipe.preparationTime|date('i') }} min
+                    </li>
+                    <li>
+                        <img src="{{ asset('assets/img/hotPot.png') }}" alt="">
+                        {{ recipe.cookingTime|date('i') }} min
+                    </li>
+                </ul>
+
+                <div class="recipesInfosContainer__ingredients">
+                    <h3>Ingrédients</h3>
+                    <div>
+                        {{ recipe.ingredients|nl2br }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recipeInstruction">
+            {{ recipe.instructions|nl2br }}
+        </div>
+
+        <div class="comments">
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {{ form_start(commentForm) }}
+                    {{ form_widget(commentForm) }}
+                    <button class="forms__inputs forms__inputsFull forms__inputsSubmit" type="submit">Envoyer</button>
+                {{ form_end(commentForm) }}
+
+                <div class="comments__more">Commentaires</div>
+
+                {% for comment in comments %}
+                    <div class="comments__single">
+                        <span class="comments__usernames">{{ comment.username }}</span>
+                        <span class="comments__dates">le {{ comment.publishedAt.date|date('d/m/Y à g:i') }}</span>
+                        <p class="comments__messages">{{ comment.message }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="comments__more"><a href="{{ path('login') }}">Connectez-vous pour commenter</a></div>
+            {% endif %}
+        </div>
+    </div>
+</div>

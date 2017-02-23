@@ -1,0 +1,154 @@
+.recipeCard {
+    background-color: $white;
+    border-radius: 5px;
+    width: 660px;
+    height: 100%;
+
+    @include tablet {
+        margin: auto;
+    }
+
+    @include phone {
+        width: 95vw;
+        margin: auto;
+    }
+}
+
+.recipeCardHeader {
+    padding-top: 5px;
+    color: $orange-buttercup;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipeAuthor {
+    display: flex;
+    align-items: center;
+}
+
+.recipeAuthor__img {
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.recipeAuthor__username {
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.recipeAuthor__link {
+    text-decoration:none;
+    color:$orange-buttercup;
+
+    &:hover {
+        text-decoration:underline;
+    }
+
+    &:visited {
+        color: $orange-buttercup;
+        text-decoration:none;
+    }
+}
+
+.addToFavorite {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.addToFavorite__text {
+    margin-right: 10px;
+
+    @include phone {
+        display: none;
+    }
+}
+
+.addToFavorite__icon {
+    width: 23px;
+}
+
+.recipeInfos {
+    display: flex;
+    margin-top: 10px;
+    @include phone {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+.recipeImageContainer {
+    max-height: 300px;
+    min-height: 150px;
+    width: 265px;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.recipeImage {
+    height: auto;
+    width: 265px;
+    background-color: $gray;
+    @include phone {
+        margin-right: 0;
+    }
+}
+
+.recipeInfosContainer {
+    flex: 1;
+
+    h2 {
+        font-size: 24px;
+        color: $green-limeade;
+        font-weight: 500;
+    }
+    @include phone {
+        margin: 10px 0;
+    }
+}
+
+.recipesInfosContainer__indications {
+    display: flex;
+    @include phone {
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+
+.recipesInfosContainer__indications li {
+    margin-right: 15px;
+
+    img {
+        height: 15px;
+    }
+}
+
+.recipesInfosContainer__ingredients {
+    margin-top: 15px;
+    line-height: 1.5;
+
+    h3 {
+        font-size: 21px;
+        font-weight: 600;
+        color: $white-rock;
+        margin-bottom: 5px;
+    }
+
+    ul {
+        li {
+            margin-top: 5px;
+        }
+    }
+}
+
+.recipeInstruction {
+    margin-top: 45px;
+    margin-bottom: 45px;
+    line-height: 1.5;
+}

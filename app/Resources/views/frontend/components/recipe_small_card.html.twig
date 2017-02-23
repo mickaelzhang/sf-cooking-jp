@@ -1,0 +1,52 @@
+<div class="smallCard">
+    <div class="wrapper">
+        <div class="smallCard__container">
+
+            {% if recipe.image is not null %}
+                <img class="largeImage" src="{{ asset("uploads/recipe/") ~ recipe.image }}" />
+            {% else %}
+                <img class="largeImage" src="{{ asset("assets/img/default_img.png") }}" />
+            {% endif %}
+            <div class="smallCardInfos">
+
+                <div class="smallCardAuthor">
+                    {% if recipe.author_image is not null %}
+                        <div class="smallCardAuthor__image" style="background-image:url('{{ asset("uploads/user/") ~ recipe.author_image }}')"></div>
+                    {% else %}
+                        <div class="smallCardAuthor__image" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author_image }}')"></div>
+                    {% endif %}
+                    <div class="smallCardAuthor__username">
+                        <a href="{{ path('user_show', {'id': recipe.userId}) }}">{{ recipe.username }}</a>
+                    </div>
+                </div>
+
+                <ul class="smallCardIndications">
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                        {% if recipe.difficulty == '1' %}
+                            Facile
+                        {% elseif recipe.difficulty == '2' %}
+                            Moyen
+                        {% elseif recipe.difficulty == '3' %}
+                            Difficile
+                        {% endif %}
+                    </li>
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/time.png') }}" alt="">
+                        {{ recipe.cookingTime|date('i') }} min
+                    </li>
+                    <li class="smallCardIndications__indication">
+                        <img src="{{ asset('assets/img/hotPot.png') }}" alt="">
+                        {{ recipe.preparationTime|date('i') }} min
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+        <a href="{{ path('recipe_show', {'recipeId':recipe.recipeId}) }}">
+            <h3 class="smallCard__name">{{ recipe.name }}</h3>
+        </a>
+
+    </div>
+</div>

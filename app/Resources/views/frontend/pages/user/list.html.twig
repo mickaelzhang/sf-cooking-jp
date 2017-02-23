@@ -1,0 +1,10 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} userList{% endblock %}
+
+{% block title %}Users | List{% endblock %}
+
+{% block content %}
+    Users Index
+    {{ dump(users) }}
+{% endblock %}

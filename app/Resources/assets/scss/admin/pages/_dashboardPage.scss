@@ -1,0 +1,17 @@
+.dashboardPage {
+    width: 100%;
+    background: #FFF;
+    border-radius: 5px;
+}
+
+.dashboardPage__title {
+    color: #3f2d20;
+    font-size: 28px;
+    margin: 18px 20px;
+}
+
+.dashboardPage__container {
+    display: flex;
+    justify-content: space-between;;
+    margin: 0 20px;
+}

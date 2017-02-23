@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+// Common base
+@import
+    'base/reset',
+    'base/fonts',
+    'base/variables',
+    'base/base';
+
+// Common components
+@import
+    'components/forms',
+    'components/defaultHeader';
+
+@import 'utils/mixins';
+@import 'utils/functions';

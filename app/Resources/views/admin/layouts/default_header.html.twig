@@ -1,0 +1,53 @@
+<a class="headerLogoMobile" href="{{ path('homepage') }}">
+    <img src="{{ asset('assets/img/logo.png') }}" alt="">
+</a>
+
+<header class="defaultHeader">
+    <div class="defaultHeader__container">
+        <a href="{{ path('homepage') }}">
+            <img class="defaultHeader__logo" src="{{ asset('assets/img/logo.png') }}" alt="">
+        </a>
+        <ul class="defaultHeader__menu">
+
+            <li class="defaultHeader__navContainer">
+                <a class="defaultHeader__nav" href="{{ path('dashboard') }}">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/dashboard.png') }}" alt="">
+                    <span class="defaultHeader__texts">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="defaultHeader__navContainer defaultHeader__hasSubMenu">
+                <a class="defaultHeader__nav" href="{{ path('admin_user_list') }}">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/userAdmin.png') }}" alt="">
+                    <span class="defaultHeader__texts">Utilisateurs</span>
+                </a>
+            </li>
+
+            <li class="defaultHeader__navContainer">
+                <a class="defaultHeader__nav" href="{{ path('admin_recipe_list') }}">
+                    <img class="defaultHeader__imgs" src="{{ asset('assets/img/recipesAdmin.png') }}" alt="">
+                    <span class="defaultHeader__texts">Recettes</span>
+                </a>
+            </li>
+
+            <li class="defaultHeader__navContainer noHover defaultHeader__hasSubMenu">
+                <div class="defaultHeader__login">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <img src="{{ asset('assets/img/user.png') }}" alt="">
+                        <span class="defaultHeader__texts" href="#">{{ app.user.username }}</span>
+                        <div class="defaultHeader__subContent defaultHeader__subContentUser">
+                            <ul>
+                                <li><a href="{{ path('user_edit') }}">Paramètres</a></li>
+                                <li><a href="{{ path('logout') }}">Se déconnecter</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <img src="{{ asset('assets/img/lock.png') }}" alt="">
+                        <a class="defaultHeader__texts" href="{{ path('login') }}">Se connecter</a>
+                    {% endif %}
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</header>

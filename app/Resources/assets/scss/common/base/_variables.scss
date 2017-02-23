@@ -1,0 +1,36 @@
+/**
+ *  COLOR
+ *  Use http://chir.ag/projects/name-that-color/
+ */
+
+$white: #FFF;
+$black: #000;
+$gray: #D3D3D3;
+
+$orange-buttercup: #F6A623;
+$brown-buccaneer: #59352F;
+$brown-tana: #DED5BF;
+$green-limeade: #849907;
+$white-rock: #E6E0CD;
+$white-springwood: #F8F6F0;
+
+$tablet-width: 650px;
+$desktop-width: 970px;
+
+@mixin phone {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

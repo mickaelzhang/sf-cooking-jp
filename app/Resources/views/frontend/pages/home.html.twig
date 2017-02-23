@@ -1,0 +1,117 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} home{% endblock %}
+
+{% block title %}
+    Délice du Japon | Accueil
+{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            <div class="popularRecipes midCol">
+                <div class="popularRecipes__title">
+                    <h2>Recettes les plus populaires</h2>
+                </div>
+
+                {% for favorite in favorites %}
+                    <div class="popularRecipes__card">
+                        {% if favorite.image is not null %}
+                            <img class="popularRecipes__img" src="{{ asset('uploads/recipe/') ~ favorite.image }}" alt="">
+                        {% else %}
+                            <img class="popularRecipes__img" src="{{ asset('assets/img/default_img.png') }}" alt="">
+                        {% endif %}
+
+                        <div class="popularRecipes__infos">
+                            <div class="popularRecipes__infosLeft">
+                                {% if favorite.author_image is not null %}
+                                    <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('uploads/user/') ~ favorite.author_image }}')"></div>
+                                {% else %}
+                                    <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('assets/img/default_users.png') }}')"></div>
+                                {% endif %}
+                                <a href="{{ path('user_show', {'id': favorite.userId}) }}">
+                                    <h4 class="popularRecipes__username">{{ favorite.username }}</h4>
+                                </a>
+                            </div>
+
+                            <div class="popularRecipes__infosRight">
+                                <a href="{{ path('recipe_show', {'recipeId': favorite.recipeId}) }}">
+                                    <h3 class="popularRecipes__names">{{ favorite.name }}</h3>
+                                </a>
+                                <ul class="popularRecipes__indications">
+                                    <li>
+                                        <img src="{{ asset('assets/img/chef.png') }}" alt="">
+                                        {% if favorite.difficulty == '1' %}
+                                            Facile
+                                        {% elseif favorite.difficulty == '2' %}
+                                            Moyen
+                                        {% elseif favorite.difficulty == '3' %}
+                                            Difficile
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/img/time.png') }}" alt="">
+                                        {{ favorite.cookingTime|date('i') }} min
+                                    </li>
+                                    <li>
+                                        <img src="{{ asset('assets/img/hotPot.png') }}" alt="">
+                                        {{ favorite.preparationTime|date('i') }} min
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="lastRecipes">
+                <div class="lastRecipes__title">
+                    <img src="{{ asset('assets/img/lastRecipe.png') }}" alt="">
+                    <h2>Dernières recettes</h2>
+                </div>
+                <div class="lastRecipes__subtitle">
+                    <p>Les recettes récentes des internautes</p>
+                </div>
+                <ul class="lastRecipes__list">
+                    {% for recipe in recipes %}
+                        <li>
+                            <div class="lastRecipes__imgContainer">
+                                {% if recipe.image is not null %}
+                                    <img src="{{ asset('uploads/recipe/') ~ recipe.image }}">
+                                {% else %}
+                                    <img src="{{ asset('assets/img/default_img.png') ~ recipe.image }}">
+                                {% endif %}
+                            </div>
+                            <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
+                                <h4>{{ recipe.name }}</h4>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="categoriesCard">
+                <div class="categoriesCard__title">
+                    <img src="{{ asset('assets/img/dish.png') }}" alt="">
+                    <h2>Catégories</h2>
+                </div>
+                <div class="categoriesCard__subtitle">
+                    <p>Des recettes pour tout les goûts</p>
+                </div>
+
+                {{ render(controller('FrontOfficeBundle:Default:listDishCategoryImages')) }}
+
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
+
+{% endblock %}

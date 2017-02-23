@@ -1,0 +1,48 @@
+{% extends 'admin/templates/default.html.twig' %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="table">
+
+            <div class="table__title">
+                <h2>Liste des utilisateurs</h2>
+            </div>
+
+            <table class="table__list">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Pseudo</th>
+                    <th>Email</th>
+                    <th>Date d'inscription</th>
+                    <th>Vérifié</th>
+                    <th>Voir</th>
+                    <th>Editer</th>
+                </tr>
+
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>register date here</td>
+                        <td>
+                            {% if user.isVerified == 1 %}
+                                Oui
+                            {% else %}
+                                Non
+                            {% endif %}
+                        </td>
+                        <td><a href="{{ path('user_show', {'id': user.userId}) }}">Voir</a></td>
+                        <td><a href="{{ path('admin_user_edit', {'id': user.userId}) }}">Editer</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

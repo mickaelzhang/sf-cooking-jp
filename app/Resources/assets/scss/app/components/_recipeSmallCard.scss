@@ -1,0 +1,86 @@
+.smallCard {
+    background-color:$white;
+    margin-bottom:5px;
+    border:1px solid $brown-tana;
+    box-sizing: border-box;
+    border-radius:2.5px;
+    width: 650px;
+
+    @include tablet {
+        margin: auto;
+    }
+
+    @include phone {
+        margin: auto;
+        width: 95vw;
+    }
+}
+
+.smallCard__container {
+    display:flex;
+    padding-top:10px;
+    overflow: hidden;
+    max-height: 260px;
+}
+
+.largeImage {
+    background-color:$gray;
+    width:450px;
+    max-width: 450px;
+    height: 100%;
+
+    @include phone {
+        width: 75%;
+    }
+}
+
+.smallCardInfos {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+}
+
+.smallCardAuthor {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-bottom:20px;
+
+    a {
+        color: $brown-buccaneer;
+    }
+}
+
+.smallCardAuthor__image {
+    height:23px;
+    width:23px;
+    border-radius:50%;
+    background-color:$gray;
+    background-size:cover;
+    background-position:center center;
+}
+
+.smallCardAuthor__username {
+    font-size: 11px;
+}
+
+
+.smallCardIndications__indication {
+    margin-bottom:15px;
+
+    img {
+        width: 15px;
+    }
+}
+
+.smallCard__name {
+    font-size:17px;
+    color:$green-limeade;
+    font-weight:600;
+    margin:15px 0;
+
+    &:hover {
+        text-decoration:underline;
+    }
+}

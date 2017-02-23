@@ -1,0 +1,18 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} recipePage{% endblock %}
+
+{% block title %}Délice du Japon | {{ recipe.name }}{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+        {% include('frontend/components/recipe_card.html.twig') %}
+
+        <div class="ads">
+            <img src="{{ asset('assets/img/_PUB1.png') }}" alt="">
+            <img src="{{ asset('assets/img/_PUB2.png') }}" alt="">
+        </div>
+    </div>
+
+{% endblock %}

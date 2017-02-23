@@ -1,0 +1,53 @@
+.dishCategoriesList {
+    display: flex;
+    justify-content: space-around;
+    background: #FFF;
+    height: 180px;
+
+    @include phone {
+        height: auto;
+        flex-flow: row wrap;
+        padding: 0 210px 0 0;
+        padding: 0 15%;
+    }
+}
+
+.dishCategoriesList li {
+    width: 100px;
+    text-align: center;
+
+    img {
+        margin-top: 30px;
+        height: 40px;
+    }
+
+    h5 {
+        font-weight: 700;
+        color: #59352f;
+        margin: 10px 0px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.dishCategoriesList__sublist {
+    margin: 10px 20px;
+
+    li {
+        list-style-image: url('../img/listStyle.svg');
+        text-align: left;
+        list-style-position: inside;
+        font-size: 12px;
+        letter-spacing: 0.1px;
+        line-height: 1.5;
+
+        a {
+            text-decoration: none;
+            color: #59352f;
+        }
+    }
+
+    @include phone {
+        display: none;
+    }
+}

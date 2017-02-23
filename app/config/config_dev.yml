@@ -1,0 +1,66 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        strict_requirements: true
+    profiler: { only_exceptions: false }
+
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
+
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            channels: [!event]
+        console:
+            type:   console
+            channels: [!event, !doctrine]
+        # uncomment to get logging in your browser
+        # you may have to allow bigger header sizes in your Web server configuration
+        #firephp:
+        #    type:   firephp
+        #    level:  info
+        #chromephp:
+        #    type:   chromephp
+        #    level:  info
+
+#swiftmailer:
+#    delivery_addresses: ['me@example.com']
+
+
+bazinga_faker:
+    orm: doctrine
+    entities:
+        AppBundle\Entity\User:
+            number: 3
+            custom_formatters:
+                Password: { method: password }
+                ChangedToAdminByUser: { method: null }
+                IsAdminSince: { method: null }
+                Image: { method: file, optional: 1 }
+                IsVerified: { method: numberBetween, parameters: ['0', '0'] }
+                VerifiedBy: { method: numberBetween, optional: 1 }
+                VerifiedSince: { method: dateTimeAD, optional: 1 }
+
+        AppBundle\Entity\DishCategory:
+            number: 6
+            custom_formatters:
+                Name: { method: sentence, parameters: [ '2', 'true' ] }
+                Parent: { method: numberBetween, optional: 1 }
+
+        AppBundle\Entity\Recipe:
+            number: 10
+            custom_formatters:
+                Name: { method: sentence, parameters: [ '3', 'true' ] }
+                ServingSize: { method: numberBetween, parameters: [ '1', '10' ] }
+                Difficulty: { method: numberBetween, parameters: [ '1', '5' ] }
+                Image: { method: file, optional: 1 }
+
+        AppBundle\Entity\UserFavoriteRecipe:
+            number: 10

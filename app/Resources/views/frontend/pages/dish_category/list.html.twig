@@ -1,0 +1,60 @@
+{% extends 'frontend/templates/default.html.twig' %}
+
+{% block page_id %}{{ parent() }} dishCategory List{% endblock %}
+
+{% block title %}DishCategory | List{% endblock %}
+
+{% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            <div class="categories">
+
+                <div class="categories__nav">
+                    <h4 class="categories__subLabel">Sous-catégories</h4>
+                    <ul class="categories__sublist">
+                        {% for category in categories %}
+                            {% if category.categoryId != parentCategory.categoryId %}
+                                <li>
+                                    <a href="{{ path('dish_category_list', {'categoryId': category.categoryId}) }}">{{ category.name }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="categories__recipes">
+
+                    <h2 class="categories__catName">{{ parentCategory.name }}</h2>
+
+                    <ul class="categories__recipesList">
+                        {% for recipe in recipes %}
+                        <li>
+                            <div class="categories__imagesContainers">
+                                {% if recipe.image is not null %}
+                                    <img src="{{ asset('uploads/recipe/') ~ recipe.image }}" alt="{{ recipe.name }}" class="categories__recipesImages">
+                                {% else %}
+                                    <img src="{{ asset('assets/img/default_img.png') }}" alt="{{ recipe.name }}" class="categories__recipesImages">
+                                {% endif %}
+                            </div>
+                            <h6 class="categories__recipesAuthors">{{ recipe.username }}</h6>
+                            <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
+                                <h4 class="categories__recipesNames">{{ recipe.name }}</h4>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
+
+{% endblock %}
