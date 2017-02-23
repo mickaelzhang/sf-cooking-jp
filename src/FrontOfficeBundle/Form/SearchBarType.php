@@ -25,7 +25,7 @@ class SearchBarType extends AbstractType
                     'Utilisateur' => 'user',
                     'Recette' => 'recipe'
                 ),
-                'required' => true
+                'required' => true,
             ))
             ->add('searchInput', SearchType::class);
     }

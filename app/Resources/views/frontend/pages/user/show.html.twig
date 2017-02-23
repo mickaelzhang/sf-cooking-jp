@@ -15,7 +15,11 @@
                 <img src="{{ asset('assets/img/user.png') }}" alt="">
                 <h2>Profil</h2>
             </div>
-            <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
+            {% if user.image is not null %}
+                <img class="profile__img" src="{{ asset('uploads/user/' ~ user.image) }}" alt="">
+            {% else %}
+                <img class="profile__img" src="{{ asset('assets/img/default_users.png') }}" alt="">
+            {% endif %}
             <div class="profile__infos">
                 <h4 class="profile__name">{{ user.username }}</h4>
                 {% if recipes|length == 1 %}
@@ -25,13 +29,20 @@
                 {% endif %}
 
                 {% if app.user is not null %}
-                    <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles">
-                         Suivre
-                        <input type="hidden" class="app_follow_token"
-                               data-href="{{ url('api_follow_user')}}"
-                               data-content="{{ app.user.userId }}_{{ user.userId }}"
-                               value="{{ followToken.value }}"
-                        >
+
+                    {% if not checkIfFollow %}
+                        <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles" data-text="0">
+                        Suivre
+                    {% elseif checkIfFollow %}
+                        <div class="followButton forms__inputs forms__inputsSubmit forms__inputsProfiles" data-text="1">
+                        Se désabonner
+                    {% endif %}
+
+                    <input type="hidden" class="app_follow_token"
+                           data-href="{{ url('api_follow_user')}}"
+                           data-content="{{ app.user.userId }}_{{ user.userId }}"
+                           value="{{ followToken.value }}"
+                    >
                     </div>
                 {% endif %}
             </div>
@@ -53,7 +64,11 @@
                 {% for favorite in favorites %}
                     <li>
                         <div class="profileCards__imgContainer">
-                            <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                            {% if favorite.recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_img.png') }}" alt="">
+                            {% endif %}
                         </div>
                         <a href="{{ path('recipe_show', {'recipeId': favorite.recipe.recipeId}) }}">
                             <h4>{{ favorite.recipe.name }}</h4>
@@ -72,7 +87,11 @@
                 {% for recipe in recipes %}
                     <li>
                         <div class="profileCards__imgContainer">
-                            <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                            {% if recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_users.png') }}" alt="">
+                            {% endif %}
                         </div>
                         <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
                         <h4>{{ recipe.name }}</h4>

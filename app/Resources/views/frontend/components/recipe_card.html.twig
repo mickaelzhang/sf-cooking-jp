@@ -3,32 +3,43 @@
     <div class="wrapper">
         <div class="recipeCardHeader">
             <div class="recipeAuthor">
-                <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+                {% if recipe.author.image is not null %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+                {% else %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author.image }}')"></div>
+                {% endif %}
 
-                <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
+                <div class="recipeAuthor__username">
+                    <a class="recipeAuthor__link" href="{{ path('user_show', {'id': recipe.author.userId}) }}">{{ recipe.author.username }}</a>
+                </div>
             </div>
             {% if app.user %}
                 <div class="addToFavorite favoriteButton">
-                    <div class="addToFavorite__text">
-                        {% if favorite is null %}
-                            Ajouter aux favoris
-                        {% else %}
-                            Retirer des favoris
-                        {% endif %}
-                        <input type="hidden" class="app_favorite_token"
-                               data-href="{{ url('api_favorite_add')}}"
-                               data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
-                               value="{{ favoriteToken.value }}"
-                        >
-                    </div>
-                    <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
+                    {% if favorite is null %}
+                        <div class="addToFavorite__text" data-text="0">
+                        Ajouter aux favoris
+                    {% else %}
+                        <div class="addToFavorite__text" data-text="1">
+                        Retirer des favoris
+                    {% endif %}
+                    <input type="hidden" class="app_favorite_token"
+                           data-href="{{ url('api_favorite_add')}}"
+                           data-content="{{ app.user.userId }}_{{ recipe.recipeId }}"
+                           value="{{ favoriteToken.value }}"
+                    >
+                        </div>
+                        <img class="addToFavorite__icon" src="{{ asset('assets/img/favorite.png') }}" />
                 </div>
             {% endif %}
         </div>
 
         <div class="recipeInfos">
             <div class="recipeImageContainer">
-                <img class="recipeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
+                {% if recipe.image is not null %}
+                    <img class="recipeImage" src="{{ asset("uploads/recipe/") ~ recipe.image }}" />
+                {% else %}
+                    <img class="recipeImage" src="{{ asset("assets/img/default_img.png") }}" />
+                {% endif %}
             </div>
             <div class="recipeInfosContainer">
                 <h2>{{ recipe.name }}</h2>
