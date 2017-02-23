@@ -95,6 +95,25 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * Search by recipeId
+     *
+     * @param int $userId
+     * @return array
+     */
+    public function searchRecipeById($userId)
+    {
+        $query = $this->createQueryBuilder('r')
+            ->join('r.author', 's')
+            ->where('r.author = :userId')
+            ->setParameter('userId', $userId)
+            ->select('r.recipeId', 'r.name', 'r.image' , 'r.cookingTime', 'r.preparationTime', 'r.difficulty', 's.username', 's.image AS author_image')
+            ->getQuery();
+
+        return $query->getResult();
+    }
+
+
+    /**
      * Get last added recipes
      *
      * @param Int max results

@@ -11,6 +11,8 @@
         <div class="smallCards">
             {% if pageType == 'recherche' %}
                 <div class="pageTitle">Résultats de recherche</div>
+            {% elseif pageType == 'mes-recettes' %}
+                <div class="pageTitle">Mes recettes</div>
             {% else %}
                 <div class="pageTitle">Recettes les plus {{ pageType }}</div>
             {% endif %}

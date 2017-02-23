@@ -1,14 +1,17 @@
 <div class="smallCard">
     <div class="wrapper">
         <div class="smallCard__container">
+
             <img class="largeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
             <div class="smallCardInfos">
+
                 <div class="smallCardAuthor">
                     <div class="smallCardAuthor__image" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author_image }}')"></div>
                     <div class="smallCardAuthor__username">
                         {{ recipe.username }}
                     </div>
                 </div>
+
                 <ul class="smallCardIndications">
                     <li class="smallCardIndications__indication">
                         <img src="{{ asset('assets/img/chef.png') }}" alt="">
@@ -29,7 +32,9 @@
                         {{ recipe.preparationTime|date('i') }} min
                     </li>
                 </ul>
+
             </div>
+
         </div>
         <a href="{{ path('recipe_show', {'recipeId':recipe.recipeId}) }}">
             <h3 class="smallCard__name">{{ recipe.name }}</h3>

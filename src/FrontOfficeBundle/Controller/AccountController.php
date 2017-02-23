@@ -41,6 +41,27 @@ class AccountController extends Controller
     }
 
     /**
+     * Lists user's recipes
+     *
+     * @Route("/mes-recettes", name="my_recipes_list")
+     * @Method("GET")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function myRecipesAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userId = $user->getUserId();
+
+        $em = $this->getDoctrine()->getManager();
+        $recipes = $em->getRepository('AppBundle:Recipe')->searchRecipeById($userId);
+
+        return $this->render('@frontend/recipe/featured_recipe.html.twig', array(
+            'recipes' => $recipes,
+            'pageType' => 'mes-recettes'
+        ));
+    }
+
+    /**
      * Displays a form to edit an existing user entity.
      *
      * @Route("/parametres", name="user_edit")
