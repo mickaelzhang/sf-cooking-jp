@@ -40,6 +40,20 @@
     text-decoration: underline;
 }
 
+.recipeAuthor__link {
+    text-decoration:none;
+    color:$orange-buttercup;
+
+    &:hover {
+        text-decoration:underline;
+    }
+
+    &:visited {
+        color: $orange-buttercup;
+        text-decoration:none;
+    }
+}
+
 .addToFavorite {
     display: flex;
     align-items: center;

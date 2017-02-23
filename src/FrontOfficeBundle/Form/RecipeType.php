@@ -68,6 +68,7 @@ class RecipeType extends AbstractType
                     'placeholder' => 'Nom*',
                     'class' => 'forms__inputs forms__inputsFull',
                 ),
+                'required' => false
             ))
             ->add('ingredients', TextareaType::class, array(
                 'label' => ' ',

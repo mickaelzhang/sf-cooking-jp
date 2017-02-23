@@ -33,7 +33,11 @@
                         {% for recipe in recipes %}
                         <li>
                             <div class="categories__imagesContainers">
-                                <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}" alt="" class="categories__recipesImages">
+                                {% if recipe.image is not null %}
+                                    <img src="{{ asset('uploads/recipe/') ~ recipe.image }}" alt="{{ recipe.name }}" class="categories__recipesImages">
+                                {% else %}
+                                    <img src="{{ asset('assets/img/default_img.png') }}" alt="{{ recipe.name }}" class="categories__recipesImages">
+                                {% endif %}
                             </div>
                             <h6 class="categories__recipesAuthors">{{ recipe.username }}</h6>
                             <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">

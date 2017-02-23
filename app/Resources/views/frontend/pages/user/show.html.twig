@@ -53,7 +53,11 @@
                 {% for favorite in favorites %}
                     <li>
                         <div class="profileCards__imgContainer">
-                            <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                            {% if favorite.recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ favorite.recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_img.png') }}" alt="">
+                            {% endif %}
                         </div>
                         <a href="{{ path('recipe_show', {'recipeId': favorite.recipe.recipeId}) }}">
                             <h4>{{ favorite.recipe.name }}</h4>
@@ -72,7 +76,11 @@
                 {% for recipe in recipes %}
                     <li>
                         <div class="profileCards__imgContainer">
-                            <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                            {% if recipe.image is not null %}
+                                <img src="{{ asset('uploads/recipe/' ~ recipe.image) }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_users.png') }}" alt="">
+                            {% endif %}
                         </div>
                         <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
                         <h4>{{ recipe.name }}</h4>

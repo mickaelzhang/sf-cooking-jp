@@ -2,11 +2,19 @@
     <div class="wrapper">
         <div class="smallCard__container">
 
-            <img class="largeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
+            {% if recipe.image is not null %}
+                <img class="largeImage" src="{{ asset("uploads/recipe/") ~ recipe.image }}" />
+            {% else %}
+                <img class="largeImage" src="{{ asset("assets/img/default_img.png") }}" />
+            {% endif %}
             <div class="smallCardInfos">
 
                 <div class="smallCardAuthor">
-                    <div class="smallCardAuthor__image" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author_image }}')"></div>
+                    {% if recipe.author_image is not null %}
+                        <div class="smallCardAuthor__image" style="background-image:url('{{ asset("uploads/user/") ~ recipe.author_image }}')"></div>
+                    {% else %}
+                        <div class="smallCardAuthor__image" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author_image }}')"></div>
+                    {% endif %}
                     <div class="smallCardAuthor__username">
                         {{ recipe.username }}
                     </div>

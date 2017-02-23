@@ -29,7 +29,11 @@
 
                     <li>
                         <div class="popularProfiles__imgsContainer">
-                            <img src="{{ asset('uploads/user/') }}{{ user.image }}" class="popularProfiles__imgs">
+                            {% if user.image is not null %}
+                                <img src="{{ asset('uploads/user/') }}{{ user.image }}" class="popularProfiles__imgs">
+                            {% else %}
+                                <img src="{{ asset('assets/img/default_users.png') ~ user.image }}" class="popularProfiles__imgs">
+                            {% endif %}
                         </div>
                         <div class="popularProfiles__infos">
                             <a href="{{ path('user_show', {'id':user.userId}) }}">

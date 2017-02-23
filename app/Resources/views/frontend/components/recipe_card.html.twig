@@ -3,9 +3,15 @@
     <div class="wrapper">
         <div class="recipeCardHeader">
             <div class="recipeAuthor">
-                <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+                {% if recipe.author.image is not null %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("uploads/user/") }}{{ recipe.author.image }}')"></div>
+                {% else %}
+                    <div class="recipeAuthor__img" style="background-image:url('{{ asset("assets/img/default_users.png") ~ recipe.author.image }}')"></div>
+                {% endif %}
 
-                <div class="recipeAuthor__username">{{ recipe.author.username }}</div>
+                <div class="recipeAuthor__username">
+                    <a class="recipeAuthor__link" href="{{ path('user_show', {'id': recipe.author.userId}) }}">{{ recipe.author.username }}</a>
+                </div>
             </div>
             {% if app.user %}
                 <div class="addToFavorite favoriteButton">
@@ -28,7 +34,11 @@
 
         <div class="recipeInfos">
             <div class="recipeImageContainer">
-                <img class="recipeImage" src="{{ asset("uploads/recipe/") }}{{ recipe.image }}" />
+                {% if recipe.image is not null %}
+                    <img class="recipeImage" src="{{ asset("uploads/recipe/") ~ recipe.image }}" />
+                {% else %}
+                    <img class="recipeImage" src="{{ asset("assets/img/default_img.png") }}" />
+                {% endif %}
             </div>
             <div class="recipeInfosContainer">
                 <h2>{{ recipe.name }}</h2>

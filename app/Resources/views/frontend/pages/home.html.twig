@@ -21,11 +21,19 @@
 
                 {% for favorite in favorites %}
                     <div class="popularRecipes__card">
-                        <img class="popularRecipes__img" src="{{ asset('uploads/recipe/') }}{{ favorite.image }}" alt="">
+                        {% if favorite.image is not null %}
+                            <img class="popularRecipes__img" src="{{ asset('uploads/recipe/') ~ favorite.image }}" alt="">
+                        {% else %}
+                            <img class="popularRecipes__img" src="{{ asset('assets/img/default_img.png') }}" alt="">
+                        {% endif %}
 
                         <div class="popularRecipes__infos">
                             <div class="popularRecipes__infosLeft">
-                                <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('uploads/user/') }}{{ favorite.author_image }}')"></div>
+                                {% if favorite.author_image is not null %}
+                                    <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('uploads/user/') ~ favorite.author_image }}')"></div>
+                                {% else %}
+                                    <div class="popularRecipes__userImgContainer" style="background-image:url('{{ asset('assets/img/default_users.png') }}')"></div>
+                                {% endif %}
                                 <h4 class="popularRecipes__username">{{ favorite.username }}</h4>
                             </div>
 
@@ -36,7 +44,13 @@
                                 <ul class="popularRecipes__indications">
                                     <li>
                                         <img src="{{ asset('assets/img/chef.png') }}" alt="">
-                                        Facile
+                                        {% if favorite.difficulty == '1' %}
+                                            Facile
+                                        {% elseif favorite.difficulty == '2' %}
+                                            Moyen
+                                        {% elseif favorite.difficulty == '3' %}
+                                            Difficile
+                                        {% endif %}
                                     </li>
                                     <li>
                                         <img src="{{ asset('assets/img/time.png') }}" alt="">
@@ -65,7 +79,11 @@
                     {% for recipe in recipes %}
                         <li>
                             <div class="lastRecipes__imgContainer">
-                                <img src="{{ asset('uploads/recipe/') }}{{ recipe.image }}">
+                                {% if recipe.image is not null %}
+                                    <img src="{{ asset('uploads/recipe/') ~ recipe.image }}">
+                                {% else %}
+                                    <img src="{{ asset('assets/img/default_img.png') ~ recipe.image }}">
+                                {% endif %}
                             </div>
                             <a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">
                                 <h4>{{ recipe.name }}</h4>
