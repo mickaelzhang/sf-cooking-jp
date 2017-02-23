@@ -3,9 +3,30 @@
 {% block page_id %}{{ parent() }} 404{% endblock %}
 
 {% block title %}
-    Page 404
+    Délice du Japon | Page 404
 {% endblock %}
 
 {% block content %}
+
+    <div class="defaultContainer">
+
+        <div class="mainContent">
+
+            {% include 'frontend/components/search_by_col.html.twig' %}
+
+            <div class="errorPage midCol">
+                <div class="errorPage__container">
+                    <img class="errorPage__img" src="{{ asset('assets/img/errorChibi.png') }}" alt="Erreur 404"/>
+                    <h2 class="errorPage__title">Page 404</h2>
+                    <p class="errorPage__text">Oops! Vous vous êtes perdu ?</p>
+                    <a class="errorPage__link" href="{{ path('homepage') }}">Retourner à la page d'accueil</a>
+                </div>
+            </div>
+
+        </div>
+
+        {% include 'frontend/components/ads.html.twig' %}
+
+    </div>
 
 {% endblock %}
