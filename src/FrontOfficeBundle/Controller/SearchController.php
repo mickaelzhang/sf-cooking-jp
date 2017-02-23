@@ -49,14 +49,23 @@ class SearchController extends Controller
             if ($data['entityChoice'] == 'user') {
                 $users = $em->getRepository('AppBundle:User')->searchUserByUsername($data['searchInput']);
 
-                return $this->render('@frontend/user/list.html.twig', array(
-                    'users' => $users
+                foreach($users as $key => $popular) {
+                    $users[$key]['recipes'] = $em->getRepository('AppBundle:Recipe')->findBy(
+                        array( 'author' => $popular['userId'])
+                    );
+                }
+
+                return $this->render('@frontend/user/featured_users.html.twig', array(
+                    'users' => $users,
+                    'pageType' => 'recherche'
                 ));
+
             } elseif ($data['entityChoice'] == 'recipe') {
                 $recipes = $em->getRepository('AppBundle:Recipe')->searchRecipeByName($data['searchInput']);
 
-                return $this->render('@frontend/recipe/list.html.twig', array(
-                    'recipes' => $recipes
+                return $this->render('@frontend/recipe/featured_recipe.html.twig', array(
+                    'recipes' => $recipes,
+                    'pageType' => 'recherche'
                 ));
             }
         }

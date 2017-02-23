@@ -85,8 +85,10 @@ class RecipeRepository extends \Doctrine\ORM\EntityRepository
     public function searchRecipeByName($searchString)
     {
         $query = $this->createQueryBuilder('r')
+            ->join('r.author', 's')
             ->where('r.name LIKE :name')
             ->setParameter('name', "%$searchString%")
+            ->select('r.recipeId', 'r.name', 'r.image' , 'r.cookingTime', 'r.preparationTime', 'r.difficulty', 's.username', 's.image AS author_image')
             ->getQuery();
 
         return $query->getResult();
