@@ -48,7 +48,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
      * Get last registered users
      *
      * @param Int max results
-     * @return string
+     * @return array
      */
     public function getLastRegisteredUsers($maxResults) {
         $date = new \DateTime();
@@ -57,13 +57,12 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('u')
             ->where('u.registeredDate > :date')
             ->setParameter(':date', $date)
-            ->select('COUNT(u)')
             ->getQuery();
 
         if ($maxResults != 0) {
             $query->setMaxResults($maxResults);
         }
 
-        return $query->getSingleScalarResult();
+        return $query->getResult();
     }
 }

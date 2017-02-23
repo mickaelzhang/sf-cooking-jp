@@ -10,13 +10,52 @@
 
     <div class="defaultContainer">
 
-        <h2>Dashboard</h2>
+        <div class="dashboardPage">
 
-        <div>Utilisateurs inscrits dans les 7 derniers jours</div>
-        {{ dump(users) }}
+            <h2 class="dashboardPage__title">Dashboard</h2>
 
-        <div>Recettes ajoutées les 7 derniers jours</div>
-        {{ dump(recipes) }}
+            <div class="dashboardPage__container">
+
+                <div class="dashboardCard">
+
+                    <div class="dashboardCard__title">
+                        <h2>Utilisateurs inscrits dans les 7 derniers jours</h2>
+                    </div>
+
+                    <div class="dashboardCard__data">
+                        {{ users|length }}
+                    </div>
+
+                    <ul class="dashboardCard__list">
+                        {% for user in users %}
+                            <li><a href="{{ path('user_show', {'id': user.userId}) }}">{{ user.username }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <div class="dashboardCard">
+
+                    <div class="dashboardCard__title">
+                        <h2>Recettes crées dans les 7 derniers jours</h2>
+                    </div>
+
+                    <div class="dashboardCard__data">
+                        {{ recipes|length }}
+                    </div>
+
+                    <ul class="dashboardCard__list">
+                        {% for recipe in recipes %}
+                            <li><a href="{{ path('recipe_show', {'recipeId': recipe.recipeId}) }}">{{ recipe.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+
+            </div>
+
+        </div>
 
     </div>
 
